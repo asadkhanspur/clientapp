@@ -1,0 +1,174 @@
+<section class="productManagmentSection">
+    
+        <div class="loan-filter">
+          <div class="row">
+            <div class="col-md-12 bg-lgray left">
+              <div class="searchBarApp">
+                <input placeholder="Search by Name, Type, Property Category, Description" #searchInput class="form-control" [(ngModel)]="term">
+              </div>
+              <!-- <div class="col-md-2">
+                <button type="button" class="btn btn-secondary" id="openPop">
+                  See Fixed Allocation</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+  
+        <div class="productManagmentTable">
+          <Div class="row">
+            <div class="col-md-12">
+              <div class="tablesDivProduct" id="style-2">
+
+  
+                <table class="table table-wrapper table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+                  <thead class="bgHeaderRowTable">
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col" (click)="sort('productName',productManagmentArray)"><i class="fa fa-sort" aria-hidden="true"></i> Name </th>
+                      <th scope="col" (click)="sort('productTypeName',productManagmentArray)"><i class="fa fa-sort" aria-hidden="true"></i> Type</th>
+                      <th scope="col" (click)="sort('propertyCategoryTypeName',productManagmentArray)"><i class="fa fa-sort" aria-hidden="true"></i> Property Category </th>
+                      <th scope="col" (click)="sort('productDescription',productManagmentArray)"><i class="fa fa-sort" aria-hidden="true"></i> Description</th>
+                      <!-- <th scope="col"><i class="fa fa-sort" aria-hidden="true"></i> Frequently Used With</th> -->
+                      <th scope="col">Active</th>
+                      <!-- <th scope="col">Sort</th> -->
+                      <th scope="col" >Action</th>
+                    </tr>
+                  </thead>
+  
+  
+  
+                  <tbody>
+  
+                    <tr *ngFor="let data of productManagmentArray |filter:term; let i = index">
+                      <td [ngClass]="{'disableRow': data.active == false}">
+                        <i class="fa fa-star" (click)="updateProductInfo($event, data, 1, i)" [ngClass]="{'bgOrange': data.isFrequentlyUsed == true}"></i>
+                      </td>
+  
+  
+                      <td [ngClass]="{'disableRow': data.active == false}">
+                        <p>
+                          {{data.productName}}
+                          <span *ngIf="data.isSystemProduct == false">Offered by Vendor {{data.vendorName}}</span>
+                        </p>
+                      </td>
+  
+  
+                      <td [ngClass]="{'disableRow': data.active == false}">
+                        <p>
+                          {{data.productTypeName}}
+                        </p>
+                      </td>
+  
+  
+                      <td [ngClass]="{'disableRow': data.active == false}">
+                        <p>
+                          {{data.propertyCategoryTypeName}}
+                        </p>
+                      </td>
+  
+  
+                      <td [ngClass]="{'disableRow': data.active == false}">
+                        <p>
+                          {{data.productDescription}}
+                        </p>
+                      </td>
+  
+  
+                      <!-- <td>
+                        <span class="chips">CMH</span>
+                        <span class="chips">Convintial</span>
+                        <span class="chips">ByteLink Lt 1</span>
+                        <span class="chips">CMH</span>
+                        <span class="chips">FHA</span>
+                        <span class="chips">Convintial</span>
+                        <span class="chips">ByteLink Lt 1</span>
+                      </td> -->
+  
+  
+                    
+                      <td> 
+                        <mat-slide-toggle color="primary" *ngIf="permissions.PMC == true" (change)="updateProductInfo($event, data, 2, i)" [(ngModel)]="data.active"></mat-slide-toggle>
+                      </td>
+  
+  
+                      <!-- <td>
+                        <select class="form-control">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                      </td> -->
+  
+  
+                      <td [ngClass]="{'disableRow': data.active == false}">
+  
+                        <!-- <div class="editButtonDrop">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false">
+                              <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                              <button class="dropdown-item" *ngIf="permissions.PMSV == true" type="button" (click)="advanceSettingFunc(data)">Advance Product Settings</button>
+                            </div>
+                          </div>
+                        </div> -->
+  
+                        <div class="btn-group" dropdown>
+                          <button id="button-basic" dropdownToggle type="button" class="btn btn-default dropdown-toggle" aria-controls="dropdown-basic"> <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                          </button>
+                          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+                              role="menu" aria-labelledby="button-basic">
+                            <li role="menuitem">
+                              <button class="dropdown-item" *ngIf="permissions.PMSV == true" type="button" (click)="advanceSettingFunc(data)">Advance Product Settings</button>
+                            </li>
+                          </ul>
+                        </div>
+  
+                      </td>
+                    </tr>
+  
+  
+  
+                  </tbody>
+  
+                </table>
+  
+  
+                 <div class="gifLoaderDiv" *ngIf="gifLoader">
+                  <img src="../../../assets/images/gif-loader.gif" alt="">
+                </div>
+  
+  
+                <div class="noRecordDiv" *ngIf="productManagmentArray.length === 0 && gifLoader == false">
+                  <img src="../../../assets/images/noRecordImg.png" alt="">
+                  <h1>No Record Found</h1>
+                </div> 
+  
+              </div>
+            </div>
+          </Div>
+        </div>
+  
+  
+    
+  
+  
+    <div class="LowVisibilityDiv">
+      <div class="FormDivPopup" id="edit-sec-scroll">
+        <h4 class="textCenter fz-18 ebold"> Advance Product Settings</h4>
+  
+        <div class="contentDiv">
+          <p>UAD Report Needed <span><mat-slide-toggle color="primary" (change)="updateProductInfo($event, null, 3, null)" [(ngModel)]="UadReport"></mat-slide-toggle></span></p>
+          <!-- <p>Enable Order Auto Assigment <span><mat-slide-toggle color="primary" (change)="updateProductInfo($event, null, 4, null)" [(ngModel)]="orderAssigment"></mat-slide-toggle></span></p> -->
+        </div>
+  
+        <button class="btn btn-default btn-close"><i class="fa fa-times" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  
+  
+  </section>
+  

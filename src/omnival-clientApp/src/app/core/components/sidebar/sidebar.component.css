@@ -1,0 +1,224 @@
+
+#style-2::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0);
+    border-radius: 0;
+    background-color: white
+  }
+  
+  #style-2::-webkit-scrollbar {
+    width: 8px;
+    background-color: white;
+    box-shadow: none
+  }
+  
+  #style-2::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    height: 300px;
+    -webkit-box-shadow: inset 0 0 6px rgba(88, 88, 88, .05);
+    background-color: #b9c4e073
+  }
+  
+  
+  .AppSideBar {
+    padding: 10px 0;
+    box-sizing: border-box;
+    background-color: #002c65;
+  }
+  
+  .AppSideBar .MenuDiv {}
+  
+  .AppSideBar .MenuDiv .AppLogo {
+    position: relative;
+    padding: 0 26px;
+  }
+  
+  .AppSideBar .MenuDiv .AppLogo img {
+    /* border-bottom: 1px solid #1a467f;
+    padding-bottom: 14px; */
+  }
+  
+  .AppSideBar .MenuDiv .AppLogo button {
+    outline: none;
+    box-shadow: none;
+    position: absolute;
+    right: -18px;
+    background-color: #002c65;
+    border-radius: 50%;
+    top: 6px;
+    z-index: 99;
+  
+  }
+  
+  .AppSideBar .MenuDiv .MenuInerStyleDiv {
+    margin: 40px 0;
+    max-height: 750px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  .bKIcon {
+    float: left !important;
+    margin-top: 6px !important;
+    margin-right: 8px;
+    color: white !important;
+    font-size: 14px !important;
+    width: 20px;
+    text-align: center;
+  }
+  
+  .AppSideBar .MenuDiv .AppLogo button i {
+    font-size: 16px;
+    color: white;
+    right: -4px;
+    position: relative;
+    top: 0px;
+  }
+  
+  .AppSideBar .MenuDiv h3 i {}
+  
+  .AppSideBar .MenuDiv h3 {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 0;
+    padding: 0px 20px;
+  }
+  
+  .AppSideBar .MenuDiv .colDropDiv {
+    margin: 26px 0;
+  }
+  
+  .AppSideBar .MenuDiv .colDropDiv .subMenuMain {}
+  
+  .AppSideBar .MenuDiv .colDropDiv .subMenuMain ul {
+    padding-left: 0;
+    margin-bottom: 0;
+    margin-top: 6px;
+  }
+  
+  .AppSideBar .MenuDiv .colDropDiv .subMenuMain ul li {
+    list-style: none;
+    margin: 4px 0 0 0;
+    transition: 1s all;
+    padding: 14px 34px 14px 34px;
+    cursor: pointer;
+    border-left: 2px solid transparent;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0;
+    display: block;
+    width: 100%;
+  }
+  
+  .AppSideBar .MenuDiv .colDropDiv .subMenuMain ul li:focus {
+    outline: none;
+  }
+  
+  .AppSideBar .MenuDiv .colDropDiv .subMenuMain ul li.active {
+    border-left: 2px solid #043d75;
+    background-color: #043d75;
+  }
+  
+  .AppSideBar .MenuDiv .colDropDiv .subMenuMain ul li:hover {
+    background-color: #043d75;
+    border-left: 2px solid #043d75;
+  }
+  
+  .AppSideBar .MenuDiv .colDropDiv .subMenuMain ul li p:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  
+  /* .AppSideBar .MenuDiv .colDropDiv .subMenuMain ul li p{
+      font-size: 16px;
+      font-weight: 600;
+      color: #043d75;
+      margin-bottom: 0;
+  } */
+  .AppSideBar .MenuDiv .colDropDiv .subMenuMain ul li i {
+    margin-right: 10px;
+    width: 15px;
+    text-align: center;
+  }
+  
+  .AppSideBar .MenuDiv .colDropDiv button.btn.btn-default {
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    padding: 0;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0px 20px;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    background-color: transparent;
+  }
+  
+  .AppSideBar .MenuDiv .colDropDiv button.btn.btn-default i {
+    float: right;
+    color: #4f637a;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  
+  .AppSideBar .MenuDiv .colDropDiv button.btn.btn-default:focus {}
+  
+  .AppSideBar .MenuDiv .colDropDiv button.btn.btn-default:active {}
+  
+  .AppSideBar .MenuDiv .colDropDiv button.btn.btn-default:hover {}
+  
+  .mb-50 {
+    margin-bottom: 50px !important;
+  }
+  
+  
+  .iconDiv {
+    position: relative;
+  }
+  
+  .iconDiv ul {
+    padding: 0;
+  }
+  
+  .iconDiv ul li:first-child {
+    margin-top: 75px;
+  }
+  
+  .iconDiv ul li {
+    list-style: none;
+    display: block;
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+    padding: 10px 0;
+  }
+  
+  .iconDiv ul li i {
+    font-size: 20px !important;
+    display: block;
+    float: right !important;
+    margin-right: 28px;
+    outline: none;
+    border: 0;
+  }
+  
+  .btnIconHideClassStyle {
+    position: absolute;
+    right: -18px;
+    color: white;
+    z-index: 9999;
+    background-color: #002c65;
+    border-radius: 50%;
+    top: 6px;
+  }
+  
+  .btnIconHideClassStyle i {
+    font-size: 16px;
+    right: -4px;
+    position: relative;
+    top: 0px;
+  }
+  

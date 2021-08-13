@@ -1,0 +1,31 @@
+
+.AppMainSection{}
+.AppMainSection .ApprouteDiv {
+    background-color: #e9eef4;
+    /* height: calc(100vh - 70px); */
+    overflow: hidden;
+  }
+  
+  #sidebar {
+    max-width: 214px;
+    /* max-width: 314px; */
+    transition: 0.50s;
+    background-color: #003171;
+  }
+  
+  #sidebar.active {
+    margin-left: -190.99px;
+  }
+  
+  .BlueBarGeneral {
+    background-color: #0056cd;
+    min-height: 125px;
+    max-height: 125px;
+  }
+  
+  .BlueBarGeneral h4 {
+    font-size: 26px;
+    color: white;
+    font-weight: 700;
+    padding: 30px;
+  }

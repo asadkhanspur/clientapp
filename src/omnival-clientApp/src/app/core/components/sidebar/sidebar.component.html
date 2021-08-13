@@ -1,0 +1,276 @@
+<section class="AppSideBar" >
+  <div class="row">
+    <div class="col-md-12">
+
+
+      <div class="MenuDiv">
+
+
+        <div class="AppLogo ">
+          <img src="../../../../assets/images/logosv.svg" class="img-fluid" alt="OmniVal">
+          <!-- Toggle Side bar button -->
+          <button type="button" id="sidebarCollapse" class="btn btn-default">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <!-- Toggle Side bar button -->
+        </div>
+
+
+        <div class="MenuInerStyleDiv" id="style-2">
+          <div class="colDropDiv">
+            <button type="button" class="btn btn-default" (click)="orderCollapsed = !orderCollapsed"
+              [attr.aria-expanded]="!orderCollapsed" aria-controls="collapseBasic"><i class="fa fa-files-o bKIcon"
+                aria-hidden="true"></i> Order Management <i class="fa fa-chevron-down" aria-hidden="true"
+                *ngIf="orderCollapsed"></i> <i class="fa fa-chevron-up" aria-hidden="true" *ngIf="!orderCollapsed"></i>
+            </button>
+            <div id="collapseBasic" [collapse]="orderCollapsed" [isAnimated]="true">
+              <div class="subMenuMain">
+                <ul>
+                  <li routerLink="/newordermodule/productselect" *ngIf="permissions.OMCOV == true"
+                    routerLinkActive="active" class="">
+                    <i class="fa fa-plus-square" aria-hidden="true"></i> New Order
+                  </li>
+                  <li routerLink="/loanlist" routerLinkActive="active" class="" *ngIf="permissions.OMOLV == true">
+                    <i class="fa fa-plus-square" aria-hidden="true"></i> Order Listing
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="colDropDiv" *ngIf="permissions.OMRCV == true">
+            <button type="button" class="btn btn-default" routerLink="/reviewchecklist" routerLinkActive="active"
+              [attr.aria-expanded]="!reportCollapsed" aria-controls="collapseBasic"><i class="fa fa-list-alt bKIcon"
+                aria-hidden="true"></i> Review Checklist
+            </button>
+          </div>
+
+          <div class="colDropDiv" *ngIf="permissions.OMDCV == true">
+            <button type="button" class="btn btn-default" routerLink="/documentmanagement/documentlist"
+              routerLinkActive="active" [attr.aria-expanded]="!reportCollapsed" aria-controls="collapseBasic"><i
+                class="fa fa-file-text-o bKIcon" aria-hidden="true"></i> Document Management
+            </button>
+          </div>
+
+
+          <div class="colDropDiv" *ngIf="permissions.OMEMV == true">
+            <button type="button" class="btn btn-default" routerLink="/emailmanagement/emaillist"
+              routerLinkActive="active" [attr.aria-expanded]="!reportCollapsed" aria-controls="collapseBasic"><i
+                class="fa fa-envelope-o bKIcon" aria-hidden="true"></i> Configure Alerts
+            </button>
+          </div>
+
+
+
+          <!-- *ngIf="permissions.ACM == true" -->
+          <div class="colDropDiv" >
+            <button type="button" class="btn btn-default" (click)="accountCollapsed = !accountCollapsed"
+              [attr.aria-expanded]="!accountCollapsed" aria-controls="collapseBasic"><i class="fa fa-files-o bKIcon"
+                aria-hidden="true"></i> Account <i class="fa fa-chevron-down" aria-hidden="true"
+                *ngIf="accountCollapsed"></i> <i class="fa fa-chevron-up" aria-hidden="true"
+                *ngIf="!accountCollapsed"></i>
+            </button>
+            <div id="collapseBasic" [collapse]="accountCollapsed" [isAnimated]="true">
+              <div class="subMenuMain">
+                <ul>
+                  <li routerLink="/billingAccount/RecievableSummary" routerLinkActive="active" class="">
+                    <i class="fa fa-usd bKIcon" aria-hidden="true"></i> Accounts Recievable
+                  </li>
+                  <li routerLink="/PayablebillingAccount/PayableSummary" routerLinkActive="active" class="">
+                    <i class="fa fa-plus-square" aria-hidden="true"></i> Accounts Payable
+                  </li>
+
+                  <li routerLink="/techFees" routerLinkActive="active" class="">
+                    <i class="fa fa-plus-square" aria-hidden="true"></i> Billing
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+
+    
+
+          <div class="colDropDiv">
+            <button type="button" class="btn btn-default" (click)="profileCollapsed = !profileCollapsed"
+              [attr.aria-expanded]="!profileCollapsed" aria-controls="collapseBasic" *ngIf="permissions.PRPDV">
+              <i class="fa fa-user bKIcon" aria-hidden="true"></i> Profile Detail <i class="fa fa-chevron-down"
+                aria-hidden="true" *ngIf="profileCollapsed"></i> <i class="fa fa-chevron-up" aria-hidden="true"
+                *ngIf="!profileCollapsed"></i>
+            </button>
+            <div id="collapseBasic" [collapse]="profileCollapsed" [isAnimated]="true">
+              <div class="subMenuMain">
+                <ul>
+                  <li routerLink="/clientprofile/branches" class="" routerLinkActive="active"
+                    *ngIf="setting != undefined && setting.branchEnable && permissions.PRBRV == true">
+                    <i class="fa fa-building" aria-hidden="true"></i> Branches
+                  </li>
+                 
+                  <li routerLink="/clientprofile/settings" routerLinkActive="active" class="">
+                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                    Settings
+                  </li>
+                
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        
+
+          <div class="colDropDiv" *ngIf="permissions.PMV == true">
+            <button type="button" class="btn btn-default" routerLink="/product-managment" routerLinkActive="active"
+              [attr.aria-expanded]="!reportCollapsed" aria-controls="collapseBasic"><i class="fa fa-flag bKIcon"
+                aria-hidden="true"></i> Product Management
+            </button>
+          </div>
+
+          <div class="colDropDiv" *ngIf="permissions.VMSV == true">
+            <button type="button" class="btn btn-default" routerLink="/panelmanagement" routerLinkActive="active"
+              [attr.aria-expanded]="!reportCollapsed" aria-controls="collapseBasic"><i class="fa fa-users bKIcon"
+                aria-hidden="true"></i> Panel Management
+            </button>
+          </div>
+
+
+
+          <div class="colDropDiv"
+            *ngIf="setting != undefined && ((setting.amcVendorEnabled == true && (setting.useAmcClientFeeEnable || setting.useAmcClientTurnTimeEnable)) || (setting.apprVendorEnabled  == true && (setting.useApprClientFeeEnable || setting.useApprClientTurnTimeEnable))) && permissions.FTV == true">
+            <button type="button" class="btn btn-default" routerLink="/feemanagement" routerLinkActive="active"
+              [attr.aria-expanded]="!reportCollapsed" aria-controls="collapseBasic"><i class="fa fa-usd bKIcon"
+                aria-hidden="true"></i> Fees & Turn Times
+            </button>
+          </div>
+
+          <div class="colDropDiv"
+            *ngIf="setting != undefined && (setting.amcVendorEnabled == true || setting.apprVendorEnabled  == true) && permissions.AMV == true">
+            <button type="button" class="btn btn-default" routerLink="/allocationmanagment" routerLinkActive="active"
+              [attr.aria-expanded]="!reportCollapsed" aria-controls="collapseBasic"><i class="fa fa-list-alt bKIcon"
+                aria-hidden="true"></i> Allocation Management
+            </button>
+          </div>
+
+          <div class="colDropDiv" *ngIf="permissions.RMRV == true || permissions.PRUMV == true ">
+            <button type="button" class="btn btn-default" routerLink="/rolemanagement" routerLinkActive="active"
+              [attr.aria-expanded]="!reportCollapsed" aria-controls="collapseBasic"><i class="fa fa-cogs bKIcon"
+                aria-hidden="true"></i> Roles & User Management
+            </button>
+          </div>
+
+          <div class="colDropDiv">
+            <button type="button" class="btn btn-default" routerLink="/ordersetting/orderfield" routerLinkActive="active"
+              [attr.aria-expanded]="!reportCollapsed" aria-controls="collapseBasic"><i class="fa fa-cog bKIcon"
+                aria-hidden="true"></i> Order Settings
+            </button>
+          </div>
+
+
+          <div class="colDropDiv">
+            <button type="button" class="btn btn-default" (click)="reportingCollapsed = !reportingCollapsed"
+              [attr.aria-expanded]="!reportingCollapsed" aria-controls="collapseBasic"><i class="fa fa-files-o bKIcon"
+                aria-hidden="true"></i> Reporting <i class="fa fa-chevron-down" aria-hidden="true"
+                *ngIf="reportingCollapsed"></i> <i class="fa fa-chevron-up" aria-hidden="true"
+                *ngIf="!reportingCollapsed"></i>
+            </button>
+            <div id="collapseBasic" [collapse]="reportingCollapsed" [isAnimated]="true">
+              <div class="subMenuMain">
+                <ul>
+                  <li routerLink="/report/reportcategory" *ngIf="permissions.RPRBV == true" routerLinkActive="active" class="">
+                    <i class="fa fa-file-text-o" aria-hidden="true"></i> Report Builder
+                  </li>
+                  <li routerLink="/report/reportschedulers" *ngIf="permissions.RPRSV == true" routerLinkActive="active" class="">
+                    <i class="fa fa-file-text-o" aria-hidden="true"></i> Report Schedulers
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+
+
+      <div class="iconDiv d-none">
+
+        <ul class="clearfix">
+
+          <li *ngIf="permissions.OMCOV == true">
+            <i class="fa fa-files-o bKIcon" aria-hidden="true" routerLink="/newordermodule/productSelect"
+              popover="New Order" placement="right" triggers="mouseenter:mouseleave"></i>
+          </li>
+
+          <li>
+            <i class="fa fa-list-ol bKIcon" aria-hidden="true" routerLink="/loanlist" popover="Order Listing"
+              placement="right" triggers="mouseenter:mouseleave"></i>
+          </li>
+
+          <li *ngIf="permissions.PRBRV == true || permissions.PRSDV">
+            <i class="fa fa-user bKIcon" aria-hidden="true" routerLink="/clientprofile/branches"
+              popover="Profile Detail" placement="right" triggers="mouseenter:mouseleave"></i>
+          </li>
+
+          <li *ngIf="permissions.PMCV == true">
+            <i class="fa fa-flag bKIcon" aria-hidden="true" routerLink="/productmanagement" popover="Product Management"
+              placement="right" triggers="mouseenter:mouseleave"></i>
+          </li>
+
+          <li *ngIf="permissions.PNLV">
+            <i class="fa fa-users bKIcon" aria-hidden="true" routerLink="/panelmanagement" popover="Panel Management"
+              placement="right" triggers="mouseenter:mouseleave"></i>
+          </li>
+
+          <li *ngIf="permissions.FTV == true">
+            <i class="fa fa-usd bKIcon" aria-hidden="true" routerLink="/feemanagement" popover="Fees & Turn Times"
+              placement="right" triggers="mouseenter:mouseleave"></i>
+          </li>
+
+          <li *ngIf="permissions.AMV == true">
+            <i class="fa fa-list-alt bKIcon" aria-hidden="true" routerLink="/allocationmanagment"
+              popover="Allocation Management" placement="right" triggers="mouseenter:mouseleave"></i>
+          </li>
+
+          <li *ngIf="permissions.RMRV || permissions.PRUMV ">
+            <i class="fa fa-cogs bKIcon" aria-hidden="true" routerLink="/rolemanagement"
+              popover="Roles & User Management" placement="right" triggers="mouseenter:mouseleave"></i>
+          </li>
+
+
+          <li>
+            <i class="fa fa-file-text-o bKIcon" aria-hidden="true" routerLink="/documentmanagement/documentlist"
+              popover="Document Management" placement="right" triggers="mouseenter:mouseleave"></i>
+          </li>
+
+
+
+          <li>
+            <i class="fa fa-envelope-o bKIcon" aria-hidden="true" routerLink="/emailmanagement/emaillist"
+              popover="Configure Alerts" placement="right" triggers="mouseenter:mouseleave"></i>
+          </li>
+
+
+          <li>
+            <i class="fa fa-users bKIcon" aria-hidden="true" routerLink="/panelmanagement" popover="Panel Management"
+              placement="right" triggers="mouseenter:mouseleave"></i>
+          </li>
+
+
+          <li>
+            <i class="fa fa-file-o bKIcon" aria-hidden="true" routerLink="/report/reportcategory"
+              popover="Report Builder" placement="right" triggers="mouseenter:mouseleave"></i>
+          </li>
+
+          <li>
+            <i class="fa fa-calendar bKIcon" aria-hidden="true" routerLink="/report/reportschedulers"
+              popover="Report Schedulers" placement="right" triggers="mouseenter:mouseleave"></i>
+          </li>
+
+        </ul>
+
+        <button type="button" id="sidebarCollapseRemove" class="btn btn-default btnIconHideClassStyle">
+          <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

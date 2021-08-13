@@ -1,0 +1,420 @@
+/* Scroll Styles */
+#style-2::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0);
+    border-radius: 0;
+    background-color: white
+  }
+  
+  #style-2::-webkit-scrollbar {
+    width: 8px;
+    background-color: white;
+    box-shadow: none
+  }
+  
+  #style-2::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    height: 300px;
+    -webkit-box-shadow: inset 0 0 6px rgba(88, 88, 88, .05);
+    background-color: #b9c4e073
+  }
+  
+  
+  
+  /* Search Bar Css */
+  .loan-filter {
+    width: 100%;
+    margin: 15px 0;
+  }
+  
+  .loan-filter .left,
+  .loan-filter .right {
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .loan-filter .left {
+    margin-right: 15px;
+  }
+  
+  .loan-filter {
+    width: 100%;
+    margin: 15px 0;
+  }
+  
+  .loan-filter .left,
+  .loan-filter .right {
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .loan-filter .left {
+    margin-right: 15px;
+  }
+  
+  .loan-filter .selectFilters {
+    display: flex;
+    padding-left: 0;
+  }
+  
+  .loan-filter .selectFilters select:not(:last-child) {
+    margin-right: 15px;
+  }
+  
+  .loan-filter .searchBarApp {
+    position: relative;
+  }
+  
+  .loan-filter .searchBarApp:after {
+    content: '\f002';
+    font-family: FontAwesome;
+    position: absolute;
+    left: 25px;
+    top: 5px;
+    color: #cfcfcf;
+  }
+  
+  .loan-filter .searchBarApp input {
+    width: 100%;
+    padding-left: 30px;
+  }
+  
+  .loan-filter .selectFilters select,
+  .loan-filter .searchBarApp input {
+    border: 0;
+    border-radius: 10px;
+    font-weight: 700;
+    color: #344d65;
+    font-size: 14px;
+    box-shadow: none;
+    outline: none;
+  }
+  
+  .loan-filter button.btn-secondary {
+    color: #003171;
+    background-color: #fff;
+    border-radius: 8px;
+    width: 100%;
+    font-weight: 700;
+    border: 0;
+    line-height: 23px;
+    font-size: 14px;
+    outline: none;
+    box-shadow: none;
+    /* margin-right: 15px; */
+  }
+  
+  .loan-filter .right button:hover {
+    opacity: 0.9;
+  }
+  
+  .loan-filter .col-md-2 {
+    padding-left: 0;
+  }
+  
+  /* Search Bar Css */
+  
+  
+  /* Table Sesction Css */
+  .tablesDivProduct tr td {
+    vertical-align: middle;
+    font-size: 14px;
+    font-weight: 600;
+    border-top: 1px solid #e5ecf8
+  }
+  
+  .tablesDivProduct tr td:not(:last-child) {
+    /* min-width: 150px */
+  }
+  
+  
+  .disableRow {
+      filter: blur(0.5px);
+      pointer-events: none;
+      color: #d0d0d0;
+  }
+  
+  .gifLoaderDiv {
+    text-align: center;
+    /* position: relative; */
+    width: 100%;
+    height: 90%;
+  }
+  
+  .gifLoaderDiv img {
+    position: absolute;
+    top: 34%;
+  }
+  
+  .tablesDivProduct .bgHeaderRowTable th {
+    color: #344d65;
+    font-size: 14px;
+    font-weight: 700;
+    border: 0;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  
+  .tablesDivProduct tr.selected td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px
+  }
+  
+  .tablesDivProduct tr.selected td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px
+  }
+  
+  /*  .productManagmentTable .tablesDivProduct tr:hover {
+      background: #eff4fa;
+    } */
+  
+
+
+    .productManagmentSection{position: relative;}
+
+  .productManagmentTable .tablesDivProduct p {
+    margin-bottom: 0;
+  }
+  
+  
+  .productManagmentTable .tablesDivProduct {
+    height: calc(100vh - 83px);
+    overflow-y: auto;
+    overflow-y: auto;
+  
+  }
+  
+  i.fa.fa-star {
+    color: #dbdbdb;
+    font-size: 22px;
+    cursor: pointer;
+  }
+  
+  i.fa.fa-star:hover {
+    color: orange;
+    font-size: 22px;
+  }
+  
+  .bgOrange {
+    color: orange !important;
+  }
+  
+  .productManagmentTable .tablesDivProduct tr td p {}
+  
+  .productManagmentTable .tablesDivProduct tr td p span {
+    display: block;
+    font-size: 10px;
+    color: #a4a4a4;
+    font-weight: 600;
+  }
+  
+  .productManagmentTable .tablesDivProduct tr td span.chips {
+    border: 1px solid #cfcfcf;
+    margin: 4px 2px;
+    padding: 4px 6px;
+    display: inline-block;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+  
+  .productManagmentTable .tablesDivProduct tr td select {
+    box-shadow: none;
+    outline: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 0px 0px 0 6px;
+  }
+  
+  .productManagmentTable .tablesDivProduct tr td .editButtonDrop {}
+  
+  .productManagmentTable .tablesDivProduct tr td .editButtonDrop .btn-group {}
+  
+  .productManagmentTable .tablesDivProduct tr td .editButtonDrop .btn-group .dropdown-menu.show button:focus {
+    background-color: white;
+  }
+  
+  .productManagmentTable .tablesDivProduct tr td .editButtonDrop .btn-group .dropdown-menu.show button:active {
+    background-color: white;
+  }
+  
+  
+  .productManagmentTable .tablesDivProduct tr td .editButtonDrop .btn-group .dropdown-menu.show {
+    background-color: white !important;
+    padding: 0 0;
+    min-width: 30px;
+    border: 1px solid #e5ecf8;
+  }
+  
+  .productManagmentTable .tablesDivProduct tr td .editButtonDrop .btn-group .dropdown-menu.show button {
+    color: #4a5057;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  
+  .productManagmentTable .tablesDivProduct tr td .editButtonDrop .btn-group button.btn.btn-default {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #e5ecf8;
+    margin-left: 12px;
+    padding: 6px 16px;
+  }
+  
+  .productManagmentTable .tablesDivProduct tr td .editButtonDrop .btn-group.show {
+    background-color: transparent !important;
+  }
+  
+  .productManagmentTable .tablesDivProduct tr td .editButtonDrop .btn-group button.btn.btn-default:focus {
+    background-color: transparent;
+  }
+  
+  .productManagmentTable .tablesDivProduct tr td .editButtonDrop .btn-group button.btn.btn-default i {
+    color: #8a96aa;
+  }
+  
+  .productManagmentTable .tablesDivProduct tr td .editButtonDrop .btn-group button.btn.btn-default::after {
+    display: none;
+  }
+  
+  
+  /* Table Sesction Css */
+  
+  
+  
+  /* Slider Css */
+  .LowVisibilityDiv {
+    transition: all .5s ease-in-out;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #ffffffad;
+    top: 0;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    z-index: 99;
+    visibility: hidden;
+    right: 0;
+  }
+  
+  .LowVisibilityDiv.openedpopeup {
+    visibility: visible;
+  }
+  
+  
+  .LowVisibilityDiv .FormDivPopup {
+    background-color: white;
+    /* min-height: 200px; */
+    height: 100%;
+    width: 450px;
+    position: absolute;
+    right: -100%;
+    transition: 1s;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 30px;
+    -webkit-box-shadow: 0px -2px 20px 0px rgba(196, 116, 116, 0.1);
+    -moz-box-shadow: 0px -2px 20px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px -2px 20px 0px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+  }
+  
+  .LowVisibilityDiv.openedpopeup .FormDivPopup {
+    right: 0;
+    transition: 1s;
+  }
+  
+  
+  .LowVisibilityDiv .FormDivPopup .btn-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 16px;
+  }
+  
+  .LowVisibilityDiv .FormDivPopup h4 {
+    margin-bottom: 20px;
+    color: #043d75;
+    text-align: left;
+    border-bottom: 1px solid #dbdbdb;
+    padding-bottom: 20px;
+  }
+  
+  .LowVisibilityDiv .FormDivPopup h4 i {
+    color: #043d75;
+  }
+  
+  .LowVisibilityDiv .FormDivPopup .btn-close:hover,
+  .LowVisibilityDiv .FormDivPopup .btn-close:focus {
+    box-shadow: none;
+    outline: none;
+    color: darkred;
+  
+  }
+  
+  .contentDiv {
+    margin-top: 24px;
+  }
+  
+  .contentDiv p {}
+  
+  .contentDiv p span {
+    float: right;
+  }
+  
+  /* Slider Css */
+  
+  
+  
+  
+  .productManagment {
+    margin: 12px 26px;
+    background-color: white;
+    padding: 12px 26px;
+    border-radius: 8px;
+    position: relative;
+  }
+  
+  
+  ::placeholder {
+    color: #cfcfcf;
+    opacity: 1;
+    font-weight: 600;
+  }
+  
+  :-ms-input-placeholder {
+    color: #cfcfcf;
+    font-weight: 600;
+  }
+  
+  ::-ms-input-placeholder {
+    color: #cfcfcf;
+    font-weight: 600;
+  }
+  
+  .table-wrapper {
+    overflow-y: scroll;
+    background-color: white;
+  }
+  
+  .table-wrapper th {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 9;
+  }
+  
+  
+  /* No record Div Css */
+  .noRecordDiv {
+    text-align: center;
+    margin: 150px 0;
+  }
+  
+  .noRecordDiv h1 {
+    color: #003171;
+    font-weight: 700;
+    font-size: 25px;
+    margin-top: 8px;
+  }
+  
+  /* No record Div Css */

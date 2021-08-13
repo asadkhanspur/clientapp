@@ -1,0 +1,109 @@
+<section class="loginSection">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3 col-xl-3 pl-0 pr-0">
+        <div class="bgLeftSide">
+          <div class="logoImgBox">
+            <img src="../../../../../assets/images/logo1dummy.png" class="img-fluid" alt="">
+          </div>
+
+          
+          <div class="midContentDiv">
+            <h2>What is Omnival</h2>
+
+            <p>
+              OmniVal is a one stop platform where the clients would be able to meet their desired vendors for all Real Estate related evaluations in suitable time and prices.
+            </p>
+
+            <button class="btn btn-default">Let's Get Started</button>
+          </div>
+
+          <div class="bottomContentDiv">
+            <p>TRUSTED BY THE WORLD’S SMARTEST COMPANIES</p>
+            <ul>
+              <li><img src="../../../../../assets/images/Rectangle 313.png" class="img-fluid" alt=""></li>
+              <li><img src="../../../../../assets/images/Rectangle 314.png" class="img-fluid" alt=""></li>
+              <li><img src="../../../../../assets/images/Rectangle 315.png" class="img-fluid" alt=""></li>
+              <li><img src="../../../../../assets/images/Rectangle 316.png" class="img-fluid" alt=""></li>
+              <li><img src="../../../../../assets/images/Rectangle 317.png" class="img-fluid" alt=""></li>
+              <li><img src="../../../../../assets/images/Rectangle 318.png" class="img-fluid" alt=""></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-9 col-xl-9 pl-0 pr-0">
+        <div class="rightLoginDev">
+
+          <div class="loginFormDiv">
+
+
+
+
+            <span>CLIENT</span>
+            <h3>Sign in to Omnival</h3>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div class="form-row">
+
+
+                <div class="col-md-12 mb-3 noPadding">
+
+                  <mat-form-field class="d-block">
+                    <mat-icon matPrefix><i class="fa fa-user iconBg" aria-hidden="true"></i></mat-icon>
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="username" required />
+                    <mat-error *ngIf="!loginForm.controls['username'].valid">
+                      Username is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-12 mb-3 noPadding">
+
+                  <mat-form-field class="d-block">
+                    <mat-icon matPrefix><i class="fa fa-lock iconBg" aria-hidden="true"></i></mat-icon>
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                    <mat-error *ngIf="!loginForm.controls['password'].valid">Password is required
+                    </mat-error>
+                    <button class="btn btn-default" type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                      [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                  </mat-form-field>
+                </div>
+
+              </div>
+
+              <div class="leftSubmitButon mt-4">
+                <button class="btn btn-primary btnBg borderRadius6 mb-4" type="submit" [disabled]="loginForm.invalid">SIGN IN
+                  <span class="spinner-border spinner-border-own float-right" *ngIf="loading" role="status"
+                    aria-hidden="true"></span>
+                </button>
+              </div>
+              <div *ngIf="errorMessage" class="alert alertboxCss alert-danger">{{errorMessage}}</div>
+
+              <div class="form-row">
+                <!-- <div class="col-md-6 col-sm-6 col-6">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                    <label class="custom-control-label" for="customControlAutosizing"><span>Remember
+                        me</span></label>
+                  </div>
+                </div> -->
+                <!-- <div class="col-md-12 col-sm-12 col-12">
+                  <div class="forgotPas">
+                    <a href="javascript:void(0);" (click)="openModalWithClass(template)">Forgot Password?</a>
+                  </div>
+                </div> -->
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
