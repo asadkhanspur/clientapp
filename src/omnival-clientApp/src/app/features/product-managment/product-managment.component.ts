@@ -29,6 +29,7 @@ export class ProductManagmentComponent extends BaseComponent implements OnInit {
   term: string
   gifLoader = false
   permissions: any
+  
 
   constructor(
     private productManagmentService: ProductManagmentService,
