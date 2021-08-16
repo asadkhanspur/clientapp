@@ -7,55 +7,57 @@
   height: 100vh;
 }
 
-.bgLeftSide .logoImgBox img{
-    margin: 20px;
+.bgLeftSide .logoImgBox img {
+  margin: 20px;
 }
 
 .midContentDiv {
-    position: absolute;
-    top: 40%;
-    color: white;
-    padding: 0 34px;
+  position: absolute;
+  top: 40%;
+  color: white;
+  padding: 0 34px;
 }
 
-.midContentDiv p{
-    font-size: 14px;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.8);
+.midContentDiv p {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
 }
 
-.midContentDiv h2{
-    font-size: 26px;
-    font-weight: 600;
+.midContentDiv h2 {
+  font-size: 26px;
+  font-weight: 600;
 }
 
 .bottomContentDiv {
-    position: absolute;
-    bottom: 20px;
-    color: white;
-    text-align: center;
-    width: 100%;
-  }
-
-  .bottomContentDiv p{
-    font-size: 12px;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.8);
-    opacity: 0.6;
-  }
-
-.bottomContentDiv ul{}
-.bottomContentDiv ul li{
-    margin: 0 10px;
-    display: inline-block;
-}
-.bottomContentDiv ul li img{
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
+  position: absolute;
+  bottom: 20px;
+  color: white;
+  text-align: center;
+  width: 100%;
 }
 
+.bottomContentDiv p {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 0.6;
+}
 
-.rightLoginDev{}
+.bottomContentDiv ul {}
+
+.bottomContentDiv ul li {
+  margin: 0 10px;
+  display: inline-block;
+}
+
+.bottomContentDiv ul li img {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+
+.rightLoginDev {}
 
 .rightLoginDev .loginFormDiv {
   width: 500px;

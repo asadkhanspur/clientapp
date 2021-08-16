@@ -14,20 +14,13 @@ export class BaseComponent implements OnInit {
   }
 
   // ***************** CheckValidation Method *****************// 
-  public validateForm = (form: FormGroup,controlName: string, errorName: string) => {
+  public validateForm = (form: FormGroup, controlName: string, errorName: string) => {
     return form.controls[controlName].hasError(errorName);
   }
   // ***************** CheckValidation Method *****************// 
 
-
-
-
-
   // ***************** Data Sorting Method *****************// 
-
-  // ***************** Sorting Method *****************// 
-
-  sort(column,array) {
+  sort(column, array) {
     if (array._sortColumn == undefined) {
       array._sortColumn = true;
     }
@@ -39,10 +32,7 @@ export class BaseComponent implements OnInit {
     }
     array._sortColumn = !array._sortColumn;
   }
-  // ***************** Sorting Method *****************// 
 
-
-  
   ascendic(column, list) {
     list = list.sort((n1, n2) => {
       if (n1[column] < n2[column]) {
