@@ -1,3 +1,154 @@
-<p>
-  panel-tabs-vendor-detail works!
-</p>
+<div class="col-md tab-content" content>
+  <!-- Current Vendors Tab Html -->
+  <div class="tab-pane  active" id="currentVendors" role="tabpanel">
+    <div class="multipleVendorsHeightDiv" id="style-2"
+      [ngClass]="{'pr-6': this.currentVendorList.length >= 4}">
+      <div class="vendorListBoxes"
+        *ngFor="let dataCurrentVendor of currentVendorList |filter:term; let i = index">
+
+        <div class="cards" [ngClass]="{'voted': flipped[i] === true}">
+
+          <div class="boxVendor frontSide">
+            <div class="row">
+              <div class="col-md-4 bdR">
+                <div class="leftSide">
+                  <h3><span>{{dataCurrentVendor.vendorName | slice : 0 : 16}}</span> <span
+                      *ngIf="dataCurrentVendor.vendorName != null && dataCurrentVendor.vendorName.length > 19">
+                      ...</span></h3>
+                  <p>{{dataCurrentVendor.doingBusinessAs}}</p>
+
+                  <!-- <div class="AddressBox">
+                      <h4>Address:</h4>
+                      <p>{{dataCurrentVendor.address}} {{dataCurrentVendor.city}} {{dataCurrentVendor.stateCode}} {{dataCurrentVendor.zip}}</p>
+                    </div> -->
+
+                  <div class="infoBox">
+                    <p><i class="fa fa-phone" aria-hidden="true"></i> {{dataCurrentVendor.phone}}</p>
+                    <p class="liteBue"><i class="fa fa-envelope" aria-hidden="true"></i> <span>
+                        {{dataCurrentVendor.email | slice : 0 : 19}}</span> <span
+                        *ngIf="dataCurrentVendor.email != null && dataCurrentVendor.email.length > 19">
+                        ...</span></p>
+                  </div>
+
+
+                </div>
+              </div>
+
+              <div class="col-md-8 posIn">
+                <div class="rightSide">
+                  <h4>Company Offerings</h4>
+
+                  <ul
+                    *ngIf="dataCurrentVendor.categoriesOffered == null || dataCurrentVendor.categoriesOffered.length == 0">
+                    <li class="bgColorRedLight">NA</li>
+                  </ul>
+
+                  <ul *ngIf="dataCurrentVendor.categoriesOffered != null">
+                    <li class=""
+                      [ngClass]="{'bgColorBlueLight': data.trim() === 'Appraisal', 'bgColorFerozLight': data.trim() === 'BPO', 'bgColorOrangeLight': data.trim() === 'Evaluations', 'bgColorRedLight': data.trim() === 'Hybrid', 'bgColorYellowLight': data.trim() === 'AVM' }"
+                      *ngFor="let data of dataCurrentVendor.categoriesOffered.split(',')">{{data}}</li>
+                    <!-- <li class="bgColorFerozLight">Bpos</li>
+                      <li class="bgColorOrangeLight">Evalution</li>
+                      <li class="bgColorRedLight">Hybrid</li> -->
+                  </ul>
+
+                  <div class="actionBox">
+                    <button class="btn btn-default" (click)="flipIts(i)">Coverages</button>
+                    <button class="btn btn-default"
+                      (click)="openProile(dataCurrentVendor.vendorId , 1,dataCurrentVendor, dataCurrentVendor.invitationId, dataCurrentVendor.clientSubscribedVendorId)">View
+                      Profile</button>
+                    <!-- <button class="btn btn-default pdLR"><i class="fa fa-ellipsis-v"
+                          aria-hidden="true"></i></button> -->
+                    <div class="editButtonDrop d-inline-block">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                          <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                          <!-- (click)="editRowProductFun(i)" -->
+                          <button class="dropdown-item" type="button"
+                            (click)="removeVendor(dataCurrentVendor.invitationId)">Remove From
+                            Panel</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="boxVendor backSide" *ngIf="backSideShow[i]">
+            <div class="row">
+              <div class="col-md-4 bdR">
+                <div class="leftSide">
+                  <h3><span>{{dataCurrentVendor.vendorName | slice : 0 : 16}}</span> <span
+                      *ngIf="dataCurrentVendor.vendorName != null && dataCurrentVendor.vendorName.length > 19">
+                      ...</span></h3>
+                  <p>{{dataCurrentVendor.doingBusinessAs}}</p>
+
+                  <div class="AddressBox">
+                    <h4>Address:</h4>
+                    <p>{{dataCurrentVendor.address}} {{dataCurrentVendor.city}}
+                      {{dataCurrentVendor.stateCode}} {{dataCurrentVendor.zip}}</p>
+                  </div>
+
+                  <!-- <div class="infoBox">
+                      <p><i class="fa fa-phone" aria-hidden="true"></i> {{dataCurrentVendor.phone}}</p>
+                      <p class="liteBue"><i class="fa fa-envelope" aria-hidden="true"></i> <span> {{dataCurrentVendor.email | slice : 0 : 19}}</span> <span *ngIf="dataCurrentVendor.email != null && dataCurrentVendor.email.length > 19"> ...</span></p>
+                    </div> -->
+
+                  <!-- <button class="btn btn-default">View Profile</button> -->
+                </div>
+              </div>
+
+              <div class="col-md-8 posIn">
+                <div class="rightSide">
+                  <h4>Coverages States
+                    <!-- <span *ngIf="dataCurrentVendor.coverageStates != null">({{dataCurrentVendor.coverageStates.length}})</span> -->
+                    <span
+                      *ngIf="dataCurrentVendor.coverageStates != null">({{(dataCurrentVendor.coverageStates.split(",").length)}})</span>
+
+                    <i class="fa fa-exchange" aria-hidden="true" (click)="flipIts(i)"></i>
+
+                    <!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
+                  </h4>
+                  <ul>
+                    <li
+                      *ngIf="dataCurrentVendor.coverageStates == null || dataCurrentVendor.coverageStates.length == 0"
+                      class="bgColorRedLight">&nbsp; NA &nbsp; </li>
+                    <li><span>{{dataCurrentVendor.coverageStates | slice : 0 : 190}}</span> <span
+                        *ngIf="dataCurrentVendor.coverageStates != null && dataCurrentVendor.coverageStates.length >= 190">
+                        ...</span></li>
+                  </ul>
+
+                  <!-- <div class="actionBox">
+                      <button class="btn btn-default" (click)="flipIts(i)">Products</button>
+                      <button class="btn btn-default pdLR"><i class="fa fa-ellipsis-v"
+                          aria-hidden="true"></i></button>
+                    </div> -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="noRecordDiv" *ngIf="currentVendorList.length === 0 && gifLoader == false">
+        <img src="../../../assets/images/noRecordImg.png" alt="">
+        <h1>No Record Found</h1>
+      </div>
+    </div>
+
+
+
+    <div class="gifLoaderDiv" *ngIf="gifLoader">
+      <img src="../../../assets/images/gif-loader.gif" alt="">
+    </div>
+  </div>
+  <!-- Current Vendors Tab Html -->
+</div>

@@ -1,44 +1,20 @@
 <section class="panelManagmentSection">
-    <div class="row">
-        <div class="col-7">
-            <div class="mapMainDiv">
-                <app-panel-map></app-panel-map>
-            </div>
-            <div class="vendorStatisticMainDiv">
-                <app-panel-vendor-statistics></app-panel-vendor-statistics>
-            </div>
-        </div>
-
-        <div class="col-5">
-            <div class="panelTabsMenuMainDiv">
-                <app-detail-tabs>
-                    <div class="col-md tab-content" content>
-                        <!-- Current Vendors Tab Html -->
-                        <div class="tab-pane  active" id="currentVendors" role="tabpanel">
-                          <h3>
-                            Current Vendors
-                          </h3>
-                        </div>
-                        <!-- Current Vendors Tab Html -->
-                    
-                        <!-- Available Vendors Tab Html -->
-                        <div class="tab-pane" id="availableVendors" role="tabpanel">
-                          <h3>
-                            Available Vendors
-                          </h3>
-                        </div>
-                        <!-- Available Vendors Tab Html -->
-                    
-                        <!-- Pending Vendors Tab Html -->
-                        <div class="tab-pane" id="pendingVendors" role="tabpanel">
-                          <h3>
-                            Pending Vendors
-                          </h3>
-                        </div>
-                        <!-- Pending Vendors Tab Html -->
-                      </div>
-                </app-detail-tabs>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-7">
+      <div class="mapMainDiv">
+        <app-panel-map></app-panel-map>
+      </div>
+      <div class="vendorStatisticMainDiv">
+        <app-panel-vendor-statistics></app-panel-vendor-statistics>
+      </div>
     </div>
+
+    <div class="col-5">
+      <div class="panelTabsMenuMainDiv">
+        <app-detail-tabs>
+          <app-panel-tabs-vendor-detail content></app-panel-tabs-vendor-detail>
+        </app-detail-tabs>
+      </div>
+    </div>
+  </div>
 </section>
