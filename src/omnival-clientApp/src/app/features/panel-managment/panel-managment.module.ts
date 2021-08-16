@@ -15,7 +15,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     SharedModule,
-    PanelManagmentRoutingModule
+    PanelManagmentRoutingModule,
     HighchartsChartModule,
     UsMapModule,
     MatSnackBarModule,
