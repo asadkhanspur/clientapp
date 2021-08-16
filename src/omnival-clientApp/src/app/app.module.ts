@@ -1,6 +1,6 @@
 
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +10,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyHttpInterceptor } from './core/interceptor';
 import { LowerCaseUrlSerializer } from './core/utils';
 import { RouterModule, Router, UrlSerializer } from '@angular/router';
+import { SharedModule } from './shared/shared.module';
 
 
 
@@ -19,9 +20,12 @@ import { RouterModule, Router, UrlSerializer } from '@angular/router';
     AppComponent
   ],
   imports: [
+    // core & shared
+    CoreModule,
+    SharedModule,
+    
     BrowserModule,
     AppRoutingModule,
-    CoreModule,
     BrowserAnimationsModule,
     HttpClientModule,
     HttpClientModule,
@@ -29,7 +33,8 @@ import { RouterModule, Router, UrlSerializer } from '@angular/router';
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: MyHttpInterceptor, multi: true }, { provide: UrlSerializer, useClass: LowerCaseUrlSerializer}],
   exports: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 export class AppModule {
 
