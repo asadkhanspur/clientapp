@@ -7,13 +7,15 @@ import { PanelMapComponent, PanelTabsFilterComponent, PanelVendorStatisticsCompo
 import { HighchartsChartModule } from 'highcharts-angular'
 import { UsMapModule } from 'angular-us-map';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
   declarations: [PanelManagmentComponent, PanelMapComponent, PanelTabsFilterComponent, PanelVendorStatisticsComponent, PanelTabsVendorDetailComponent],
   imports: [
     CommonModule,
-    PanelManagmentRoutingModule,
+    SharedModule,
+    PanelManagmentRoutingModule
     HighchartsChartModule,
     UsMapModule,
     MatSnackBarModule,

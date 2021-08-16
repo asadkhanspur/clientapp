@@ -1,0 +1,97 @@
+.vendortab-section {
+    margin-top: 0;
+  }
+  
+  .vendortab-section .tabs-header ul li a {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .vendortab-section .tabs-header .searchBarApp {
+    width: 50%;
+    min-width: 200px;
+    margin-right: 15px;
+  }
+  
+  .vendortab-section .tablesDivProduct tr:hover {
+    background: #eff4fa;
+  }
+  
+  .vendortab-section .tablesDivProduct p {
+    margin-bottom: 0;
+  }
+  
+  .vendortab-section .tablesDivProduct {
+    height: calc(100vh - 745px);
+    overflow-y: auto;
+  }
+  
+  
+  /* Slider Css */
+  
+  
+  .vendortab-section .co-details,
+  .detail-slider-wrapper .co-details {
+    display: flex;
+    align-items: center;
+  }
+  
+  .vendortab-section .co-details .left,
+  .detail-slider-wrapper .co-details .left {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+  }
+
+
+  /* Tabs */
+
+.tabs-header {
+    display: flex;
+    align-items: center;
+    background: #e9eef4;
+    border-bottom: 1px solid #777;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  .tabs-header ul {
+    padding-left: 0;
+    list-style: none
+  }
+  
+  .tabs-header ul li {
+    display: inline-block;
+    padding: 0
+  }
+  
+  .tabs-header ul li:not(:last-child) {
+    margin-right: 5px
+  }
+  
+  .tabs-header ul li a {
+    color: #545658;
+    padding: 5px 20px;
+    font-weight: 600;
+    background: none;
+    border: none;
+    border-bottom: 5px solid transparent
+  }
+  
+  .tabs-header ul li a.active {
+    color: #003171;
+    font-weight: 800;
+    border-color: #003171
+  }
+  
+  .tabs-data {
+    margin-top: 20px
+  }
+  
+  /* Quick Styles */
