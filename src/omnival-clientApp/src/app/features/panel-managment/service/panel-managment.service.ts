@@ -15,14 +15,6 @@ export class PanelManagmentService extends BaseAPI {
     this.API_URL = "";
 }
 
-getCurrentVendorByState(clientId, stateCode){
-  this.API_URL = "/api/clients/" + clientId + "/CurrentVendors/states/" + stateCode;
-  return this.getAll(this.API_URL);
-}
 
-getAllVendorStates(clientId){
-  this.API_URL = `/api/clients/${clientId}/AllVendorStates`;
-  return this.getAll(this.API_URL);
-}
 
 }
