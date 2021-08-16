@@ -1,2 +1,32 @@
-<p>panel-managment works!</p>
-<button routerLink="/dashboard">Link To Dashboard</button>
+<section class="panelManagmentSection">
+    <div class="row">
+        <div class="col-7">
+        
+            <div class="mapMainDiv">
+                <app-panel-map></app-panel-map>
+            </div>
+
+            <div class="vendorStatisticMainDiv">
+                <app-panel-vendor-statistics></app-panel-vendor-statistics>
+            </div>
+
+        </div>
+
+        <div class="col-5">
+
+            <div class="panelTabsMenuMainDiv">
+                <!-- <app-panelTabsMenu></app-panelTabsMenu> -->
+            </div>
+
+            <div class="panelTabsFilterMainDiv">
+                <app-panel-tabs-filter></app-panel-tabs-filter>
+            </div>
+
+            <div class="panelTabsDataMainDiv">
+                <app-panel-tabs-filter></app-panel-tabs-filter>
+            </div>
+
+
+        </div>
+    </div>
+</section>
