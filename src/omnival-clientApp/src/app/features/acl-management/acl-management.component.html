@@ -25,9 +25,9 @@
           <table class="table table-bordered">
             <thead class="thead-dark">
               <tr>
-                <th scope="col" width="35%" (click)="sort('roleName')"><i class="fa fa-sort" aria-hidden="true"></i>
+                <th scope="col" width="35%" (click)="sort('roleName',roleList)"><i class="fa fa-sort" aria-hidden="true"></i>
                   Role</th>
-                <th scope="col" width="60%" (click)="sort('description')"><i class="fa fa-sort" aria-hidden="true"></i>
+                <th scope="col" width="60%" (click)="sort('description',roleList)"><i class="fa fa-sort" aria-hidden="true"></i>
                   Description</th>
                 <th scope="col" width="5%" *ngIf="userRoleId == '1'"> Actions</th>
               </tr>
@@ -219,18 +219,18 @@
               <table class="table table-bordered">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col" (click)="sortuser('userRoleName')"><i class="fa fa-sort" aria-hidden="true"></i>
+                    <th scope="col" (click)="sort('userRoleName',clientUserList)"><i class="fa fa-sort" aria-hidden="true"></i>
                       User
                       Role</th>
-                    <th scope="col" (click)="sortuser('userLogin')"><i class="fa fa-sort" aria-hidden="true"></i>
+                    <th scope="col" (click)="sort('userLogin',clientUserList)"><i class="fa fa-sort" aria-hidden="true"></i>
                       Username
 
                     </th>
-                    <th scope="col" (click)="sortuser('firstName')"><i class="fa fa-sort" aria-hidden="true"></i> Full
+                    <th scope="col" (click)="sort('firstName',clientUserList)"><i class="fa fa-sort" aria-hidden="true"></i> Full
                       Name
                     </th>
-                    <th scope="col" (click)="sortuser('email')"><i class="fa fa-sort" aria-hidden="true"></i> Email</th>
-                    <th scope="col" (click)="sortuser('contactTypeName')"><i class="fa fa-sort" aria-hidden="true"></i>
+                    <th scope="col" (click)="sort('email',clientUserList)"><i class="fa fa-sort" aria-hidden="true"></i> Email</th>
+                    <th scope="col" (click)="sort('contactTypeName',clientUserList)"><i class="fa fa-sort" aria-hidden="true"></i>
                       Contact Type</th>
                     <th scope="col" *ngIf="permissions.PRUMAV">Active</th>
                     <th scope="col">Actions</th>
@@ -478,9 +478,9 @@
                     <mat-icon matSuffix></mat-icon>
                     <mat-label>Role Name</mat-label>
                     <input matInput formControlName="roleName" required>
-                    <mat-error *ngIf="checkError('roleName', 'required')">Role name is required
+                    <mat-error *ngIf="validateForm(roleForm,'roleName', 'required')">Role name is required
                     </mat-error>
-                    <mat-error *ngIf="checkError('roleName', 'maxlength')">Role name should be less
+                    <mat-error *ngIf="validateForm(roleForm,'roleName', 'maxlength')">Role name should be less
                       than 100</mat-error>
                   </mat-form-field>
                 </div>
@@ -491,7 +491,7 @@
                   <mat-form-field class="d-block">
                     <mat-label>Role Description</mat-label>
                     <textarea matInput formControlName="description"></textarea>
-                    <mat-error *ngIf="checkError('description', 'maxlength')">Description
+                    <mat-error *ngIf="validateForm(roleForm,'description', 'maxlength')">Description
                       should be less than 1000</mat-error>
                   </mat-form-field>
                 </div>
@@ -616,9 +616,9 @@
                     <mat-label>Role Name</mat-label>
                     <input matInput formControlName="roleName" required (change)="updateName(roleForm.value)"
                       [readOnly]="isView">
-                    <mat-error *ngIf="checkError('roleName', 'required')">Template name is required
+                    <mat-error *ngIf="validateForm(roleForm,'roleName', 'required')">Template name is required
                     </mat-error>
-                    <mat-error *ngIf="checkError('roleName', 'maxlength')">Template name should be less
+                    <mat-error *ngIf="validateForm(roleForm,'roleName', 'maxlength')">Template name should be less
                       than 100</mat-error>
                   </mat-form-field>
                 </div>
@@ -630,7 +630,7 @@
                     <mat-label>Role Description</mat-label>
                     <textarea matInput formControlName="description" (change)="updateName(roleForm.value)"
                       [readOnly]="isView"></textarea>
-                    <mat-error *ngIf="checkError('description', 'maxlength')">Description
+                    <mat-error *ngIf="validateForm(roleForm,'description', 'maxlength')">Description
                       should be less than 1000</mat-error>
                   </mat-form-field>
                 </div>
@@ -874,7 +874,7 @@
                         {{dataPr.roleName}}
                       </mat-option>
                     </mat-select>
-                    <mat-error *ngIf="checkErrorUser('clientRoleId', 'min')">User Role is not selected</mat-error>
+                    <mat-error *ngIf="validateForm(UserCustomForm,'clientRoleId', 'min')">User Role is not selected</mat-error>
                   </mat-form-field>
                 </div>
               </div>
@@ -888,7 +888,7 @@
                         {{dataPr.contactTypeName}}
                       </mat-option>
                     </mat-select>
-                    <mat-error *ngIf="checkErrorUser('contactTypeId', 'min')">Contact Type is not selected</mat-error>
+                    <mat-error *ngIf="validateForm(UserCustomForm,'contactTypeId', 'min')">Contact Type is not selected</mat-error>
                   </mat-form-field>
                 </div>
               </div>
@@ -900,13 +900,13 @@
                     <mat-icon matSuffix></mat-icon>
                     <mat-label>First Name</mat-label>
                     <input matInput formControlName="firstName" required>
-                    <mat-error *ngIf="checkErrorUser('firstName', 'required')">First name is required</mat-error>
-                    <mat-error *ngIf="checkErrorUser('firstName', 'maxlength')">First name should be less than 100
+                    <mat-error *ngIf="validateForm(UserCustomForm,'firstName', 'required')">First name is required</mat-error>
+                    <mat-error *ngIf="validateForm(UserCustomForm,'firstName', 'maxlength')">First name should be less than 100
                       characters</mat-error>
-                    <mat-error *ngIf="checkErrorUser('firstName', 'pattern')">First name can include numbers, period ( .
+                    <mat-error *ngIf="validateForm(UserCustomForm,'firstName', 'pattern')">First name can include numbers, period ( .
                       ),
                       hyphen ( - ) and apostrophe ( ' )</mat-error>
-                    <mat-error *ngIf="checkErrorUser('firstName', 'trimError')">First name cannot contain space
+                    <mat-error *ngIf="validateForm(UserCustomForm,'firstName', 'trimError')">First name cannot contain space
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -918,14 +918,14 @@
                     <mat-icon matSuffix></mat-icon>
                     <mat-label>Last Name</mat-label>
                     <input matInput formControlName="lastName" required>
-                    <mat-error *ngIf="checkErrorUser('lastName', 'required')">Last name is required</mat-error>
-                    <mat-error *ngIf="checkErrorUser('lastName', 'maxlength')">Last name should be less than 100
+                    <mat-error *ngIf="validateForm(UserCustomForm,'lastName', 'required')">Last name is required</mat-error>
+                    <mat-error *ngIf="validateForm(UserCustomForm,'lastName', 'maxlength')">Last name should be less than 100
                       characters
                     </mat-error>
-                    <mat-error *ngIf="checkErrorUser('lastName', 'pattern')">Last name can include numbers, period ( .
+                    <mat-error *ngIf="validateForm(UserCustomForm,'lastName', 'pattern')">Last name can include numbers, period ( .
                       ),
                       hyphen ( - ) and apostrophe ( ' )</mat-error>
-                    <mat-error *ngIf="checkErrorUser('lastName', 'trimError')">Last name cannot contain space
+                    <mat-error *ngIf="validateForm(UserCustomForm,'lastName', 'trimError')">Last name cannot contain space
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -937,9 +937,9 @@
                     <mat-icon matSuffix><i class="fa fa-envelope-o" aria-hidden="true"></i></mat-icon>
                     <mat-label>Email</mat-label>
                     <input matInput formControlName="userEmail" required>
-                    <mat-error *ngIf="checkErrorUser('userEmail', 'required')">Email is required
+                    <mat-error *ngIf="validateForm(UserCustomForm,'userEmail', 'required')">Email is required
                     </mat-error>
-                    <mat-error *ngIf="checkErrorUser('userEmail', 'pattern')">Email is invalid
+                    <mat-error *ngIf="validateForm(UserCustomForm,'userEmail', 'pattern')">Email is invalid
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -1027,12 +1027,12 @@
                     <mat-icon matSuffix></mat-icon>
                     <mat-label>User Name</mat-label>
                     <input matInput formControlName="userLogin" required />
-                    <mat-error *ngIf="checkErrorUser('userLogin', 'required')">Username is required </mat-error>
-                    <mat-error *ngIf="checkErrorUser('userLogin', 'maxlength')">Username should be less than 100
+                    <mat-error *ngIf="validateForm(UserCustomForm,'userLogin', 'required')">Username is required </mat-error>
+                    <mat-error *ngIf="validateForm(UserCustomForm,'userLogin', 'maxlength')">Username should be less than 100
                       characters
                     </mat-error>
-                    <mat-error *ngIf="checkErrorUser('userLogin', 'cannotContainSpace')">Username cannot contain space
-                    </mat-error>
+                    <mat-error *ngIf="validateForm(UserCustomForm,'userLogin', 'cannotContainSpace')">Username cannot contain space
+                    </mat-error>validateForm
                   </mat-form-field>
                 </div>
               </div>
