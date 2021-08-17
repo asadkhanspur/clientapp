@@ -19,6 +19,17 @@ export class BaseComponent implements OnInit {
   }
   // ***************** CheckValidation Method *****************// 
 
+
+  // ***************** Filter Type Check Method *****************//
+  public validDocumentExt(fileName: string): boolean {
+    var ext = fileName.split('.')[fileName.split('.').length - 1];
+    if (ext === 'txt' || ext === 'csv' || ext === 'pdf' || ext === 'xlsx' || ext === 'zip' || ext === 'doc' || ext === 'docx' || ext === 'xml' || ext === 'xls' || ext === 'jpg' || ext === 'jpeg' || ext === 'png' || ext === 'ppt' || ext === 'rpt' || ext === 'aci' || ext === 'zap' || ext === 'zoo') {
+      return true;
+    }
+    return false;
+  }
+  // ***************** Filter Type Check Method *****************// 
+
   // ***************** Data Sorting Method *****************// 
   sort(column, array) {
     if (array._sortColumn == undefined) {

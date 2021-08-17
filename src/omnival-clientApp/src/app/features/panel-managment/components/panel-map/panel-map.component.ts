@@ -11,7 +11,7 @@ import Drilldown from 'highcharts/modules/drilldown';
 Drilldown(Highcharts);
 
 // ********* Services Import ********* //
-import { PanelManagmentService } from './../../service';
+import { VendorService } from 'src/app/shared/services';
 // ********* Services Import ********* //
 
 
@@ -49,7 +49,7 @@ export class PanelMapComponent implements OnInit {
 
   constructor(
     private snackBar: MatSnackBar,
-    private PanelManagmentService: PanelManagmentService,
+    private VendorService: VendorService,
   ) { 
 
     
@@ -176,7 +176,7 @@ export class PanelMapComponent implements OnInit {
     };
     
     var clientId = localStorage.getItem("clientID");
-    self.PanelManagmentService.getAllVendorStates(clientId).pipe(
+    self.VendorService.getAllVendorStates(clientId).pipe(
       tap(result => {
         self.chart.showLoading();
         

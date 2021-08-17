@@ -8,7 +8,7 @@ import { HighchartsChartModule } from 'highcharts-angular'
 import { UsMapModule } from 'angular-us-map';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { SharedModule } from 'src/app/shared/shared.module';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [PanelManagmentComponent, PanelMapComponent, PanelTabsFilterComponent, PanelVendorStatisticsComponent, PanelTabsVendorDetailComponent],
@@ -19,6 +19,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     HighchartsChartModule,
     UsMapModule,
     MatSnackBarModule,
+    Ng2SearchPipeModule
   ]
 })
 export class PanelManagmentModule {

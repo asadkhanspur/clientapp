@@ -1,0 +1,206 @@
+.vendorListBoxes {}
+
+.vendorListBoxes .boxVendor {
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  padding: 14px;
+  box-shadow: 0 6px 12px -6px #00000030;
+  height: 136px;
+  /* overflow: hidden; */
+  /* 
+      transition: transform 0.6s;
+      transform-style: preserve-3d; */
+}
+
+.vendorListBoxes .boxVendor .leftSide {}
+
+.vendorListBoxes .boxVendor .leftSide h3 {
+  font-size: 16px;
+  color: #003171;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.vendorListBoxes .boxVendor .leftSide p {
+  font-size: 12px;
+  font-weight: 600;
+  color: #545658;
+  word-break: break-all;
+  margin-bottom: 10px;
+}
+
+.vendorListBoxes .boxVendor .leftSide .AddressBox {}
+
+.vendorListBoxes .boxVendor .leftSide .AddressBox h4 {
+  margin-bottom: 0;
+}
+
+.vendorListBoxes .boxVendor .leftSide .infoBox {}
+
+
+.vendorListBoxes .boxVendor .leftSide .infoBox p {
+  font-size: 13px;
+  font-weight: 600;
+  color: #545658;
+  margin-bottom: 0;
+  word-break: break-all;
+}
+
+.vendorListBoxes .boxVendor .leftSide .infoBox p i {}
+
+.vendorListBoxes .boxVendor .leftSide button.btn.btn-default {
+  border: 1px solid #dcdcdc;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: white;
+  color: #4a5057;
+  margin-top: 24px;
+  border-radius: 6px;
+  box-shadow: none;
+  outline: none;
+  padding: 4px 14px;
+}
+
+
+
+
+
+.vendorListBoxes .boxVendor .rightSide {}
+
+.vendorListBoxes .boxVendor .rightSide h4 {}
+
+.vendorListBoxes .boxVendor .rightSide h4 i {
+  float: right;
+  cursor: pointer;
+}
+
+.vendorListBoxes .boxVendor .rightSide ul {
+  padding-left: 0;
+}
+
+.vendorListBoxes .boxVendor .rightSide ul li {
+  font-size: 12px;
+  font-weight: 600;
+  color: #545658;
+  list-style: none;
+  display: inline-block;
+  margin: 0 4px;
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+
+
+.vendorListBoxes .boxVendor .rightSide .actionBox {
+  /* position: absolute;
+    bottom: 14px;
+    right: 28px; */
+}
+
+.vendorListBoxes .boxVendor .rightSide ul li:first-child {
+  margin-left: 0;
+}
+
+.vendorListBoxes .boxVendor .rightSide button.btn.btn-default {
+  border: 1px solid #dcdcdc;
+  font-size: 13px;
+  font-weight: 600;
+  background-color: white;
+  color: #4a5057;
+  margin-top: 12px;
+  border-radius: 6px;
+  box-shadow: none;
+  outline: none;
+  margin: 2px 2px;
+  padding: 4px 12px;
+}
+
+.backSide ul li {
+  margin: 0 2px !important;
+  padding: 0px 0px !important;
+  font-size: 14px !important;
+}
+
+/* Flip Css */
+.cards {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: all 600ms;
+  transition: all 600ms;
+  z-index: 20;
+  margin-bottom: 20px;
+}
+
+.cards .frontSide {
+  position: relative;
+
+  background: white;
+
+}
+
+.vendorListBoxes .frontSide .rightSide {
+  position: relative;
+  /* height: 150px; */
+}
+
+.vendorListBoxes .frontSide .rightSide .actionBox {
+  /* position: absolute;
+    bottom: 0px;
+    left: 0; */
+  text-align: right;
+}
+
+/* .vendorListBoxes .backSide .rightSide .actionBox {
+    position: absolute;
+    bottom: 14px;
+    right: 28px;
+  } */
+
+.vendorListBoxes .frontSide .leftSide .actionBox {}
+
+/* Flip Css */
+.cards {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: all 600ms;
+  transition: all 600ms;
+  z-index: 20;
+  margin-bottom: 20px;
+}
+
+.cards .frontSide {
+  position: relative;
+  background: white;
+}
+
+.vendorListBoxes .frontSide .rightSide {
+  position: relative;
+}
+
+.vendorListBoxes .frontSide .rightSide .actionBox {
+  text-align: right;
+}
+
+.cards .backSide {
+  overflow: hidden;
+  color: #fff;
+  background-color: white;
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+}
+
+.cards.voted {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+}
+
+/* Flip Css */
