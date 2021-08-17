@@ -1,0 +1,715 @@
+<div class="emailList">
+  <div class="generalFeeTabDiv" id="style-2">
+
+    <div class="tab-pane" id="emailTemplate" role="tabpanel" aria-labelledby="email-template-tab">
+      <div class="profile-filter">
+        <div class="row">
+          <div class="col-md bg-lgray left">
+            <div class="row">
+              <div class="searchBarApp col-md-12">
+                <input placeholder="Search by Template Name, Subject and Email Type" #searchInput
+                  class="form-control" [(ngModel)]="emailist">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2 bg-lgray  right">
+            <div class="fDiv" dropdown>
+              <button id="button-basic" type="button" class="btn btn-primary" (click)="openTemplateSlider()">
+                Add Template
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <!-- <th scope="col" width="20%" (click)="sortEmail('emailTemplateName')"><i class="fa fa-sort"
+                aria-hidden="true"></i> Template Name</th>
+            <th scope="col" width="40%" (click)="sortEmail('emailTemplateSubject')"><i class="fa fa-sort"
+                aria-hidden="true"></i> Subject</th>
+            <th scope="col" width="15%" (click)="sortEmail('templateTypeName')"><i class="fa fa-sort"
+                aria-hidden="true"></i> Email Type
+            </th> -->
+            <th scope="col" width="5%"><i aria-hidden="true"></i> Active</th>
+            <th scope="col" width="5%"> Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let data of emailTemplateLists |filter:emailist">
+            <td>
+              <h3 class="tdVHeading bColor pointer"
+                (click)="onEmailTemplateView(data.emailTypeId, data.clientEmailTemplateId)">
+                {{data.emailTemplateName}} </h3>
+            </td>
+
+            <td>
+              <p class="para"> {{data.emailTemplateSubject}} </p>
+            </td>
+
+            <td>
+              <h3 class="subHeading">{{data.templateTypeName}}</h3>
+            </td>
+
+            <td>
+              <mat-slide-toggle color="primary" [(ngModel)]="data.isEnabled"
+                (change)="onEnableChange($event,data)">
+              </mat-slide-toggle>
+            </td>
+
+            <td>
+              <div class="editButtonDrop">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right">
+                    <button class="dropdown-item" type="button"
+                      (click)="onEditClientEmailTemplate(data.emailTypeId, data.clientEmailTemplateId)">Edit</button>
+                    <button class="dropdown-item" type="button" (click)="openModalWithClass(template)"
+                      [hidden]="data.emailTypeId > 0">Delete</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Delete Popup Html -->
+              <ng-template #template>
+                <div class="modal-header">
+                  <h4 class="modal-title pull-left">Confirmation</h4>
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="deleteModal">
+                    <p><i class="fa fa-info-circle" aria-hidden="true"></i> Are you sure you
+                      want to
+                      delete this
+                      record?</p>
+
+                    <div class="bothButons">
+                      <ul>
+                        <li>
+                          <button class="btn btn-default" (click)="modalRef.hide()">No</button>
+                        </li>
+                        <li>
+                          <button class="btn btn-primary"
+                            (click)="deleteClientEmailTemplate(data.clientEmailTemplateId)"
+                            [disabled]="gifLoader">Yes <span class="spinner-border spinner-border-own float-right"
+                              *ngIf="gifLoader" role="status" aria-hidden="true"></span></button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+              <!-- Delete Popup Html -->
+
+
+            </td>
+          </tr>
+
+
+
+        </tbody>
+      </table>
+      <div class="gifLoaderDiv" *ngIf="gifLoader">
+        <img src="../../../assets/images/gif-loader.gif" alt="">
+      </div>
+
+      <div class="noRecordDiv" *ngIf="emailTemplateLists.length === 0 && gifLoader == false">
+        <img src="../../../assets/images/noRecordImg.png" alt="">
+        <h1>No Record Found</h1>
+      </div>
+    </div>
+
+    <!-- Condition Popup Html -->
+
+    <ng-template #template1>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Add Conditional Text</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="conditionForm" (ngSubmit)="onConditionAdd()">
+        <div class="modal-body">
+          <div class="deleteModal">
+
+            <div class="materialCondition">
+              <h5>Define Criteria</h5>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="d-block">
+                    <mat-label>Select Field</mat-label>
+                    <mat-select formControlName="conditionColumnName"
+                      (selectionChange)="onTemplateVariableChange($event.value)">
+                      <mat-option *ngFor="let dataTv of templateVariablesForConditionalText"
+                        [value]="dataTv.columnName" required>
+                        {{dataTv.columnDisplayName }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="checkCondtionalPopupError('conditionColumnName', 'required')">
+                      Select Field is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                  <mat-form-field class="d-block">
+                    <mat-label>Condition</mat-label>
+                    <mat-select formControlName="condition">
+                      <mat-option *ngFor="let cond of conditions" [value]="cond">
+                        {{cond}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="checkCondtionalPopupError('condition', 'required')" required>
+                      Condition is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                  <mat-form-field class="d-block">
+                    <mat-label>Add Value</mat-label>
+                    <input matInput formControlName="conditionValue" type="text" placeholder="Add Value" required>
+                    <mat-error *ngIf="checkCondtionalPopupError('conditionValue', 'required')">
+                      Add value is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-12">
+                  <mat-form-field class="d-block">
+                    <mat-label>Conditional Description</mat-label>
+                    <textarea matInput formControlName="conditionResultTextArea" #txtInput
+                      (keydown.space)="txtInput.blur()" name="conditionResultTextArea"
+                      placeholder="Add Your Conditional Text Here"></textarea>
+                    <mat-error *ngIf="checkCondtionalPopupError('conditionResultTextArea', 'required')">
+                      Condition Text is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+              </div>
+            </div>
+
+
+
+            <div class="bothButons">
+              <ul>
+                <li>+ Conditional text will only be included in the document if define criteria is matched </li>
+                <li>
+                  <button class="btn btn-primary">Add</button>
+                  <!-- <button class="btn btn-primary" (click)="deleteDoc(data.supportingDocumentId)"
+      [disabled]="loadingforgot">Yes <span
+        class="spinner-border spinner-border-own float-right" *ngIf="loadingforgot"
+        role="status" aria-hidden="true"></span></button> -->
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+    <!-- Condition Popup Html -->
+
+
+
+
+
+    <!-- Existing Doc Popup Html -->
+
+    <ng-template #template2>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Existing Doc</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="deleteModal">
+
+          <div class="exisitngDoc ">
+            <div class="col-md-12 bg-lgray noPadding">
+              <div class="searchBarAppModal ">
+                <!-- <input placeholder="Search" #searchInput class="form-control" [(ngModel)]="notficationList"> -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="tablesDivProduct" id="style-modalScroll">
+
+                  <!-- <table
+                    class="table table-wrapper table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+                    <thead class="bgHeaderRowTable">
+                      <tr>
+                        <th scope="col" (click)="sortClientDocList('documentName')"><i class="fa fa-sort"
+                            aria-hidden="true"></i> Name</th>
+                        <th scope="col" (click)="sortClientDocList('documentClassificationTypeName')"><i
+                            class="fa fa-sort" aria-hidden="true"></i> Category</th>
+                        <th scope="col"> Select</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr *ngFor="let data of clientDocList | filter:notficationList">
+                        <td> {{ data.documentName }} </td>
+                        <td>{{ data.documentClassificationTypeName }}</td>
+                        <td>
+                          <mat-checkbox
+                            (change)="onDocChange(data.documentName, data.clientDocumentManagementId, $event)"
+                            color="primary">
+                          </mat-checkbox>
+                        </td>
+                      </tr>
+                    </tbody>
+
+                  </table> -->
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+
+
+          <div class="bothButons">
+            <ul>
+              <li>
+                <button class="btn btn-primary" type="button" (click)="addDocs()">Attach</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <!-- Existing Doc Popup Html -->
+
+
+
+
+
+    <!-- Upload Doc Popup Html -->
+
+    <ng-template #template3>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Upload File</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="deleteModal">
+
+          <div class="dragNdropBox">
+            <ngx-dropzone (change)="onSelect($event)">
+              <ngx-dropzone-label>
+                <img src="../../../assets/images/orderdocicon.png" alt="">
+                <h4>Drop Your File Here <br>
+                  Or Click Here To Upload</h4>
+              </ngx-dropzone-label>
+              <!-- <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                  </ngx-dropzone-preview> -->
+            </ngx-dropzone>
+
+            <div class="tablesDivProduct" id="style-modalScroll">
+              <table
+                class="table table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+                <thead class="bgHeaderRowTable">
+                  <tr>
+                    <th scope="col">Document Name</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Client SIde Document List -->
+                  <tr *ngFor="let data of files; let i = index">
+                    <td>
+                      <p>{{ data.name }}</p>
+                    <td>
+                      <div class="crossDiv">
+                        <img src="../../../assets/images/cross-icon.png" alt="">
+                      </div>
+                    </td>
+
+                  </tr>
+
+
+
+                </tbody>
+              </table>
+
+
+            </div>
+          </div>
+
+
+
+          <div class="bothButons">
+            <ul>
+              <li>
+                <button class="btn btn-primary">Attach</button>
+                <!-- <button class="btn btn-primary" (click)="deleteDoc(data.supportingDocumentId)"
+      [disabled]="loadingforgot">Yes <span
+        class="spinner-border spinner-border-own float-right" *ngIf="loadingforgot"
+        role="status" aria-hidden="true"></span></button> -->
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <!-- Upload Doc Popup Html -->
+
+
+
+
+
+    <!-- <div class="gifLoaderDiv" *ngIf="gifLoader">
+  <img src="../../../assets/images/gif-loader.gif" alt="">
+</div>
+
+
+<div class="noRecordDiv" *ngIf="checkList.length === 0 && gifLoader == false">
+  <img src="../../../assets/images/noRecordImg.png" alt="">
+  <h1>No Record Found</h1>
+</div> -->
+
+
+    <!-- Template Slider -->
+    <div class="LowVisibilityDiv templateSlider">
+      <div class="FormDivPopup" id="edit-sec-scroll">
+
+
+        <form [formGroup]="clientEmailTemplateForm" (ngSubmit)="onSaveClientEmailTemplate()">
+          <div class="formInerDiv">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="scrollSideDiv" id="edit-sec-scroll">
+                  <h4 class="textCenter fz-18 ebold">Template Detail</h4>
+
+                  <div class="row">
+                    <input placeholder="Document Id" type="hidden" formControlName="clientEmailTemplateId">
+                    <input placeholder="emailTypeId" type="hidden" formControlName="emailTypeId">
+                    <div class="col-md-12">
+                      <div class="FieldBox">
+                        <mat-form-field class="d-block">
+                          <mat-label>Template Name</mat-label>
+                          <input matInput formControlName="emailTemplateName" required [readonly]="isView">
+                          <mat-error *ngIf="checkError('emailTemplateName', 'required')">
+                            Template name is required
+                          </mat-error>
+                          <mat-error *ngIf="checkError('emailTemplateName', 'maxlength')">
+                            Template name should be less
+                            than 100</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="FieldBox">
+                        <mat-form-field class="d-block">
+                          <mat-label>Email Category Type</mat-label>
+                          <mat-select formControlName="documentCategoryTypeId"
+                            (selectionChange)="onCategoryChange($event)" name="nothing33" required
+                            [disabled]="isView">
+                            <mat-option *ngFor="let dataPr of documentCategoryTypes"
+                              [value]="dataPr.documentCategoryTypeId">
+                              {{dataPr.documentCategoryTypeName}}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="checkError('documentCategoryTypeId', 'min')">
+                            Email Category Type is not selected
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+
+                    <!-- <div class="col-md-12">
+                      <div class="FieldBox">
+                        <mat-form-field class="d-block">
+                          <mat-label>Email Type</mat-label>
+                          <mat-select formControlName="documentTypeId" name="nothing2" required
+                            [disabled]="isView">
+                            <mat-option *ngFor="let dataPr of documentTypes" [value]="dataPr.documentTypeId">
+                              {{dataPr.documentTypeName}}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="checkError('documentTypeId', 'min')">Email Type
+                            is not selected
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div> -->
+
+                    <input type="number" formControlName="templateTypeId" hidden>
+
+                    <!-- <div class="col-md-12">
+                    <div class="FieldBox">
+                      <mat-form-field class="d-block">
+                        <mat-label>Email Type</mat-label>
+                        <mat-select formControlName="templateTypeId"
+                          (selectionChange)="templateTypeChanged($event)" required [disabled]="isView">
+                          <mat-option *ngFor="let dataTt of templateTypes" [value]="dataTt.templateTypeId">
+                            {{ dataTt.templateTypeName }}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="checkError('templateTypeId', 'required')">
+                          Template type is required
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div> -->
+
+                    <div class="col-md-12">
+                      <div class="FieldBox">
+                        <mat-form-field class="example-chip-list">
+                          <mat-label>Recipients</mat-label>
+                          <mat-chip-list #chipList aria-label="Fruit selection" [disabled]="isView">
+                            <mat-chip *ngFor="let recipient of emailToList" [selectable]="selectable"
+                              [removable]="removable" (removed)="remove(recipient, 'emailTo')">
+                              {{recipient.name}}
+                              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+                            <input [matChipInputFor]="chipList"
+                              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                              [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event, 'emailTo')"
+                              [readonly]="isView">
+                          </mat-chip-list>
+                        </mat-form-field>
+
+                        <div class="btn-group recipentDropUl" dropdown
+                          [hidden]="isView || !templateVariableFound">
+                          <i class="fa fa-chevron-down " id="button-basic" dropdownToggle type="button"
+                            aria-hidden="true"></i>
+                          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                            aria-labelledby="button-basic">
+                            <li role="menuitem">
+                              <a class="dropdown-item" href="JavaScript:void(0);"
+                                (click)="addTemplateVariableToRecipients(dataTv.columnName, 'emailTo')"
+                                *ngFor="let dataTv of templateVariableForRecipientsEmail">
+                                {{ dataTv.columnDisplayName }}
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12" *ngIf="isShowEmailCcDiv">
+                      <div class="FieldBox">
+                        <mat-form-field class="example-chip-list">
+                          <mat-label>Add Cc</mat-label>
+                          <mat-chip-list #emailCcChipList aria-label="Fruit selection" [disabled]="isView">
+                            <mat-chip *ngFor="let recipient of emailCcList" [selectable]="selectable"
+                              [removable]="removable" (removed)="remove(recipient, 'emailCc')">
+                              {{recipient.name}}
+                              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+                            <input [matChipInputFor]="emailCcChipList"
+                              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                              [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event, 'emailCc')"
+                              [readonly]="isView">
+                          </mat-chip-list>
+                        </mat-form-field>
+
+                        <div class="btn-group recipentDropUl" dropdown [hidden]="isView || !templateVariableFound">
+                          <i class="fa fa-chevron-down " id="button-basic" dropdownToggle type="button"
+                            aria-hidden="true"></i>
+                          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                            aria-labelledby="button-basic">
+                            <li role="menuitem">
+                              <a class="dropdown-item" href="JavaScript:void(0);"
+                                (click)="addTemplateVariableToRecipients(dataTv.columnName, 'emailCc')"
+                                *ngFor="let dataTv of templateVariableForRecipientsEmail">
+                                {{ dataTv.columnDisplayName }}
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12" *ngIf="isShowEmailBccDiv">
+                      <div class="FieldBox">
+                        <mat-form-field class="example-chip-list">
+                          <mat-label>Add Bcc</mat-label>
+                          <mat-chip-list #emailBccChipList aria-label="Fruit selection" [disabled]="isView">
+                            <mat-chip *ngFor="let recipient of emailBccList" [selectable]="selectable"
+                              [removable]="removable" (removed)="remove(recipient, 'emailBcc')">
+                              {{recipient.name}}
+                              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+                            <input [matChipInputFor]="emailBccChipList"
+                              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                              [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event, 'emailBcc')"
+                              [readonly]="isView">
+                          </mat-chip-list>
+                        </mat-form-field>
+
+                        <div class="btn-group recipentDropUl" dropdown [hidden]="isView || !templateVariableFound">
+                          <i class="fa fa-chevron-down " id="button-basic" dropdownToggle type="button"
+                            aria-hidden="true"></i>
+                          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                            aria-labelledby="button-basic">
+                            <li role="menuitem">
+                              <a class="dropdown-item" href="JavaScript:void(0);"
+                                (click)="addTemplateVariableToRecipients(dataTv.columnName, 'emailBcc')"
+                                *ngFor="let dataTv of templateVariableForRecipientsEmail">
+                                {{ dataTv.columnDisplayName }}
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-12" [hidden]="isView">
+
+                      <div class="chipsSpan">
+                        <ul>
+                          <li [hidden]="!isShowEmailCcBtn">
+                            <button type="button" class="btn btn-primary" (click)="showCcDiv()">Add CC</button>
+                          </li>
+                          <li [hidden]="!isShowEmailBccBtn">
+                            <button type="button" class="btn btn-primary" (click)="showBccDiv()">Add BCC</button>
+                          </li>
+
+                          <li>
+                            <div class="btn-group" dropdown>
+                              <button id="button-basic" dropdownToggle type="button"
+                                class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic">
+                                Add Attachments <span class="caret"></span>
+                              </button>
+                              <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                                aria-labelledby="button-basic">
+                                <li role="menuitem"><a class="dropdown-item"
+                                    (click)="openModalWithClassExisitingDoc(template2)">Use Existing</a></li>
+                                    <!-- (click)="openModalWithClassExisitingDoc(template2)">Use Existing</a></li> -->
+                                <!-- <li role="menuitem"><a class="dropdown-item"
+                                  (click)=openModalWithClassExisitingDocUpload(template3)>Upload New</a></li> -->
+                              </ul>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <!-- <div class="col-md-12" *ngIf="clientDocumentManagementAttachments.length > 0">
+                    <div class="FieldBox">
+                      <h5 class="textCenter fz-18 ebold">Attachments</h5>
+                      <div class="btn-group">
+                        <table
+                          class="table table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+                          <thead class="bgHeaderRowTable">
+                            <tr>
+                              <th scope="col">Document Name</th>
+                              <th scope="col">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let data of clientDocumentManagementAttachments">
+                              <td>
+                                <p>{{ data.name }}</p>
+                              <td>
+                                <div class="crossDiv" [hidden]="isView">
+                                  <img src="../../../assets/images/cross-icon.png" alt=""
+                                    (click)="removeDoc(data.clientDocumentManagementId)">
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div> -->
+
+
+                    <div class="col-md-12" *ngIf="clientDocumentManagementAttachments.length > 0">
+                      <div class="listboxAttach" *ngFor="let data of clientDocumentManagementAttachments">
+                        <p><i class="fa fa-file" aria-hidden="true"></i> <span>{{ data.name }}</span> <img
+                            src="../../../assets/images/cross-icon.png" alt=""
+                            (click)="removeDoc(data.clientDocumentManagementId)" [hidden]="isView"></p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-9 bdpd">
+                <h4 class="textCenter fz-18 ebold">Template Editor</h4>
+                <div class="FieldBox">
+                  <mat-form-field class="d-block">
+                    <mat-label>Subject</mat-label>
+                    <input matInput formControlName="emailTemplateSubject" required [readonly]="isView" />
+                    <mat-error *ngIf="checkError('emailTemplateSubject', 'required')">Email Subject is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="editorBox" >
+
+                  <div class="absoluteBtns" *ngIf="this.templateVariableFound">
+                    <div class="btn-group" dropdown [isDisabled]="isView || !this.templateVariableFound">
+                      <button id="button-basic" dropdownToggle type="button"
+                        class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic">
+                        Select Template Variables <span class="caret"></span>
+                      </button>
+                      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu scrollInVar" role="menu"
+                        aria-labelledby="button-basic">
+                        <li role="menuitem">
+                          <a class="dropdown-item" href="JavaScript:void(0);"
+                            (click)="addTemplateVariableToEditor(dataTv.columnName)"
+                            *ngFor="let dataTv of templateVariables">
+                            {{ dataTv.columnDisplayName }}
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" (click)="openModalWithClass(template1)"
+                      [disabled]="isView || !templateVariableFound">Conditional Text</button>
+                  </div>
+
+                  <angular-editor formControlName="emailTemplateContent" [placeholder]="'Enter text here...'"
+                    [(ngModel)]="htmlContent" [config]="editorConfig" name="templateContentArea" required
+                    [disabled]="isView" #txtArea>
+                  </angular-editor>
+                  <mat-error *ngIf="emailTemplateContentValidationFailed">Email template
+                    content is required
+                  </mat-error>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md">
+                <div class="btnDivs">
+                  <button class="btn btn-default" type="button" (click)="closeTemplateSlider()">Cancel</button>
+                  <button class="btn btn-primary" [hidden]="isView">{{btnHeading}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+
+
+
+        <button class="btn btn-default btn-close" type="button"><i class="fa fa-times" aria-hidden="true"
+            (click)="closeTemplateSlider()"></i></button>
+      </div>
+    </div>
+    <!-- Template Slider -->
+
+
+  </div>
+</div>

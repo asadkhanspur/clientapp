@@ -13,7 +13,7 @@ import * as fileSaver from 'file-saver';
 // ********* Services Import ********* //
 import { AuthenticationService } from 'src/app/core/services';
 import { SupportingDocumentService } from '../../services';
-import {DocumentTypeService, TemplateTypeService, PropertyCategoryTypeService, PropertyTypeService, LoanPurposeService, LoanTypeService, StateService, CountiesService, ProductTypeService, OccupancyTypeService, VendorService, OrderService, VendorTypeService} from 'src/app/shared/services'
+import {DocumentTypesService, TemplateTypeService, PropertyCategoryTypeService, PropertyTypeService, LoanPurposeService, LoanTypeService, StateService, CountiesService, ProductTypeService, OccupancyTypeService, VendorService, OrderService, VendorTypeService} from 'src/app/shared/services'
 import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/core';
 // ********* Services Import ********* //
@@ -104,7 +104,7 @@ export class DocumentListComponent extends BaseComponent implements OnInit{
     private templateTypeService: TemplateTypeService, 
     private router: Router,
     private SupportingDocumentService: SupportingDocumentService,
-    private DocumentTypeService: DocumentTypeService,
+    private DocumentTypeService: DocumentTypesService,
     private authenticationService: AuthenticationService,
     private render: Renderer2, private interactivityChecker: InteractivityChecker,
     private VendorService: VendorService,
