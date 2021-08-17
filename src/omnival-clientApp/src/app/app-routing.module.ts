@@ -20,20 +20,24 @@ const routes: Routes = [
       { path: 'product-managment', loadChildren: () => import('./features/product-managment/product-managment.module').then(m => m.ProductManagmentModule) },
       { path: 'document-management', loadChildren: () => import('./features/document-management/document-management.module').then(m => m.DocumentManagementModule) },
       { path: 'email-management', loadChildren: () => import('./features/email-management/email-management.module').then(m => m.EmailManagementModule) },
-        { path: 'acl-management', loadChildren: () => import('./features/acl-management/acl-management.module').then(m => m.AclManagementModule) }
+      { path: 'acl-management', loadChildren: () => import('./features/acl-management/acl-management.module').then(m => m.AclManagementModule) },
+      { path: 'review-check-list', loadChildren: () => import('./features/review-check-list/review-check-list.module').then(m => m.ReviewCheckListModule) },
     ],
   },
 
   { path: 'account', loadChildren: () => import('./features/account/account.module').then(m => m.AccountModule) },
 
 
-  
 
 
- 
 
 
- 
+
+
+
+
+
+
 
 ];
 

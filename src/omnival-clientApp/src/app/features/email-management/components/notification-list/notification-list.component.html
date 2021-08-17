@@ -1,3 +1,265 @@
-<p>
-  notification-list works!
-</p>
+<div class="generalFeeTabDiv" id="style-2">
+
+  <div class="tab-pane" id="notificationTemplate" role="tabpanel" aria-labelledby="notification-template-tab">
+    <div class="profile-filter">
+      <div class="row">
+        <div class="col-md bg-lgray left">
+          <div class="row">
+            <div class="searchBarApp col-md-12">
+              <input placeholder="Search by Notification Name, Notification Text and Notification Type"
+                #searchInput class="form-control" [(ngModel)]="notficationList">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <!-- <th scope="col" width="15%" (click)="sortNotification('notificationTemplateName')"><i
+              class="fa fa-sort" aria-hidden="true"></i> Notification Name</th>
+          <th scope="col" width="35%" (click)="sortNotification('notificationTemplateContent')"><i
+              class="fa fa-sort" aria-hidden="true"></i> Notification Text</th>
+          <th scope="col" width="15%" (click)="sortNotification('templateTypeName')"><i class="fa fa-sort"
+              aria-hidden="true"></i> Notification Category Type</th>
+          <th scope="col" width="15%" (click)="sortNotification('notificationTypeName')"><i class="fa fa-sort"
+              aria-hidden="true"></i> Notification Type</th>
+          <th scope="col" width="5%"><i aria-hidden="true"></i> Mobile</th>
+          <th scope="col" width="5%"><i aria-hidden="true"></i> Web</th>
+          <th scope="col" width="5%"> Actions</th> -->
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let data of clientNotificationTemplateLists |filter:notficationList">
+          <td>
+            <h3 class="tdVHeading bColor pointer"
+              (click)="openModalWithClassExistingNotificationTemplate(editNotificationTemplate, data.notificationTemplateId, false)">
+              {{ data.notificationTemplateName }} </h3>
+          </td>
+
+          <td>
+            <p class="para" innerHTML="{{ data.notificationTemplateContent }}"> </p>
+          </td>
+
+          <td>
+            <h3 class="subHeading">{{data.templateTypeName}}</h3>
+          </td>
+
+          <td>
+            <h3 class="subHeading">{{data.notificationTypeName}}</h3>
+          </td>
+
+          <td>
+            <mat-slide-toggle color="primary" [(ngModel)]="data.isForMobile"
+              (change)="onNotificationEnableChange($event, data.notificationTemplateId, true)">
+            </mat-slide-toggle>
+          </td>
+
+          <td>
+            <mat-slide-toggle color="primary" [(ngModel)]="data.isForWeb"
+              (change)="onNotificationEnableChange($event, data.notificationTemplateId, false)">
+            </mat-slide-toggle>
+          </td>
+
+          <td>
+            <div class="editButtonDrop">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <button class="dropdown-item" type="button"
+                    (click)="openModalWithClassExistingNotificationTemplate(editNotificationTemplate, data.notificationTemplateId, true)">Edit</button>
+                  <!-- <button class="dropdown-item" type="button" (click)="openModalWithClass(deleteNotificationTemplate)">Delete</button>  -->
+                </div>
+              </div>
+            </div>
+          </td>
+
+          <!-- Delete Popup Html -->
+          <!-- <ng-template #deleteNotificationTemplate>
+              <div class="modal-header">
+                <h4 class="modal-title pull-left">Confirmation</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="deleteModal">
+                  <p><i class="fa fa-info-circle" aria-hidden="true"></i> Are you sure you
+                    want to
+                    delete this
+                    record?</p>
+
+                  <div class="bothButons ">
+                    <ul>
+                      <li>
+                        <button class="btn btn-default" (click)="modalRef.hide()">No</button>
+                      </li>
+                      <li>
+                        <button class="btn btn-primary" (click)="deleteNotificationTemplate()" [disabled]="gifLoader">Yes <span class="spinner-border spinner-border-own float-right" *ngIf="gifLoader" role="status" aria-hidden="true"></span></button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </ng-template> -->
+          <!-- Delete Popup Html -->
+
+
+
+          <!-- </td> -->
+        </tr>
+
+
+
+      </tbody>
+    </table>
+
+    <!-- Edit Popup Html -->
+    <ng-template #editNotificationTemplate>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Notification</h4>
+        <button type="button" class="close pull-right" aria-label="Close"
+          (click)="closeNotificationTemplateModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form [formGroup]="notificationTemplateForm"
+        (ngSubmit)="onSaveNotificationTemplate(notificationTemplateForm.value)">
+        <div class="modal-body">
+          <div class="deleteModal">
+
+            <div class="materialCondition">
+              <div class="row">
+
+                <div class="col-md-12" [hidden]="true">
+                  <mat-form-field class="d-block">
+                    <mat-label>Notification Id</mat-label>
+                    <input matInput formControlName="notificationTemplateId" type="text" [hidden]="true">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-12">
+                  <mat-form-field class="d-block">
+                    <mat-label>Notification Name</mat-label>
+                    <input matInput formControlName="notificationTemplateName" type="text" [readonly]="true">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                  <mat-form-field class="d-block">
+                    <mat-label>Notification Category Type</mat-label>
+                    <mat-select formControlName="documentCategoryTypeId"
+                      (selectionChange)="onCategoryChange($event)" name="nothing33" required disabled>
+                      <mat-option *ngFor="let dataPr of documentCategoryTypes"
+                        [value]="dataPr.documentCategoryTypeId">
+                        {{dataPr.documentCategoryTypeName}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                  <mat-form-field class="d-block">
+                    <mat-label>Notification Type</mat-label>
+                    <mat-select formControlName="notificationTypeId" name="nothing2" required disabled>
+                      <mat-option *ngFor="let notificationType of notificationTypes"
+                        [value]="notificationType.notificationTypeId">
+                        {{notificationType.notificationTypeName}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-4">
+                  <mat-form-field class="d-block">
+                    <mat-label>Insert Fields</mat-label>
+                    <mat-select formControlName="conditionColumnName" required>
+                      <mat-option (click)="addTemplateVariableToNotificationContent(dataTv.columnName)"
+                        *ngFor="let dataTv of templateVariables" [value]="dataTv.columnName" required>
+                        {{dataTv.columnDisplayName }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <input type="number" formControlName="templateTypeId" hidden>
+
+                <div class="col-md-12">
+                  <mat-form-field class="d-block">
+                    <mat-label>Notification Text</mat-label>
+                    <textarea matInput formControlName="notificationTemplateCustomContent"
+                      class="notificationTemplateContent" [readonly]="false"></textarea>
+                  </mat-form-field>
+                  <mat-error
+                    *ngIf="checkNotificationTemplatePopupError('notificationTemplateCustomContent', 'required')">
+                    Notification template content is
+                    required
+                  </mat-error>
+                </div>
+
+                <!-- <div class="col-md-12">
+                  <h4 class="textCenter fz-18 ebold">Template Editor</h4>
+                  <div class="editorBox">
+
+                    <div class="absoluteBtns">
+                      <div class="btn-group" dropdown [isDisabled]="isNotificationView">
+                        <button id="button-basic" dropdownToggle type="button"
+                          class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic">
+                          Select Template Variable <span class="caret"></span>
+                        </button>
+                        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                          aria-labelledby="button-basic">
+                          <li role="menuitem">
+                            <a class="dropdown-item" href="JavaScript:void(0);"
+                              (click)="addTemplateVariableToNotificationContent(dataTv.columnName)"
+                              *ngFor="let dataTv of templateVariables">
+                              {{ dataTv.columnDisplayName }}
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <angular-editor formControlName="notificationTemplateCustomContent" name="nothing16"
+                      [placeholder]="'Enter text here...'" [(ngModel)]="htmlContent" ngDefaultControl
+                      [config]="editorConfig" required #txtArea></angular-editor>
+                    <mat-error *ngIf="emailTemplateContentValidationFailed">Notification template content is
+                      required
+                    </mat-error>
+                  </div>
+                </div> -->
+
+              </div>
+            </div>
+
+
+
+            <div class="bothButons mb-2 clearfix">
+              <ul>
+                <li>
+                  <button class="btn btn-primary" [hidden]="isNotificationView">Save</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+    <!-- Edit Popup Html -->
+
+    <div class="gifLoaderDiv" *ngIf="gifLoader">
+      <img src="../../../assets/images/gif-loader.gif" alt="">
+    </div>
+
+    <div class="noRecordDiv" *ngIf="clientNotificationTemplateLists.length == 0 && gifLoader == false">
+      <img src="../../../assets/images/noRecordImg.png" alt="">
+      <h1>No Record Found</h1>
+    </div>
+  </div>
+</div>

@@ -14,7 +14,7 @@ import { TemplateTypeService } from '../../service';
 import { SupportingDocumentService } from '../../../document-management/services';
 import { DocumentTypesService } from 'src/app/shared/services';
 import { Recipients, ClientEmailTemplate } from '../../modal';
-
+import { RoleService } from '../../../acl-management/services';
 import { BaseComponent } from 'src/app/core/components';
 
 @Component({
@@ -22,11 +22,12 @@ import { BaseComponent } from 'src/app/core/components';
   templateUrl: './email-management-list.component.html',
   styleUrls: ['./email-management-list.component.css']
 })
-export class EmailManagementListComponent extends BaseComponent implements OnInit, OnDestroy {
+export class EmailManagementListComponent extends BaseComponent implements OnInit {
 
 
   // ********* Varaibale Declaration ********* //
   emailist: string
+  notficationList: string
   stringConditions = ['Equals', 'Not Equal'];
   otherConditions = ['Greater Than Equal To', 'Less Than Equal To', 'Greater Than', 'Less Than', 'Equals', 'Not Equal'];
   emailTemplateContentValidationFailed: boolean = false;
@@ -81,14 +82,15 @@ export class EmailManagementListComponent extends BaseComponent implements OnIni
     private SupportingDocumentService: SupportingDocumentService,
     private modalService: BsModalService,
     private DocumentTypesService: DocumentTypesService,
+    private RoleService: RoleService,
   ) {
     super();
    }
 
 
-  ngOnDestroy(): void {
-    throw new Error("Method not implemented.");
-  }
+  // ngOnDestroy(): void {
+  //   throw new Error("Method not implemented.");
+  // }
 
   ngOnInit() {
     super.ngOnInit()
