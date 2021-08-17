@@ -1,33 +1,23 @@
+import { BaseComponent } from '../../core/components';
 import { RefreshData } from '../../core/modals';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import * as $ from 'jquery';
-import { RoleService, ClientContactTypeService, AuthenticationService, ClientbranchService, ClientuserService, ClientService, SignalRService } from "../../core/services"
+import { AuthenticationService, SignalRService} from "../../core/services";
+import { ClientContactTypeService, ClientBranchService, ClientUserService, ClientService} from "../../shared/services"
+import { RoleService} from "./services"
 import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl, ValidatorFn, FormGroupDirective } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { finalize, tap } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { debug } from 'console';
 import { accessType } from '../../core/enum';
 
 
 // ********* Helper Import ********* //
-import { PasswordValidation } from '../core/_helpers/must-match.validator';
-import { UsernameValidator } from '../core/_helpers/username.validator';
-import { empty } from 'rxjs';
+import { HelperMethods } from '../../core/utils';
 import { Subscription } from 'rxjs';
-import { BaseComponent } from 'src/app/core/components';
 // ********* Helper Import ********* //
-
-const trimValidator: ValidatorFn = (control: FormControl) => {
-  if (control.value != undefined && control.value.startsWith(' ')) {
-    return {
-      'trimError': { value: 'control has leading whitespace' }
-    };
-  }
-  return null;
-};
 
 @Component({
   selector: 'app-acl-management',
@@ -72,7 +62,6 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
   UserSubGroupArray: any = []
   SaveSelection: boolean[] = [];
   editSelection: boolean[] = [];
-  setting: any;
   private signalRSubscription: Subscription;
   @ViewChild(FormGroupDirective) userFormDirective;
 
@@ -80,18 +69,17 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
   constructor(
     private fb: FormBuilder,
     private RoleService: RoleService,
-    private ClientuserService: ClientuserService,
-    private ClientService: ClientService,
+    private ClientUserService: ClientUserService,
     private ClientContactTypeService: ClientContactTypeService,
     private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
     private modalService: BsModalService,
     private AuthenticationService: AuthenticationService,
-    private ClientbranchService: ClientbranchService,
+    private ClientBranchService: ClientBranchService,
     private router: Router,
     private signalrService: SignalRService
   ) {
-
+    super();
     this.signalRSubscription = this.signalrService.getRefreshData().subscribe(
       (refreshData) => {
         var clientId = localStorage.getItem("clientID");
@@ -100,7 +88,6 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
           this.getClientRoleList();
         }
       });
-    super();
   }
 
   ngOnInit() {
@@ -109,7 +96,7 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
 
     this.roleForm = this.formBuilder.group({
       clientRoleId: [''],
-      roleName: ['', [Validators.required, Validators.maxLength(100), trimValidator]],
+      roleName: ['', [Validators.required, Validators.maxLength(100), HelperMethods.trimValidator]],
       description: ['', [Validators.maxLength(1000)]],
     });
 
@@ -126,30 +113,30 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
       userSubGroups: [[], []],
       userId: [0, [Validators.required]],
       contactTypeId: [0, [Validators.required, Validators.min(1)]],
-      firstName: ['', [Validators.required, Validators.maxLength(100), Validators.pattern("^[a-zA-Z-0-9 '.-]+$"), trimValidator]],
-      lastName: ['', [Validators.required, Validators.maxLength(100), Validators.pattern("^[a-zA-Z-0-9 '.-]+$"), trimValidator]],
+      firstName: ['', [Validators.required, Validators.maxLength(100), Validators.pattern("^[a-zA-Z-0-9 '.-]+$"), HelperMethods.trimValidator]],
+      lastName: ['', [Validators.required, Validators.maxLength(100), Validators.pattern("^[a-zA-Z-0-9 '.-]+$"), HelperMethods.trimValidator]],
       userEmail: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]],
       userWorkPhone: ['', [Validators.maxLength(100)]],
       userCellPhone: ['', [Validators.maxLength(100)]],
       isMasterUser: [false],
       isChangePasswordFirstLogin: [false],
-      userLogin: ['', [Validators.required, Validators.maxLength(100), UsernameValidator.cannotContainSpace]],
-      password: ["", [Validators.required, this.checkPassword]],
-      confirmPassword: ["", [Validators.required, this.checkPassword]],
+      userLogin: ['', [Validators.required, Validators.maxLength(100), HelperMethods.cannotContainSpace]],
+      password: ["", [Validators.required, HelperMethods.checkPassword]],
+      confirmPassword: ["", [Validators.required, HelperMethods.checkPassword]],
 
     },
       {
-        validator: PasswordValidation.MatchPassword
+        validator: HelperMethods.MatchPassword
       }
     );
 
     this.ChangePasswordFrom = this.formBuilder.group({
-      password: ["", Validators.compose([Validators.required, this.checkPassword])],
-      confirmPassword: ["", Validators.compose([Validators.required, this.checkPassword])],
+      password: ["", Validators.compose([Validators.required, HelperMethods.checkPassword])],
+      confirmPassword: ["", Validators.compose([Validators.required, HelperMethods.checkPassword])],
       isChangePasswordFirstLogin: [false]
     },
       {
-        validator: PasswordValidation.MatchPassword
+        validator: HelperMethods.MatchPassword
       }
     );
 
@@ -186,8 +173,8 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
 
   getclientbranches() {
     var clientId = localStorage.getItem("clientID");
-    this.ClientbranchService.setClientId = clientId;
-    this.ClientbranchService.getAllParentBranches().pipe(
+    this.ClientBranchService.setClientId = clientId;
+    this.ClientBranchService.getAllParentBranches().pipe(
       tap(result => {
         console.log(result)
         this.branches = result.data.clientBranches
@@ -209,36 +196,12 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
   }
 
 
-  getClientSetting() {
-    var clientId = localStorage.getItem("clientID");
-    if (localStorage.getItem("settings") != null) {
-      var settingObject = localStorage.getItem("settings");
-      this.setting = JSON.parse(settingObject);
-    }
-    else {
-      this.ClientService
-        .getClientSetting(clientId)
-        .pipe(
-          tap(result => {
-            if (result.data != null && result.data != undefined)
-              this.setting = result.data;
-            localStorage.setItem("settings", JSON.stringify(this.setting));
-          },
-            (error: any) => {
-              console.log(`error on retriving state list : ${error}`);
-            }
-          ),
-          finalize(() => { })
-        )
-        .subscribe();
-    }
-  }
-
+ 
   getclientUsers(filter?: any) {
     this.gifLoader = true
     var clientId = localStorage.getItem("clientID");
-    this.ClientuserService.setClientId = clientId;
-    this.ClientuserService.getAll(filter).pipe(
+    this.ClientUserService.setClientId = clientId;
+    this.ClientUserService.getAll(filter).pipe(
       tap(result => {
         this.gifLoader = false
         console.log(result)
@@ -781,16 +744,6 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
 
   }
 
-  //Form Validation Method
-  public checkError = (controlName: string, errorName: string) => {
-    return this.roleForm.controls[controlName].hasError(errorName);
-  }
-
-  //Form Validation Method
-  public checkErrorUser = (controlName: string, errorName: string) => {
-    return this.UserCustomForm.controls[controlName].hasError(errorName);
-  }
-
   //Change Password Funcion
   changePassFunction(userid) {
     this.userId = userid
@@ -828,8 +781,8 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
 
 
     var clientId = localStorage.getItem("clientID");
-    this.ClientuserService.setClientId = clientId;
-    this.ClientuserService.changePasswordByUserId(this.userId, data)
+    this.ClientUserService.setClientId = clientId;
+    this.ClientUserService.changePasswordByUserId(this.userId, data)
       .pipe(
         tap(
           result => {
@@ -1031,14 +984,14 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
     this.ChangePasswordFrom.controls['']
 
     var clientId = localStorage.getItem("clientID");
-    this.ClientuserService.setClientId = clientId;
+    this.ClientUserService.setClientId = clientId;
     this.UserCustomForm.controls["password"].disable();
     this.UserCustomForm.controls["confirmPassword"].disable();
     this.UserCustomForm.controls["isChangePasswordFirstLogin"].disable();
     this.UserCustomForm.controls["userLogin"].disable();
 
     this.currentUserId = JSON.parse(localStorage.getItem("currentUser")).user.userID;
-    this.ClientuserService.getById(id).pipe(
+    this.ClientUserService.getById(id).pipe(
       tap(result => {
 
 
@@ -1119,8 +1072,8 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
     }
 
     var clientId = localStorage.getItem("clientID");
-    this.ClientbranchService.setClientId = clientId;
-    this.ClientbranchService.getAllSubBranches(selectedBracnhes.join(',')).pipe(
+    this.ClientBranchService.setClientId = clientId;
+    this.ClientBranchService.getAllSubBranches(selectedBracnhes.join(',')).pipe(
       tap(result => {
         console.log(result)
         this.subGroups = result.data.clientBranches
@@ -1327,16 +1280,6 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
       .subscribe();
   }
 
-  private markFormGroupTouched(formGroup: FormGroup) {
-    (<any>Object).values(formGroup.controls).forEach(control => {
-      control.markAsTouched();
-
-      if (control.controls) {
-        this.markFormGroupTouched(control);
-      }
-    });
-  }
-
   // User ACtivate And Deactivate Methods
 
   @ViewChild('templatestatus') public defaultTemplate: TemplateRef<any>;
@@ -1373,8 +1316,8 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
   deleteIsBlocked() {
 
     var clientId = localStorage.getItem("clientID");
-    this.ClientuserService.setClientId = clientId;
-    this.ClientuserService
+    this.ClientUserService.setClientId = clientId;
+    this.ClientUserService
       .putUserStatusActive(this.userIdIsBlocked, this.isblockedCurrentValue == true ? 'active' : 'de-active')
       .pipe(
         tap(result => {
@@ -1418,11 +1361,11 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
       this.ChangePasswordFrom.controls['']
 
       var clientId = localStorage.getItem("clientID");
-      this.ClientuserService.setClientId = clientId;
+      this.ClientUserService.setClientId = clientId;
       this.UserCustomForm.disable();
 
       this.currentUserId = JSON.parse(localStorage.getItem("currentUser")).user.userID;
-      this.ClientuserService.getById(id).pipe(
+      this.ClientUserService.getById(id).pipe(
         tap(result => {
 
 
@@ -1516,8 +1459,8 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
   deleteUser(userId) {
     this.loadingforgot = true
     var clientId = localStorage.getItem("clientID");
-    this.ClientuserService.setClientId = clientId;
-    this.ClientuserService
+    this.ClientUserService.setClientId = clientId;
+    this.ClientUserService
       .delete(userId)
       .pipe(
         tap(result => {
@@ -1602,9 +1545,9 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
 
 
     var clientId = localStorage.getItem("clientID");
-    this.ClientuserService.setClientId = clientId;
+    this.ClientUserService.setClientId = clientId;
     data.userTypeId = parseInt(localStorage.getItem('userTypeId'));
-    this.ClientuserService.putUser(data.userId, data).pipe(
+    this.ClientUserService.putUser(data.userId, data).pipe(
       tap(result => {
         this.UserCustomForm.controls["userLogin"].disable();
         this.loadingforgot = false
@@ -1658,8 +1601,8 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
     });
 
     var clientId = localStorage.getItem("clientID");
-    this.ClientuserService.setClientId = clientId;
-    this.ClientuserService.create(data).pipe(
+    this.ClientUserService.setClientId = clientId;
+    this.ClientUserService.create(data).pipe(
       tap(result => {
         debugger
         this.loadingforgot = false
@@ -1691,59 +1634,6 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
       .subscribe();
   }
 
-
-  SortColumnUser: boolean[] = [];
-  sortuser(column) {
-    if (this.SortColumnUser[column] == undefined) {
-      this.SortColumnUser[column] = true;
-    }
-    if (this.SortColumnUser[column]) {
-      this.ascendic(column, this.clientUserList);
-    }
-    else {
-      this.descendic(column, this.clientUserList);
-    }
-    this.SortColumnUser[column] = !this.SortColumnUser[column];
-  }
-
-  SortColumn: boolean[] = [];
-  sort(column) {
-
-    if (this.SortColumn[column] == undefined) {
-      this.SortColumn[column] = true;
-    }
-    if (this.SortColumn[column]) {
-      this.ascendic(column, this.roleList);
-    }
-    else {
-      this.descendic(column, this.roleList);
-    }
-    this.SortColumn[column] = !this.SortColumn[column];
-  }
-
-  ascendic(column, list) {
-    list = list.sort((n1, n2) => {
-      if (n1[column] < n2[column]) {
-        return 1;
-      }
-      if (n1[column] > n2[column]) {
-        return -1;
-      }
-      return 0;
-    });
-  }
-
-  descendic(column, list) {
-    list = list.sort((n1, n2) => {
-      if (n1[column] > n2[column]) {
-        return 1;
-      }
-      if (n1[column] < n2[column]) {
-        return -1;
-      }
-      return 0;
-    });
-  }
 
   //start filter
   userRoleIdFilterText: number = 0;
@@ -1798,13 +1688,6 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
     }
   }
 
-  // Check Passowrd Validation Function
-  checkPassword(control: any) {
-    let enteredPassword = control.value
-    let passwordCheck = /^((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%^&*()_+{}:\"<>?])).{8,}/;
-    return (!passwordCheck.test(enteredPassword) && enteredPassword) ? { 'requirements': true } : null;
-  }
-
   sendUserId(userId, i) {
     this.isView = false;
     if (userId > 0) {
@@ -1831,14 +1714,6 @@ export class AclManagementComponent extends BaseComponent  implements OnInit {
     this.UserCustomForm.controls["isChangePasswordFirstLogin"].enable();
     this.reset();
   }
-
-
-
-  // User Managments popup open
-  // userManagmentPopupOpen(){
-  //   $(".userManagmentOpen").addClass("openedpopeup");
-  // }
-  // User Managments popup open
 
 
 }
