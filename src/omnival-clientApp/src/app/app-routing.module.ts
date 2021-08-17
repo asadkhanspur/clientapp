@@ -17,7 +17,8 @@ const routes: Routes = [
       },
       { path: 'dashboard', loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule) },
       { path: 'panel-managment', loadChildren: () => import('./features/panel-managment/panel-managment.module').then(m => m.PanelManagmentModule) },
-      { path: 'product-managment', loadChildren: () => import('./features/product-managment/product-managment.module').then(m => m.ProductManagmentModule) }
+      { path: 'product-managment', loadChildren: () => import('./features/product-managment/product-managment.module').then(m => m.ProductManagmentModule) },
+      { path: 'acl-management', loadChildren: () => import('./features/acl-management/acl-management.module').then(m => m.AclManagementModule) }
      
     ],
   },
