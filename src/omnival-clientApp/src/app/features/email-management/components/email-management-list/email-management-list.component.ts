@@ -17,6 +17,7 @@ import { Recipients, ClientEmailTemplate } from '../../modal';
 import { RoleService } from '../../../acl-management/services';
 import { BaseComponent } from 'src/app/core/components';
 
+
 @Component({
   selector: 'app-email-management-list',
   templateUrl: './email-management-list.component.html',

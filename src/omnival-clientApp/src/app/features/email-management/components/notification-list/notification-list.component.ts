@@ -11,6 +11,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { NotificationTemplateService, TemplateTypeService } from '../../service';
 import { DocumentTypesService } from 'src/app/shared/services';
 
+
 @Component({
   selector: 'app-notification-list',
   templateUrl: './notification-list.component.html',
