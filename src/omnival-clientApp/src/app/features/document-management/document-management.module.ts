@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { DocumentManagementRoutingModule } from './document-management-routing.module';
 import { DocumentManagementComponent } from './document-management.component';
 import { DocumentListComponent, UploadDocumentComponent, TemplateDocumentComponent } from '../document-management/components';
