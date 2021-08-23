@@ -2,12 +2,22 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AclManagementComponent } from './acl-management.component';
-import { RoleManagementComponent, UserManagementComponent } from './components';
+import { RoleManagementComponent, UserManagementComponent,AclMenuComponent} from './components';
 
 const routes: Routes = [
-  { path: '', component: AclManagementComponent },
-  { path: 'roles', component: RoleManagementComponent },
-  { path: 'users', component: UserManagementComponent },
+  {
+    path: '',
+    component: AclManagementComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'roles',
+        pathMatch: 'full'
+      },
+      { path: 'roles', component: RoleManagementComponent },
+      { path: 'users', component: UserManagementComponent },
+    ]
+  }
 ];
 
 @NgModule({

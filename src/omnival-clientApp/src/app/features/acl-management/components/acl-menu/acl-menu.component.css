@@ -1,0 +1,55 @@
+.CProfileMenu{}
+.CProfileMenu .CPMDiv{}
+.CProfileMenu .CPMDiv ul{
+    border-bottom: 0;
+    padding: 0px 0 0px 0;
+}
+.CProfileMenu .CPMDiv ul li{}
+.CProfileMenu .CPMDiv ul li a{
+    font-size: 18px;
+    font-weight: 600;
+    color: #4a5057;
+    border-radius: 0;
+    cursor: pointer;
+    padding: 16px;
+}
+.CProfileMenu .CPMDiv ul li a.active{
+    color: #254688;
+    background-color: white;
+    /* border-bottom: 3px solid #0056cd; */
+    font-weight: 700;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    position: relative;
+}
+.CProfileMenu .CPMDiv ul li a:hover{}
+.CProfileMenu .CPMDiv ul li a:focus{}
+
+
+.CProfileMenu .CPMDiv ul li:first-child a.active::before{
+    content: "\A";
+    width: 10px;
+    height: 10px;
+    border-radius: 0;
+    background: white;
+    display: inline-block;
+    margin: 0 10px;
+    position: absolute;
+    left: -10px;
+    bottom: -9px;
+}
+
+.CProfileMenu .CPMDiv ul li:last-child a.active::after{
+    content: "\A";
+    width: 10px;
+    height: 10px;
+    border-radius: 0;
+    background: white;
+    display: inline-block;
+    margin: 0 10px;
+    position: absolute;
+    right: -10px;
+    bottom: -9px;
+}

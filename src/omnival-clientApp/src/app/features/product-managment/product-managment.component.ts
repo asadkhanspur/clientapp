@@ -8,7 +8,6 @@ import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms"
 
 // ********* Services Import ********* //
 import { ProductManagmentService } from "./service"
-import { AuthenticationService } from "../../core/services"
 // ********* Services Import ********* //
 
 // ********* interface Import ********* //
@@ -28,22 +27,15 @@ export class ProductManagmentComponent extends BaseComponent implements OnInit {
   bgColor = true
   term: string
   gifLoader = false
-  permissions: any
-  
 
   constructor(
     private productManagmentService: ProductManagmentService,
-    private AuthenticationService: AuthenticationService,
     private snackBar: MatSnackBar,
   ) {
     super();
   }
 
   ngOnInit() {
-    super.ngOnInit()
-
-    this.permissions = this.AuthenticationService.permissionFunction();
-
     $(document).ready(function () {
       $("#openPop").click(function () {
         $(".LowVisibilityDiv").addClass("openedpopeup");

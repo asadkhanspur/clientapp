@@ -150,10 +150,14 @@
           </div>
 
           <div class="colDropDiv" *ngIf="permissions.RMRV == true || permissions.PRUMV == true ">
-            <button type="button" class="btn btn-default" routerLink="/rolemanagement" routerLinkActive="active"
+            <button type="button" class="btn btn-default" routerLink="/acl-management" *ngIf="permissions.RMRV == true" routerLinkActive="active"
               [attr.aria-expanded]="!reportCollapsed" aria-controls="collapseBasic"><i class="fa fa-cogs bKIcon"
                 aria-hidden="true"></i> Roles & User Management
             </button>
+            <button type="button" class="btn btn-default" routerLink="/acl-management/users" *ngIf="!permissions.RMRV && permissions.PRUMV == true " routerLinkActive="active"
+            [attr.aria-expanded]="!reportCollapsed" aria-controls="collapseBasic"><i class="fa fa-cogs bKIcon"
+              aria-hidden="true"></i> Roles & User Management
+          </button>
           </div>
 
           <div class="colDropDiv">

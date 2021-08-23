@@ -4,6 +4,7 @@ import { finalize, tap } from 'rxjs/operators';
 import { AppInjector } from 'src/app/app-injector.service';
 
 import { ClientService} from "../../../shared/services"
+import { AuthenticationService } from '../../services';
 
 @Component({
   selector: 'app-base',
@@ -11,17 +12,26 @@ import { ClientService} from "../../../shared/services"
   styleUrls: ['./base.component.css']
 })
 export class BaseComponent implements OnInit {
-  protected ClientService: ClientService;    
+  protected ClientService: ClientService;   
+  protected AuthenticationService: AuthenticationService;
   setting: any;
+  permissions: any;
   
-  constructor() { 
+  constructor(
+
+  ) { 
     // Manually retrieve the dependencies from the injector    
     // so that constructor has no dependencies that must be passed in from child    
     const injector = AppInjector.getInjector();    
     this.ClientService = injector.get(ClientService);
+    this.AuthenticationService = injector.get(AuthenticationService);
+    this.getClientSetting();
+    this.AuthenticationService.permissionFunction()
+    this.permissions = this.AuthenticationService.permissionFunction();
   }
 
   ngOnInit() {
+  
   }
 
 
