@@ -22,10 +22,14 @@ const routes: Routes = [
       { path: 'email-management', loadChildren: () => import('./features/email-management/email-management.module').then(m => m.EmailManagementModule) },
       { path: 'acl-management', loadChildren: () => import('./features/acl-management/acl-management.module').then(m => m.AclManagementModule) },
       { path: 'review-check-list', loadChildren: () => import('./features/review-check-list/review-check-list.module').then(m => m.ReviewCheckListModule) },
+      { path: 'html-template', loadChildren: () => import('./features/html-template/html-template.module').then(m => m.HtmlTemplateModule) },
     ],
   },
 
   { path: 'account', loadChildren: () => import('./features/account/account.module').then(m => m.AccountModule) },
+
+
+  
 
 
 
