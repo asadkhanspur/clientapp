@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { AclManagementRoutingModule } from './acl-management-routing.module';
 import { AclManagementComponent } from './acl-management.component';
-import { RoleManagementComponent, UserManagementComponent} from './components/index';
+import { RoleManagementComponent, UserManagementComponent,AclMenuComponent} from './components/index';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatIconModule} from '@angular/material/icon';
@@ -13,7 +13,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {MatTooltipModule} from '@angular/material/tooltip';
@@ -21,9 +21,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 
-
 @NgModule({
-  declarations: [AclManagementComponent, RoleManagementComponent, UserManagementComponent],
+  declarations: [AclManagementComponent,AclMenuComponent, RoleManagementComponent, UserManagementComponent],
   imports: [
     CommonModule,
     AclManagementRoutingModule,
@@ -33,14 +32,14 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    ModalModule,
+    ModalModule.forRoot(),
     MatChipsModule,
     MatCheckboxModule,
     Ng2SearchPipeModule,
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    BsDropdownModule
+    BsDropdownModule.forRoot()
   ]
 })
 export class AclManagementModule {

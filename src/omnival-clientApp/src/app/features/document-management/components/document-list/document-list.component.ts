@@ -11,7 +11,6 @@ import * as fileSaver from 'file-saver';
 
 
 // ********* Services Import ********* //
-import { AuthenticationService } from 'src/app/core/services';
 import { SupportingDocumentService } from '../../services';
 import {DocumentTypesService, TemplateTypeService, PropertyCategoryTypeService, PropertyTypeService, LoanPurposeService, LoanTypeService, StateService, CountiesService, ProductTypeService, OccupancyTypeService, VendorService, OrderService, VendorTypeService} from 'src/app/shared/services'
 import { MatSelect } from '@angular/material/select';
@@ -105,14 +104,12 @@ export class DocumentListComponent extends BaseComponent implements OnInit{
     private router: Router,
     private SupportingDocumentService: SupportingDocumentService,
     private DocumentTypeService: DocumentTypesService,
-    private authenticationService: AuthenticationService,
     private render: Renderer2, private interactivityChecker: InteractivityChecker,
     private VendorService: VendorService,
     private PropertyTypeService: PropertyTypeService,
     private LoanPurposeService: LoanPurposeService,
     private LoanTypeService: LoanTypeService,
     private PropertyCategoryTypeService: PropertyCategoryTypeService,
-    private AuthenticationService: AuthenticationService,
     private OccupancyTypeService: OccupancyTypeService,
     private StateService: StateService,
     private ProductTypeService: ProductTypeService,
@@ -125,7 +122,6 @@ export class DocumentListComponent extends BaseComponent implements OnInit{
 
   ngOnInit() {
     super.ngOnInit()
-    this.permissions = this.authenticationService.permissionFunction();
     this.getDocumentTypes();
     this.getDocumentCategoryTypes();
     this.getDocumentList();
