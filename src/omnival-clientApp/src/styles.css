@@ -1,13 +1,572 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-body { margin: 0; font-family: 'Inter', sans-serif; font-size: 1rem; }
 
-ul{
-    padding: 0;
-    margin: 0;
+
+/* Heading General Pallets Style */
+h1 {
+  font-size: 5.8125rem;
+  font-weight: 300;
+  letter-spacing: -1.5px;
 }
 
-li{list-style: none;}
+h2 {
+  font-size: 3.625rem;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
+h3 {
+  font-size: 2.9375rem;
+  font-weight: 400;
+}
+
+h4 {
+  font-size: 2.0625rem;
+  font-weight: 400;
+  letter-spacing: 0.25px;
+}
+
+h5 {
+  font-size: 1.1875rem;
+  font-weight: 400;
+}
 
 
+h6 {
+  font-size: 1.1875rem;
+  font-weight: 500;
+  letter-spacing: 0.15px;
+}
+
+/* Heading General Pallets Style */
+
+
+/* Paragraph Span And Other General Pallets Style */
+.sub-title-regular {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.15px;
+}
+
+.sub-title-medium {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+}
+
+.body-regular {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+}
+
+.body-medium {
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.25px;
+}
+
+.body-regular {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 1.05px;
+}
+
+.button-medium {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 1.05px;
+}
+
+.button-large {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.caption {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+}
+
+.overline {
+  font-size: 0.625rem;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+}
+
+.linkButton-without-line {
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+}
+
+.linkButton-with-line {
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  text-decoration: underline;
+}
+
+.capatilized {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.25px;
+}
+
+/* Paragraph Span And Other General Pallets Style */
+
+
+/* Primary Colors Pallets */
+.primary-color-1 {
+  color: #000000;
+}
+
+.primary-bgcolor-1 {
+  background-color: #000000;
+}
+
+.primary-color-2 {
+  color: #252B2D;
+}
+
+.primary-bgcolor-2 {
+  background-color: #252B2D;
+}
+
+.primary-color-3 {
+  color: #243B43;
+}
+
+.primary-bgcolor-3 {
+  background-color: #243B43;
+}
+
+.primary-color-4 {
+  color: #868888;
+}
+
+.primary-bgcolor-4 {
+  background-color: #868888;
+}
+
+.primary-color-5 {
+  color: #D8D8D8;
+}
+
+.primary-bgcolor-5 {
+  background-color: #D8D8D8;
+}
+
+.primary-color-6 {
+  color: #F0F1F1;
+}
+
+.primary-bgcolor-6 {
+  background-color: #F0F1F1;
+}
+
+.primary-color-7 {
+  color: #F4F7F8;
+}
+
+.primary-bgcolor-7 {
+  background-color: #F4F7F8;
+}
+
+/* Primary Colors Pallets */
+
+
+/* Shade of Grey Pallets */
+.shade-color-1 {
+  color: #27343C;
+}
+
+.shade-bgcolor-1 {
+  background-color: #27343C;
+}
+
+
+.shade-color-2 {
+  color: #2E4453;
+}
+
+.shade-bgcolor-2 {
+  background-color: #2E4453;
+}
+
+
+.shade-color-3 {
+  color: #3D596D;
+}
+
+.shade-bgcolor-3 {
+  background-color: #3D596D;
+}
+
+
+.shade-color-4 {
+  color: #4F748E;
+}
+
+.shade-bgcolor-4 {
+  background-color: #4F748E;
+}
+
+
+.shade-color-5 {
+  color: #668EAA;
+}
+
+.shade-bgcolor-5 {
+  background-color: #668EAA;
+}
+
+
+.shade-color-6 {
+  color: #A8BECE;
+}
+
+.shade-bgcolor-6 {
+  background-color: #A8BECE;
+}
+
+
+.shade-color-7 {
+  color: #E5E6E8;
+}
+
+.shade-bgcolor-7 {
+  background-color: #E5E6E8;
+}
+
+
+.shade-color-8 {
+  color: #F7F8FC;
+}
+
+.shade-bgcolor-8 {
+  background-color: #F7F8FC;
+}
+
+/* Shade of Grey Pallets */
+
+
+/* Omnival Logo Colors Pallets */
+.omnival-logo-color-1 {
+  color: #E84DB2;
+}
+
+.omnival-logo-bgcolor-1 {
+  background-color: #E84DB2;
+}
+
+
+.omnival-logo-color-2 {
+  color: #EA4786;
+}
+
+.omnival-logo-bgcolor-2 {
+  background-color: #EA4786;
+}
+
+.omnival-logo-color-3 {
+  color: #983FB3;
+}
+
+.omnival-logo-bgcolor-3 {
+  background-color: #983FB3;
+}
+
+
+.omnival-logo-color-4 {
+  color: #2B95FC;
+}
+
+.omnival-logo-bgcolor-4 {
+  background-color: #2B95FC;
+}
+
+
+.omnival-logo-color-5 {
+  color: #65DAFB;
+}
+
+.omnival-logo-bgcolor-5 {
+  background-color: #65DAFB;
+}
+
+
+.omnival-logo-color-6 {
+  color: #003171;
+}
+
+.omnival-logo-bgcolor-6 {
+  background-color: #003171;
+}
+
+.omnival-logo-color-7 {
+  color: #015EDF;
+}
+
+.omnival-logo-bgcolor-7 {
+  background-color: #015EDF;
+}
+
+/* Omnival Logo Colors Pallets */
+
+
+
+/* Omnival Ascent Colors Pallets */
+.omnival-ascent-color-1 {
+  color: #1CB2B2;
+}
+
+.omnival-ascent-bgcolor-1 {
+  background-color: #1CB2B2;
+}
+
+
+.omnival-ascent-color-2 {
+  color: #ED8E35;
+}
+
+.omnival-ascent-bgcolor-2 {
+  background-color: #ED8E35;
+}
+
+
+.omnival-ascent-color-3 {
+  color: #EC5050;
+}
+
+.omnival-ascent-bgcolor-3 {
+  background-color: #EC5050;
+}
+
+.omnival-ascent-color-4 {
+  color: #06A917;
+}
+
+.omnival-ascent-bgcolor-4 {
+  background-color: #06A917;
+}
+
+
+.omnival-ascent-color-5 {
+  color: #AC930A;
+}
+
+.omnival-ascent-bgcolor-5 {
+  background-color: #AC930A;
+}
+
+
+.omnival-ascent-color-6 {
+  color: #7D7D7D;
+}
+
+.omnival-ascent-bgcolor-6 {
+  background-color: #7D7D7D;
+}
+
+
+.omnival-ascent-color-7 {
+  color: #FFC7C0;
+}
+
+.omnival-ascent-bgcolor-7 {
+  background-color: #FFC7C0;
+}
+
+
+.omnival-ascent-color-8 {
+  color: #73D500;
+}
+
+.omnival-ascent-bgcolor-8 {
+  background-color: #73D500;
+}
+
+
+.omnival-ascent-color-9 {
+  color: #FF9E14;
+}
+
+.omnival-ascent-bgcolor-9 {
+  background-color: #FF9E14;
+}
+
+
+
+.omnival-ascent-color-10 {
+  color: #7C99BE;
+}
+
+.omnival-ascent-bgcolor-10 {
+  background-color: #7C99BE;
+}
+
+
+.omnival-ascent-color-11 {
+  color: #03C4C6;
+}
+
+.omnival-ascent-bgcolor-11 {
+  background-color: #03C4C6;
+}
+
+.omnival-ascent-color-12 {
+  color: #778BEB;
+}
+
+.omnival-ascent-bgcolor-12 {
+  background-color: #778BEB;
+}
+
+
+.omnival-ascent-color-13 {
+  color: #EB8686;
+}
+
+.omnival-ascent-bgcolor-13 {
+  background-color: #EB8686;
+}
+
+
+.omnival-ascent-color-14 {
+  color: #F7D794;
+}
+
+.omnival-ascent-bgcolor-14 {
+  background-color: #F7D794;
+}
+
+
+.omnival-ascent-color-15 {
+  color: #F3A683;
+}
+
+.omnival-ascent-bgcolor-15 {
+  background-color: #F3A683;
+}
+
+
+.omnival-ascent-color-16 {
+  color: #786FA6;
+}
+
+.omnival-ascent-bgcolor-16 {
+  background-color: #786FA6;
+}
+
+
+.omnival-ascent-color-17 {
+  color: #FF4A56;
+}
+
+.omnival-ascent-bgcolor-17 {
+  background-color: #FF4A56;
+}
+
+
+.omnival-ascent-color-18 {
+  color: #FFDD00;
+}
+
+.omnival-ascent-bgcolor-18 {
+  background-color: #FFDD00;
+}
+
+
+.omnival-ascent-color-19 {
+  color: #C27AEB;
+}
+
+.omnival-ascent-bgcolor-19 {
+  background-color: #C27AEB;
+}
+
+
+.omnival-ascent-color-20 {
+  color: #DB72BE;
+}
+
+.omnival-ascent-bgcolor-20 {
+  background-color: #DB72BE;
+}
+
+/* Omnival Ascent Colors Pallets */
+
+
+/* Buttons Hover Style */
+.c-btn:focus {
+   outline: none;
+}
+/* Buttons Hover Style */
+
+/* Omnival Button Pallets */
+.c-btn {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 16.94px;
+  color: #243B43;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.c-btn-border {
+  border: 1px solid #243B43;
+  background-color: transparent;
+}
+
+.c-btn-bg {
+  background-color: #243B43;
+  color: white;
+}
+
+.c-btn-small {
+  height: 30px;
+  border-radius: 4px;
+  padding: 0 12px;
+}
+
+.c-btn-medium {
+  height: 36px;
+  min-width: 96px;
+  border-radius: 4px;
+  padding: 0 12px;
+}
+
+.c-btn-large {
+  height: 46px;
+  min-width: 96px;
+  border-radius: 4px;
+  padding: 0 12px;
+}
+
+/* Omnival Button Pallets */
+
+
+
+
+
+
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
