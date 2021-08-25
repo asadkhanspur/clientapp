@@ -183,4 +183,13 @@ export class AuthenticationService {
     return permissionList;
   }
   // ***************** Set Permisions into localstorage Method *****************//
+
+  isAlreadySignIn()
+  {
+    const currentUser = this.currentUserValue;
+    if(currentUser){
+      return true;
+    }
+    return false;
+  }
 }

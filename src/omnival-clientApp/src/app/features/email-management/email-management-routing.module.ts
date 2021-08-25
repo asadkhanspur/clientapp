@@ -11,23 +11,14 @@ const routes: Routes = [
 
       {
         path: '',
-        redirectTo: 'email-list',
+        redirectTo: 'emails',
         pathMatch: 'full',
       },
 
-      { path: 'email-list', component: EmailManagementListComponent },
-      { path: 'notification-list', component: NotificationListComponent },
+      { path: 'emails', component: EmailManagementListComponent },
+      { path: 'notifications', component: NotificationListComponent },
     ]
   },
-
-  // {
-  //   path: '',
-  //   redirectTo: 'email-list',
-  //   pathMatch: 'full'
-  // },
-
-  
-  
 
 ];
 

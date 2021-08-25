@@ -14,7 +14,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatChipsModule} from '@angular/material/chips';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -38,7 +37,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     Ng2SearchPipeModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule,
     BsDropdownModule.forRoot()
   ]
 })
