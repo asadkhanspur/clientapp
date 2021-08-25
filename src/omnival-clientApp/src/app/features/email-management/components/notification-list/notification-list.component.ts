@@ -10,6 +10,7 @@ import * as $ from 'jquery';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { NotificationTemplateService, TemplateTypeService } from '../../service';
 import { DocumentTypesService } from 'src/app/shared/services';
+import { BaseComponent } from 'src/app/core/components';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { DocumentTypesService } from 'src/app/shared/services';
   templateUrl: './notification-list.component.html',
   styleUrls: ['./notification-list.component.css']
 })
-export class NotificationListComponent implements OnInit {
+export class NotificationListComponent extends BaseComponent implements OnInit {
 
   gifLoader = false
   clientNotificationTemplateLists = []
@@ -50,7 +51,9 @@ export class NotificationListComponent implements OnInit {
     private notificationTemplateService: NotificationTemplateService,
     private templateTypeService: TemplateTypeService,
     private DocumentTypesService: DocumentTypesService,
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.getClientNotificationTemplateList();

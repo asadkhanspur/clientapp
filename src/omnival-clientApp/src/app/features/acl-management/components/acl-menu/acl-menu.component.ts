@@ -19,7 +19,6 @@ export class AclMenuComponent extends BaseComponent  implements OnInit {
     ngOnInit() {
       if(this.router.url === "/acl-management/roles"){
           if (!this.permissions.RMRV) {
-            console.log('AclMenuComponent')
             this.router.navigateByUrl('/acl-management/users');
           }
       }

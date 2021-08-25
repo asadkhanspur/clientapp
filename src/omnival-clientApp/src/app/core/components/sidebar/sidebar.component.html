@@ -38,14 +38,14 @@
             </div>
           </div>
           <div class="colDropDiv" *ngIf="permissions.OMRCV == true">
-            <button type="button" class="btn btn-default" routerLink="/reviewchecklist" routerLinkActive="active"
+            <button type="button" class="btn btn-default" routerLink="{{routeLinks.reviewCheckList}}" routerLinkActive="active"
               [attr.aria-expanded]="!reportCollapsed" aria-controls="collapseBasic"><i class="fa fa-list-alt bKIcon"
                 aria-hidden="true"></i> Review Checklist
             </button>
           </div>
 
           <div class="colDropDiv" *ngIf="permissions.OMDCV == true">
-            <button type="button" class="btn btn-default" routerLink="/document-management/document-list"
+            <button type="button" class="btn btn-default" routerLink="{{routeLinks.documentManagment}}"
               routerLinkActive="active" [attr.aria-expanded]="!reportCollapsed" aria-controls="collapseBasic"><i
                 class="fa fa-file-text-o bKIcon" aria-hidden="true"></i> Document Management
             </button>
@@ -53,7 +53,7 @@
 
 
           <div class="colDropDiv" *ngIf="permissions.OMEMV == true">
-            <button type="button" class="btn btn-default" routerLink="/email-management"
+            <button type="button" class="btn btn-default" routerLink="{{routeLinks.configAlert}}"
               routerLinkActive="active" [attr.aria-expanded]="!reportCollapsed" aria-controls="collapseBasic"><i
                 class="fa fa-envelope-o bKIcon" aria-hidden="true"></i> Configure Alerts
             </button>
@@ -118,14 +118,14 @@
         
 
           <div class="colDropDiv" *ngIf="permissions.PMV == true">
-            <button type="button" class="btn btn-default" routerLink="/product-managment" routerLinkActive="active"
+            <button type="button" class="btn btn-default" routerLink="{{routeLinks.productManagment}}" routerLinkActive="active"
               [attr.aria-expanded]="!reportCollapsed" aria-controls="collapseBasic"><i class="fa fa-flag bKIcon"
                 aria-hidden="true"></i> Product Management
             </button>
           </div>
 
           <div class="colDropDiv" *ngIf="permissions.VMSV == true">
-            <button type="button" class="btn btn-default" routerLink="/panel-managment" routerLinkActive="active"
+            <button type="button" class="btn btn-default" routerLink="{{routeLinks.panelManagment}}" routerLinkActive="active"
               [attr.aria-expanded]="!reportCollapsed" aria-controls="collapseBasic"><i class="fa fa-users bKIcon"
                 aria-hidden="true"></i> Panel Management
             </button>
@@ -150,11 +150,11 @@
           </div>
 
           <div class="colDropDiv" *ngIf="permissions.RMRV == true || permissions.PRUMV == true ">
-            <button type="button" class="btn btn-default" routerLink="/acl-management" *ngIf="permissions.RMRV == true" routerLinkActive="active"
+            <button type="button" class="btn btn-default" routerLink="{{routeLinks.roleManagment}}" *ngIf="permissions.RMRV == true" routerLinkActive="active"
               [attr.aria-expanded]="!reportCollapsed" aria-controls="collapseBasic"><i class="fa fa-cogs bKIcon"
                 aria-hidden="true"></i> Roles & User Management
             </button>
-            <button type="button" class="btn btn-default" routerLink="/acl-management/users" *ngIf="!permissions.RMRV && permissions.PRUMV == true " routerLinkActive="active"
+            <button type="button" class="btn btn-default" routerLink="{{routeLinks.userManagment}}" *ngIf="!permissions.RMRV && permissions.PRUMV == true " routerLinkActive="active"
             [attr.aria-expanded]="!reportCollapsed" aria-controls="collapseBasic"><i class="fa fa-cogs bKIcon"
               aria-hidden="true"></i> Roles & User Management
           </button>
@@ -215,12 +215,12 @@
           </li>
 
           <li *ngIf="permissions.PMCV == true">
-            <i class="fa fa-flag bKIcon" aria-hidden="true" routerLink="/productmanagement" popover="Product Management"
+            <i class="fa fa-flag bKIcon" aria-hidden="true" routerLink="{{routeLinks.productManagment}}" popover="Product Management"
               placement="right" triggers="mouseenter:mouseleave"></i>
           </li>
 
           <li *ngIf="permissions.PNLV">
-            <i class="fa fa-users bKIcon" aria-hidden="true" routerLink="/panelmanagement" popover="Panel Management"
+            <i class="fa fa-users bKIcon" aria-hidden="true" routerLink="{{routeLinks.panelManagment}}" popover="Panel Management"
               placement="right" triggers="mouseenter:mouseleave"></i>
           </li>
 
@@ -235,26 +235,30 @@
           </li>
 
           <li *ngIf="permissions.RMRV || permissions.PRUMV ">
-            <i class="fa fa-cogs bKIcon" aria-hidden="true" routerLink="/rolemanagement"
+            <i class="fa fa-cogs bKIcon"   *ngIf="!permissions.RMRV == true " aria-hidden="true" routerLink="{{routeLinks.roleManagment}}"
               popover="Roles & User Management" placement="right" triggers="mouseenter:mouseleave"></i>
+              <i class="fa fa-cogs bKIcon"   *ngIf="!permissions.RMRV && permissions.PRUMV == true " aria-hidden="true" routerLink="{{routeLinks.userManagment}}"
+              popover="Roles & User Management" placement="right" triggers="mouseenter:mouseleave"></i>
+
+            
           </li>
 
 
           <li>
-            <i class="fa fa-file-text-o bKIcon" aria-hidden="true" routerLink="/document-list/documentlist"
+            <i class="fa fa-file-text-o bKIcon" aria-hidden="true" routerLink="{{routeLinks.documentManagment}}"
               popover="Document Management" placement="right" triggers="mouseenter:mouseleave"></i>
           </li>
 
 
 
           <li>
-            <i class="fa fa-envelope-o bKIcon" aria-hidden="true" routerLink="/emailmanagement/emaillist"
+            <i class="fa fa-envelope-o bKIcon" aria-hidden="true" routerLink="{{routeLinks.configAlert}}"
               popover="Configure Alerts" placement="right" triggers="mouseenter:mouseleave"></i>
           </li>
 
 
           <li>
-            <i class="fa fa-users bKIcon" aria-hidden="true" routerLink="/panel-managment" popover="Panel Management"
+            <i class="fa fa-users bKIcon" aria-hidden="true" routerLink="{{routeLinks.panelManagment}}" popover="Panel Management"
               placement="right" triggers="mouseenter:mouseleave"></i>
           </li>
 

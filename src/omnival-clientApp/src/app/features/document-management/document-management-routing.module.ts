@@ -5,13 +5,18 @@ import { DocumentManagementComponent } from './document-management.component';
 import { DocumentListComponent, UploadDocumentComponent, TemplateDocumentComponent } from './components';
 
 const routes: Routes = [
-  { path: '', component: DocumentManagementComponent },
-  // {
-  //   path: '',
-  //   redirectTo: 'document-list',
-  //   pathMatch: 'full'
-  // },
-  { path: 'document-list', component: DocumentListComponent },
+  {
+    path: '',
+    component: DocumentManagementComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'document-list',
+        pathMatch: 'full'
+      },
+      { path: 'document-list', component: DocumentListComponent },
+    ]
+  }
 ];
 
 @NgModule({

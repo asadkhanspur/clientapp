@@ -1,22 +1,19 @@
 import { BaseComponent } from '../../../../core/components';
 import { RefreshData } from '../../../../core/modals';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import * as $ from 'jquery';
-import { AuthenticationService, SignalRService} from "../../../../core/services";
-import { ClientContactTypeService, ClientBranchService, ClientUserService, ClientService} from "../../../../shared/services"
+import { SignalRService} from "../../../../core/services";
+import { ClientContactTypeService, ClientBranchService, ClientUserService} from "../../../../shared/services"
 import { RoleService} from "../../services"
-import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl, ValidatorFn, FormGroupDirective } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,FormGroupDirective } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { finalize, tap } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { accessType } from '../../../../core/enum';
-
 
 // ********* Helper Import ********* //
 import { HelperMethods } from '../../../../core/utils';
 import { Subscription } from 'rxjs';
+import { ErrorMessage,SuccessMessage } from '../../../../core/enum';
 // ********* Helper Import ********* //
 
 @Component({
@@ -60,15 +57,12 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
 
 
   constructor(
-    private fb: FormBuilder,
     private RoleService: RoleService,
     private ClientUserService: ClientUserService,
     private ClientContactTypeService: ClientContactTypeService,
-    private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
     private modalService: BsModalService,
     private ClientBranchService: ClientBranchService,
-    private router: Router,
     private signalrService: SignalRService
   ) {
     super();
@@ -159,9 +153,7 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
       },
         (error: any) => {
           this.errorMessage = error.error.message;
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 2000,
-          });
+         this.Error(ErrorMessage.fromServer,this.errorMessage);
           console.log(`error on retriving Branches list : ${error}`);
         }
       ),
@@ -192,9 +184,7 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
         (error: any) => {
           this.gifLoader = false
           this.errorMessage = error.error.message;
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 2000,
-          });
+         this.Error(ErrorMessage.fromServer,this.errorMessage);
           console.log(`error on retriving product type list : ${error}`);
         }
       ),
@@ -239,9 +229,7 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
         (error: any) => {
           this.gifLoader = false
           this.errorMessage = error.error.message;
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 2000,
-          });
+         this.Error(ErrorMessage.fromServer,this.errorMessage);
           console.log(`error on retriving roles : ${error}`);
         }
       ),
@@ -273,17 +261,13 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
           // this.getClientRoleList();
           // this.modalRef.hide();
           // this.gifLoaderForm = false;
-          this.snackBar.open('Changes Has Been Saved Successfully', '', {
-            duration: 4000,
-          });
+          this.Success(SuccessMessage.fromServer,'Changes Has Been Saved Successfully');
           this.isCustomPermissionChanged = true
         },
           error => {
             this.loadingforgot = false
             this.errorMessage = error.error.message;
-            this.snackBar.open(this.errorMessage, '', {
-              duration: 4000,
-            });
+           this.Error(ErrorMessage.fromServer,this.errorMessage);
             permission.isView = !event.checked;
             permission.isCreate = !event.checked;
             permission.isUpdate = !event.checked;
@@ -334,17 +318,13 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
           // this.getClientRoleList();
           // this.modalRef.hide();
           // this.gifLoaderForm = false;
-          this.snackBar.open('Changes Has Been Saved Successfully', '', {
-            duration: 4000,
-          });
+          this.Success(SuccessMessage.fromServer,'Changes Has Been Saved Successfully');
           this.isCustomPermissionChanged = true
         },
           error => {
             this.gifLoaderForm = false;
             this.errorMessage = error.error.message;
-            this.snackBar.open(this.errorMessage, '', {
-              duration: 4000,
-            });
+           this.Error(ErrorMessage.fromServer,this.errorMessage);
             switch (accessFor) {
               case 'view':
                 permission.isView = !event.checked;
@@ -383,9 +363,7 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
         ;
         this.loadingforgot = false
         this.successMessage = result
-        this.snackBar.open(this.successMessage.message, '', {
-          duration: 8000,
-        });
+        this.Success(SuccessMessage.fromServer,this.successMessage.message);
         this.getclientUsers();
         this.modalRef.hide();
         this.loadingforgot = false;
@@ -394,9 +372,7 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
           ;
           this.loadingforgot = false;
           this.errorMessage = error.error.message;
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 2000,
-          });
+         this.Error(ErrorMessage.fromServer,this.errorMessage);
           console.log(`error on retrieving role data : ${error}`);
         }),
       finalize(() => {
@@ -464,18 +440,13 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
       .pipe(
         tap(
           result => {
-            this.snackBar.open(result.message, '', {
-              duration: 8000,
-            })
+            this.Success(SuccessMessage.fromServer,result.message);
             this.loadingforgot = false;
             $(".LowVisibilityDivChangePassword").removeClass("openedpopeup");
           }, error => {
             this.loadingforgot = false;
-            this.snackBar.open(error.error.message, '', {
-              duration: 8000,
-            });
-
-
+            this.errorMessage = error.error.message;
+            this.Error(ErrorMessage.fromServer,this.errorMessage);
           }
         ),
         finalize(() => { })
@@ -537,9 +508,7 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
         (error: any) => {
           this.gifLoader = false;
           this.errorMessage = error.error.message;
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 2000,
-          });
+         this.Error(ErrorMessage.fromServer,this.errorMessage);
           console.log(`error on retrieving role data : ${error}`);
         }),
       finalize(() => {
@@ -612,9 +581,7 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
           // this.gifLoader = true
           this.loadingforgot = false
           this.errorMessage = error.error.message;
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 2000,
-          });
+         this.Error(ErrorMessage.fromServer,this.errorMessage);
           console.log(`error on retrieving User data : ${error}`);
         }),
       finalize(() => {
@@ -665,9 +632,7 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
       },
         (error: any) => {
           this.errorMessage = error.error.message;
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 2000,
-          });
+         this.Error(ErrorMessage.fromServer,this.errorMessage);
           console.log(`error on retriving Branches list : ${error}`);
         }
       ),
@@ -784,18 +749,14 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
           this.getclientUsers();
           this.modalRef.hide();
           this.successMessage = result
-          this.snackBar.open(this.successMessage.message, '', {
-            duration: 8000,
-          });
+          this.Success(SuccessMessage.fromServer,this.successMessage.message);
           //this.getVendorCoverages();
           // this.modalRef.hide();
         },
           error => {
             //data.isServiceProvided = !event.checked;
             this.errorMessage = error.error.message;
-            this.snackBar.open(this.errorMessage, '', {
-              duration: 8000,
-            });
+           this.Error(ErrorMessage.fromServer,this.errorMessage);
           }),
         finalize(() => {
         })
@@ -874,9 +835,7 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
           (error: any) => {
             this.gifLoader = false
             this.errorMessage = error.error.message;
-            this.snackBar.open(this.errorMessage, '', {
-              duration: 2000,
-            });
+           this.Error(ErrorMessage.fromServer,this.errorMessage);
             console.log(`error on retrieving User data : ${error}`);
           }),
         finalize(() => {
@@ -897,15 +856,12 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
       .pipe(
         tap(
           result => {
-            this.snackBar.open(result.message, '', {
-              duration: 8000,
-            })
+            this.Success(SuccessMessage.fromServer,result.message);
             this.loadingforgot = false;
             this.modalRef.hide()
           }, error => {
-            this.snackBar.open(error.error.message, '', {
-              duration: 8000,
-            });
+            this.errorMessage = error.error.message;
+            this.Error(ErrorMessage.fromServer,this.errorMessage);
             this.loadingforgot = false;
             this.modalRef.hide()
           }
@@ -927,18 +883,14 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
 
           this.loadingforgot = false
           this.successMessage = result
-          this.snackBar.open(this.successMessage.message, '', {
-            duration: 8000,
-          });
+          this.Success(SuccessMessage.fromServer,this.successMessage.message);
           this.getclientUsers();
           this.modalRef.hide();
         },
           error => {
             this.loadingforgot = false
             this.errorMessage = error.error.message;
-            this.snackBar.open(this.errorMessage, '', {
-              duration: 8000,
-            });
+           this.Error(ErrorMessage.fromServer,this.errorMessage);
           }),
         finalize(() => {
         })
@@ -1011,9 +963,7 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
       tap(result => {
         this.UserCustomForm.controls["userLogin"].disable();
         this.loadingforgot = false
-        this.snackBar.open(result.message, '', {
-          duration: 8000,
-        })
+        this.Success(SuccessMessage.fromServer,result.message);
         this.getclientUsers();
         $(".LowVisibilityDivCreatedEditUser").removeClass("openedpopeup");
         userFormDirective.resetForm()
@@ -1026,9 +976,7 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
           this.UserCustomForm.controls["userLogin"].disable();
           this.loadingforgot = false
           this.errorMessage = error.error.message;
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 2000,
-          });
+         this.Error(ErrorMessage.fromServer,this.errorMessage);
           console.log(`error on update Client User data : ${error}`);
         }),
       finalize(() => {
@@ -1066,10 +1014,7 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
       tap(result => {
         debugger
         this.loadingforgot = false
-        this.snackBar.open(result.message, '', {
-          duration: 8000,
-        })
-
+        this.Success(SuccessMessage.fromServer,result.message);
         this.UserCustomForm.controls["userBranches"].patchValue = null
         this.UserCustomForm.controls["userSubGroups"].patchValue = null
         this.getclientUsers();
@@ -1083,9 +1028,7 @@ export class UserManagementComponent extends BaseComponent  implements OnInit {
         (error: any) => {
           this.loadingforgot = false
           this.errorMessage = error.error.message;
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 2000,
-          });
+         this.Error(ErrorMessage.fromServer,this.errorMessage);
           console.log(`error on create Client User data : ${error}`);
         }),
       finalize(() => {
