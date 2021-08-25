@@ -11,10 +11,12 @@
 
     <div class="col-5">
       <div class="panelTabsMenuMainDiv">
-        <app-detail-tabs>
-          <app-panel-tabs-vendor-detail content></app-panel-tabs-vendor-detail>
+        <app-detail-tabs [tabListDestination]="tabListSource">
+          <app-panel-tabs-filter filter></app-panel-tabs-filter>
+          <router-outlet content></router-outlet>
         </app-detail-tabs>
       </div>
+      <app-vendor-detail-slider></app-vendor-detail-slider>
     </div>
   </div>
 </section>

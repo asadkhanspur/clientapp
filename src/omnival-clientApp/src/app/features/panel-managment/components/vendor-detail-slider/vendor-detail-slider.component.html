@@ -1,0 +1,119 @@
+<div class="detail-slider-wrapper" *ngIf="vendor.vendorId > 0 && currentVendorView !== undefined">
+  <div class="row">
+    <div class="title-bar">
+      <div class="co-details">
+        <div class="left mr-3">
+          <img src="{{vendor != null?  vendor.logoURL : ''}}" alt="" class="img-fluid">
+        </div>
+        <div class="right">
+          <p class="bColor"><strong>{{currentVendorView.vendorName}}</strong></p>
+          <strong><span class="bColor"> {{currentVendorView.doingBusinessAs}}</span></strong>
+        </div>
+      </div>
+      <button class="btn btn-secondary ml-auto mr-2" *ngIf="vendor.invitationStatusId == 2"
+        (click)="openModalWithClass(template)">Send
+        Invite</button>
+
+      <button class="btn btn-secondary rColor ml-auto mr-2" *ngIf="vendor.invitationStatusId == 3"
+        (click)="deleteInvitationReq(vendor.invitationId)">Cancel Invite</button>
+
+      <div class="editButtonDrop d-inline-block ml-auto mr-2" *ngIf="vendor.invitationStatusId == 1">
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <button class="dropdown-item" type="button" (click)="removeVendorInerButton(vendor.invitationStatusId)">Remove From Panel</button>
+          </div>
+        </div>
+      </div>
+
+      <i class="fa fa-close pointer ml-2 mr-2" aria-hidden="true" (click)='closeProfile()'></i>
+    </div>
+
+    <ng-template #template>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Confirmation</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="deleteModal">
+          <p><i class="fa fa-info-circle" aria-hidden="true"></i> Are you sure you want to invite this
+            vendor. You can't undo this action</p>
+
+          <div class="bothButons">
+            <ul>
+              <li>
+                <button class="btn btn-default" (click)="modalRef.hide()">No</button>
+              </li>
+              <li>
+                <button class="btn btn-primary" (click)="InnerInviteSend()" [disabled]="loadingforgot">Yes <span
+                    class="spinner-border spinner-border-own float-right" *ngIf="loadingforgot" role="status"
+                    aria-hidden="true"></span></button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+  </div>
+  <div class="row">
+    <div class="intro col-md-12">
+      <p class="bColor mb-0"><strong>Company Detail</strong></p>
+      <p class="d-block fz-14">{{currentVendorView.productDescription}}</p>
+
+    </div>
+
+    <div class="detailsUl">
+      <ul>
+        <li>
+          <h4>Address</h4>
+          <p>{{currentVendorView.address}} {{currentVendorView.stateCode}} {{currentVendorView.city}}
+            {{currentVendorView.zip}}</p>
+        </li>
+
+        <li>
+          <h4>
+            Email
+          </h4>
+          <p *ngIf="vendor!= null && vendor != undefined">{{vendor.email}}</p>
+        </li>
+
+        <li>
+          <h4>
+            Phone
+          </h4>
+          <p *ngIf="vendor!= null && vendor != undefined">{{vendor.phone}}</p>
+        </li>
+
+        <li>
+          <h4>Categories Offered</h4>
+          <p *ngIf="vendor!= null && vendor != undefined">{{vendor.categoriesOffered}}</p>
+        </li>
+
+        <li *ngIf="vendor.invitationStatusId == 1">
+          <h4>Total Order Capacity</h4>
+          <input *ngIf="vendor!= null && vendor != undefined" type="number" class="form-control" #InputValue
+            (blur)="changeOrderValue(InputValue.value, 1)" [(ngModel)]="vendor.offerCapacity">
+        </li>
+
+        <li *ngIf="vendor.invitationStatusId == 1">
+          <h4>Total Offer Capacity</h4>
+          <input *ngIf="vendor!= null && vendor != undefined" type="number" class="form-control" #InputValue
+            (blur)="changeOrderValue(InputValue.value, 2)" [(ngModel)]="vendor.orderCapacity">
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-detail-tabs [tabListDestination]="tabListSource">
+        <vendor-detail-slider-tab content [vendorId]="vendor.vendorId"></vendor-detail-slider-tab>
+      </app-detail-tabs>
+    </div>
+  </div>
+</div>

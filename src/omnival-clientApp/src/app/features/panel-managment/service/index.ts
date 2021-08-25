@@ -1,1 +1,1 @@
-export *from './panel-managment.service'
+export * from './panel-managment.service'

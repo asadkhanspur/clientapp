@@ -9,6 +9,9 @@ import { environment } from '../../../environments/environment';
 export abstract class BaseAPI {
 
   API_URL = '';
+  ClientId = '';
+  VendorId = '';
+
   private _headers: HttpHeaders;
   get headers(): HttpHeaders {
     this._headers = new HttpHeaders();

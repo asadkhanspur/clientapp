@@ -11,9 +11,10 @@ import { CoreComponent } from './core.component';
 import { HeaderComponent, FooterComponent, LayoutComponent, SidebarComponent } from './components';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { FilterPipe } from './utils';
 
 @NgModule({
-  declarations: [CoreComponent, HeaderComponent, FooterComponent, SidebarComponent, LayoutComponent],
+  declarations: [CoreComponent, HeaderComponent, FooterComponent, SidebarComponent, LayoutComponent, FilterPipe],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -21,7 +22,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     AccordionModule.forRoot(),
     BsDropdownModule,
     PopoverModule.forRoot(),
-    CollapseModule,
+    CollapseModule
   ]
 })
 export class CoreModule {
