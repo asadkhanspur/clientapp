@@ -1,3 +1,69 @@
-<p>
-  panel-tabs-filter works!
-</p>
+<div class="searchbarFilter">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="searchBarApp">
+        <input placeholder="Search by Vendors or States or Counties" [(ngModel)]="panelManagmentService.searchFilter" #searchInput
+          class="form-control">
+      </div>
+    </div>
+
+    <div class="col-md pl-0">
+      <div class="filterButton">
+        <button class="btn btn-default" (click)="openFilterBox()">
+          <i class="fa fa-filter" aria-hidden="true"></i> Filter Options
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="filterBox" [collapse]="panelManagmentService.isCollapsed" [isAnimated]="true">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="FieldBox">
+        <mat-form-field class="d-block">
+          <mat-label>Product Category</mat-label>
+          <mat-select (selectionChange)="selectedProductType($event)" [(ngModel)]="resetValueProduct">
+            <mat-option *ngFor="let dataPr of productTypeList" [value]="dataPr.productTypeName">
+              {{dataPr.productTypeName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="FieldBox">
+        <mat-form-field class="d-block">
+          <mat-label>Coverage States</mat-label>
+          <mat-select (selectionChange)="selectedStateCode($event)" [(ngModel)]="resetValueState">
+            <mat-option *ngFor="let dataPr of stateList" [value]="dataPr.stateCode">
+              {{dataPr.stateName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="FieldBox">
+        <mat-form-field class="d-block">
+          <mat-label>Select Vendor Types</mat-label>
+          <mat-select (selectionChange)="selectedVendorType($event)" [(ngModel)]="resetValueVendor">
+            <mat-option *ngFor="let dataPr of vendorTypeList" [value]="dataPr.vendorTypeId">
+              {{dataPr.vendorTypeName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="FieldBox text-right mt-4">
+        <button class="btn btn-primary" (click)="resetMethod()">
+          <i class="fa fa-refresh" aria-hidden="true"></i> Reset Filter
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

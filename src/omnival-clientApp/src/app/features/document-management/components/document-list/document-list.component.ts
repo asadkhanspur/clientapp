@@ -373,7 +373,7 @@ export class DocumentListComponent extends BaseComponent implements OnInit{
     this.gifLoader = true
     var clientId = localStorage.getItem("clientID");
     // this.VendorService.setClientId = clientId;
-    this.VendorService.getCurrentVendor(filter).pipe(
+    this.VendorService.getAll(filter).pipe(
       tap(result => {
         this.gifLoader = false
         this.currentVendorList = result.data;

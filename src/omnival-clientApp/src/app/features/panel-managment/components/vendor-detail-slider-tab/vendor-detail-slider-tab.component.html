@@ -1,0 +1,121 @@
+<div class="row tabs-data">
+  <div class="col-md tab-content">
+
+    <div class="tab-pane active" id="products" role="tabpanel">
+      <div class="tablesDivProduct" id="style-2">
+        <table class="table">
+          <thead class="bgHeaderRowTable">
+            <tr>
+              <th scope="col">Type</th>
+              <th scope="col">Name</th>
+              <th scope="col">Fee</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let dataCurrentVendorProduct of currentVendorProducts">
+              <td>{{dataCurrentVendorProduct.productTypeName}}</td>
+              <td>{{dataCurrentVendorProduct.vendorProductName}}</td>
+              <td>{{dataCurrentVendorProduct.fee}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="viewProfileNoRecod" *ngIf="currentVendorProducts.length === 0">
+          <img src="../../../assets/images/noRecordImg.png" alt="">
+          <h1>No Record Found</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="states" role="tabpanel">
+      <div class="tablesDivProduct" id="style-2">
+        <table class="table">
+          <thead class="bgHeaderRowTable">
+            <tr>
+              <th scope="col">States</th>
+              <th scope="col">Expiration Date</th>
+              <th scope="col">License File</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let dataCurrentVendorState of currentVendorStateCoverages">
+              <td><strong>{{dataCurrentVendorState.stateName}}</strong></td>
+              <td>{{dataCurrentVendorState.licenseExpiryDate | date: 'dd/MM/yyyy'}}</td>
+              <td><a class="bColor" href="{{dataCurrentVendorState.documentFilePath}}"
+                  download><strong>{{dataCurrentVendorState.documentFileName}}</strong></a></td>
+              <td><strong>{{dataCurrentVendorState.coverageStatus}}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="viewProfileNoRecod" *ngIf="currentVendorStateCoverages.length === 0">
+          <img src="../../../assets/images/noRecordImg.png" alt="">
+          <h1>No Record Found</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="contacts" role="tabpanel">
+      <div class="tablesDivProduct" id="style-2">
+        <table class="table">
+          <thead class="bgHeaderRowTable">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Type</th>
+              <th scope="col">Contact Details</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let dataCurrentVendorContact of currentVendorContacts">
+              <td><strong>{{dataCurrentVendorContact.firstName}}
+                  {{dataCurrentVendorContact.lastName}}</strong></td>
+              <td>{{dataCurrentVendorContact.contactTypeName}}</td>
+              <td>
+                <p class="mb-0"><strong>Email: </strong>{{dataCurrentVendorContact.email}}</p>
+                <p class="mb-0"><strong>Work: </strong>{{dataCurrentVendorContact.userWorkPhone}}</p>
+                <p class="mb-0"><strong>Cell: </strong>{{dataCurrentVendorContact.userCellPhone}}</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="viewProfileNoRecod" *ngIf="currentVendorContacts.length === 0">
+          <img src="../../../assets/images/noRecordImg.png" alt="">
+          <h1>No Record Found</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="documents" role="tabpanel">
+      <div class="tablesDivProduct" id="style-2">
+        <table class="table">
+          <thead class="bgHeaderRowTable">
+            <tr>
+              <th scope="col">Type</th>
+              <th scope="col">Name</th>
+              <th scope="col">Updated File</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let dataCurrentVendorDocument of currentVendorSupportingDocuments">
+              <td>{{dataCurrentVendorDocument.documentTypeName}}</td>
+              <td>{{dataCurrentVendorDocument.supportingDocumentName}}</td>
+              <td><a class="bColor" href="{{dataCurrentVendorDocument.documentFilePath}}"
+                  download><strong>{{dataCurrentVendorDocument.documentFileName}}</strong></a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="viewProfileNoRecod" *ngIf="currentVendorSupportingDocuments.length === 0">
+          <img src="../../../assets/images/noRecordImg.png" alt="">
+          <h1>No Record Found</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

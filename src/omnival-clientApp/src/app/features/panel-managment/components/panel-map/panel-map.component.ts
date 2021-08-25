@@ -175,8 +175,8 @@ export class PanelMapComponent implements OnInit {
       drilldown: {}
     };
     
-    var clientId = localStorage.getItem("clientID");
-    self.VendorService.getAllVendorStates(clientId).pipe(
+    self.VendorService.ClientId = localStorage.getItem("clientID");
+    self.VendorService.getAllVendorStates().pipe(
       tap(result => {
         self.chart.showLoading();
         

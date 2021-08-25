@@ -1,0 +1,69 @@
+.searchbarFilter {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.searchBarApp {
+  position: relative;
+}
+
+
+.searchBarApp:after {
+  content: '\f002';
+  font-family: FontAwesome;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  color: #8596b1;
+}
+
+.searchBarApp input {
+  background-color: #f7f7f7;
+  border: 1px solid #cccccc;
+  height: 45px;
+  border-radius: 10px;
+  font-weight: 500;
+  color: #8596b1;
+  font-size: 14px;
+  width: 100%;
+  padding-left: 30px;
+  outline: none;
+  box-shadow: none;
+}
+
+.filterButton button.btn.btn-primary {
+  color: white;
+  background-color: #003171;
+  border-radius: 8px;
+  width: 100%;
+  font-weight: 700;
+  border: 0;
+  font-size: 14px;
+  outline: none;
+  box-shadow: none;
+  border: 1px solid #cccccc;
+  height: 44px;
+  transition: 0.5s;
+}
+
+.filterButton button.btn.btn-default {
+  color: #545658;
+  background-color: #fff;
+  border-radius: 8px;
+  width: 100%;
+  font-weight: 700;
+  border: 0;
+  /* line-height: 23px; */
+  font-size: 14px;
+  outline: none;
+  box-shadow: none;
+  border: 1px solid #cccccc;
+  height: 44px;
+}
+
+.filterBox {
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    padding: 14px;
+    /* box-shadow: 0 6px 12px -6px #00000030; */
+}
