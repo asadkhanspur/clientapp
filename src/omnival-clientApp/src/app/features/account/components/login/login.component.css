@@ -13,20 +13,27 @@
 
 .midContentDiv {
   position: absolute;
-  top: 40%;
+  top: 36%;
   color: white;
-  padding: 0 34px;
+  padding: 0 26px;
+}
+
+.midContentDiv h4 {
+  color: white;
 }
 
 .midContentDiv p {
-  font-size: 14px;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.8);
+  color: #a0a0a0;
 }
 
-.midContentDiv h2 {
-  font-size: 26px;
-  font-weight: 600;
+.midContentDiv button {
+  color: #F4F7F8;
+  border-color: #F4F7F8;
+  width: 189px;
+  height: 46px;
+}
+.midContentDiv button:focus{
+  background-color: transparent;
 }
 
 .bottomContentDiv {
@@ -38,28 +45,54 @@
 }
 
 .bottomContentDiv p {
-  font-size: 12px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.8);
   opacity: 0.6;
+  font-size: 14px;
+  line-height: 19px;
 }
 
 .bottomContentDiv ul {}
 
 .bottomContentDiv ul li {
-  margin: 0 10px;
+  margin: 0 6px;
   display: inline-block;
 }
 
 .bottomContentDiv ul li img {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
+  max-width: 80%;
 }
 
 
 .rightLoginDev {}
 
 .rightLoginDev .loginFormDiv {
-  width: 500px;
-  margin: 200px auto;
+  width: 618px;
+  margin: 118px auto;
+}
+
+.rightLoginDev .loginFormDiv span {
+  background: #F4F7F8;
+  border-radius: 10.5px;
+  padding: 3px 10px;
+}
+
+.rightLoginDev .loginFormDiv h6 {}
+
+.leftSubmitButon button {
+  width: 100%;
+}
+
+.rightLoginDev .loginFormDiv a{
+  color: rgba(0, 0, 0, 0.7);
+  float: right;
+}
+
+
+.rightLoginDev p{
+  text-align: right;
+    margin-top: 30px;
+    margin-right: 20px;
 }

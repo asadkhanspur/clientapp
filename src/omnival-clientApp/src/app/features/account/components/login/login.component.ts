@@ -30,6 +30,9 @@ export class LoginComponent implements OnInit {
   modalRef: BsModalRef;
   success: string = '';
 
+  showLoader = false
+
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -104,13 +107,14 @@ export class LoginComponent implements OnInit {
       return
     }
 
-    this.loading = true;
+    this.showLoader = true;
     this.authenticationService.login(this.f.username.value.trim(), this.f.password.value.trim())
       .pipe(
         tap(result => {
           debugger
           if (result || result.error == undefined) {
             try {
+              this.showLoader = false
               console.log(result)
               localStorage.setItem(environment.authTokenKey, result.data.accessToken);
               localStorage.setItem("userTypeId", result.data.user.userTypeID.toString());
@@ -150,7 +154,7 @@ export class LoginComponent implements OnInit {
 
           } else {
             console.log(`error on login`);
-            this.loading = false;
+            this.showLoader = false;
             // this.authNoticeService.setNotice(this.translate.instant('AUTH.VALIDATION.INVALID_LOGIN'), 'danger');
           }
         },
@@ -160,7 +164,7 @@ export class LoginComponent implements OnInit {
               this.errorMessage = "Server is not responding"
             }
             console.log(`error on retriving on login : ${error}`);
-            this.loading = false;
+            this.showLoader = false;
           }
         ),
         finalize(() => { })

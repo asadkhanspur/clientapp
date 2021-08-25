@@ -15,6 +15,7 @@
     /* max-width: 314px; */
     transition: 0.50s;
     background-color: #003171;
+    height: 100vh;
   }
   
   #sidebar.active {

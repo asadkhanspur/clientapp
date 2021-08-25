@@ -1,35 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
 
 /* Heading General Pallets Style */
 h1 {
   font-size: 5.8125rem;
   font-weight: 300;
   letter-spacing: -1.5px;
+  color: #252B2D;
 }
 
 h2 {
   font-size: 3.625rem;
   font-weight: 300;
   letter-spacing: -0.5px;
+  color: #252B2D;
 }
 
 h3 {
   font-size: 2.9375rem;
   font-weight: 400;
+  color: #252B2D;
 }
 
 h4 {
   font-size: 2.0625rem;
   font-weight: 400;
   letter-spacing: 0.25px;
+  color: #252B2D;
 }
 
 h5 {
   font-size: 1.1875rem;
   font-weight: 400;
+  color: #252B2D;
 }
 
 
@@ -37,6 +45,7 @@ h6 {
   font-size: 1.1875rem;
   font-weight: 500;
   letter-spacing: 0.15px;
+  color: #252B2D;
 }
 
 /* Heading General Pallets Style */
@@ -47,12 +56,14 @@ h6 {
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: 0.15px;
+  color: #868888;
 }
 
 .sub-title-medium {
   font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.1px;
+  color: #868888;
 }
 
 .body-regular {
@@ -502,9 +513,30 @@ h6 {
 
 
 /* Buttons Hover Style */
-.c-btn:focus {
-   outline: none;
+button:focus {
+  outline: none;
 }
+
+.c-btn:active {
+  outline: none;
+  background-color: #19262b;
+  color: white;
+}
+
+.c-btn-bg:active {
+  outline: none;
+  background-color: #19262b;
+  color: white;
+}
+
+.c-btn-border:active {
+
+  outline: none;
+  background-color: #f7f7f7;
+  color: #243B43;
+
+}
+
 /* Buttons Hover Style */
 
 /* Omnival Button Pallets */
@@ -513,7 +545,7 @@ h6 {
   font-weight: 500;
   letter-spacing: 0.5px;
   line-height: 16.94px;
-  color: #243B43;
+  /* color: #243B43; */
   border: 0;
   background-color: transparent;
   cursor: pointer;
@@ -549,18 +581,316 @@ h6 {
   padding: 0 12px;
 }
 
+/* .c-btn.disabled,
+.c-btn:disabled {
+  opacity: .65;
+  pointer-events: none;
+  background-color: #86888869;
+} */
+
+.c-btn-border.disabled,
+.c-btn-border:disabled{
+  opacity: .65;
+  pointer-events: none;
+  border: 1px solid #86888869;
+  background-color: transparent;
+}
+
+.c-btn-bg.disabled,
+.c-btn-bg:disabled{
+  opacity: .65;
+  pointer-events: none;
+  background-color: #86888869;
+}
+
+
 /* Omnival Button Pallets */
 
-
-
-
-
-
-
-body {
-  margin: 0;
+/* Mat Input Css */
+.mat-form-field {
   font-family: 'Inter', sans-serif;
 }
+
+.mat-select {
+  font-family: 'Inter', sans-serif;
+}
+
+.mat-option-text {
+  font-family: 'Inter', sans-serif;
+}
+
+.mat-form-field-label {
+  /* color: #f44336; */
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+}
+
+.mat-form-field-label-wrapper {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: #D8D8D8;
+}
+
+
+
+
+.mat-form-field-disabled {}
+
+.mat-form-field.mat-form-field-disabled .mat-form-field-label {
+  color: #86888861 !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: #323A3D;
+  font-weight: 400;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: #000000;
+}
+
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: transparent;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-prefix,
+.mat-form-field-appearance-legacy .mat-form-field-suffix .mat-icon {
+  width: 2rem !important;
+}
+
+.input-icon {
+  color: #868888;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  line-height: 16px;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-subscript-wrapper {
+  margin-top: 0.5416666667em;
+  top: calc(100% - 1.5em);
+  margin-left: 31px;
+}
+
+.img-error-img {
+  top: -1px;
+  position: relative;
+}
+
+.verify-field-icon {
+  position: absolute;
+  right: 0;
+}
+
+/* Mat Input Css */
+
+
+/* Buttons Loader Css */
+.spinner-custom-style {
+  width: 20px;
+  height: 20px;
+  border-width: 3px;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+/* Buttons Loader Css */
+
+/* Radio Button Css */
+.mat-radio-button.mat-primary .mat-radio-inner-circle,
+.mat-radio-button.mat-primary .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-primary.mat-radio-checked .mat-radio-persistent-ripple,
+.mat-radio-button.mat-primary:active .mat-radio-persistent-ripple {
+  background-color: #243B43;
+}
+
+.mat-radio-button.mat-primary.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #243B43;
+}
+
+.mat-radio-label-content {
+  font-family: 'Inter', sans-serif;
+}
+.mat-radio-checked .mat-radio-label .mat-radio-label-content{
+  color: #252B2D !important;
+}
+
+
+/* Radio Button Css */
+
+
+/* CheckBox Button Css */
+.mat-checkbox-checked label.mat-checkbox-layout span.mat-checkbox-label{
+  color: #252B2D !important;
+}
+
+.mat-checkbox-indeterminate.mat-primary .mat-checkbox-background,
+.mat-checkbox-checked.mat-primary .mat-checkbox-background {
+  background-color: #243B43;
+}
+
+/* CheckBox Button Css */
+
+
+/* Chips Css */
+.mat-chip.mat-standard-chip {
+  background-color: #F0F1F1;
+  color: #243B43;
+  border-radius: 4px;
+}
+
+.mat-chip.mat-standard-chip .mat-chip-remove {
+  color: #868888;
+  opacity: 1;
+}
+
+.chips {
+  background-color: #243B43 !important;
+  color: #F0F1F1 !important;
+}
+
+.chip-dark-icon-style {
+  color: #F7F8FC !important;
+}
+
+.chip-light-icon-style {
+  color: #243B43 !important;
+}
+
+.chips-border {
+  /* border: 1px solid #243B43 !important; */
+  border: 1px solid #D8D8D8 !important;
+  background-color: transparent !important;
+}
+.chips-border:hover{
+  border: 1px solid #243B43 !important;
+  background-color: transparent !important;
+}
+
+.simple-chip:hover{
+  background-color: #243B43 !important;
+    color: #F0F1F1 !important;
+}
+
+.simple-chip:hover .dark-state{
+  color: white;
+}
+
+.light-chip:hover{
+  background-color: transparent !important;
+}
+
+.light-chip:hover .chip-dark{
+  color: #243B43;
+}
+.mat-chip-disabled.chips-border:hover {
+  border: 1px solid #D8D8D8 !important;
+}
+
+.mat-chip-disabled .light-chip:hover .chip-dark{
+  color: #868888;
+}
+
+/* Chips Css */
+
+/* Slide Toggle Css */
+.mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-thumb {
+  background-color: white;
+}
+
+.mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-bar {
+  background-color: #243B43;
+}
+
+.mat-slide-toggle-bar {
+  width: 36px !important;
+  height: 18px !important;
+}
+
+.mat-slide-toggle-thumb {
+  height: 16px !important;
+  width: 16px !important;
+}
+
+.mat-slide-toggle-thumb-container {
+  width: 16px !important;
+  height: 16px !important;
+  top: 1px !important;
+  left: 3px !important;
+}
+
+/* Slide Toggle Css */
+
+
+/* Slide Toggle Css */
+.whiteColor {
+  color: white;
+}
+
+/* Slide Toggle Css */
+
+
+/* Alert Boxes Css */
+.alert i {
+  margin-right: 3px;
+}
+.alert img{
+  float: right!important;
+  position: relative;
+  top: 6px;
+}
+
+.shadow-green-bg {
+  background: rgba(6, 169, 23, 0.12);
+}
+
+.shadow-blue-bg {
+  background: rgba(43, 149, 252, 0.12);
+}
+
+.shadow-red-bg {
+  background: rgba(236, 80, 80, 0.12);
+}
+
+.shadow-grey-bg {
+  background: rgba(125, 125, 125, 0.12);
+}
+
+/* Alert Boxes Css */
+
+
+/* Tab Css */
+.tab-container{}
+.tab-container ul{
+  border-bottom: 1px solid #D8D8D8;
+  margin-bottom: 10px;
+}
+.tab-container ul li{}
+.tab-container ul li a {
+  border: 0 !important;
+  padding: 8px 22px;
+}
+.tab-container ul li a.nav-link.active{
+  border-bottom: 2px solid #243B43 !important;
+}
+.tab-container ul li a.nav-link.active span{
+  color: #243B43;
+}
+
+.tab-container ul li.disabled a span{
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.25px;
+  color: #D8D8D8 !important;
+}
+/* Tab Css */
+
+
 
 ul {
   padding: 0;
