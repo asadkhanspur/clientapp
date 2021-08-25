@@ -1,13 +1,902 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-body { margin: 0; font-family: 'Inter', sans-serif; font-size: 1rem; }
-
-ul{
-    padding: 0;
-    margin: 0;
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
 }
 
-li{list-style: none;}
+/* Heading General Pallets Style */
+h1 {
+  font-size: 5.8125rem;
+  font-weight: 300;
+  letter-spacing: -1.5px;
+  color: #252B2D;
+}
+
+h2 {
+  font-size: 3.625rem;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  color: #252B2D;
+}
+
+h3 {
+  font-size: 2.9375rem;
+  font-weight: 400;
+  color: #252B2D;
+}
+
+h4 {
+  font-size: 2.0625rem;
+  font-weight: 400;
+  letter-spacing: 0.25px;
+  color: #252B2D;
+}
+
+h5 {
+  font-size: 1.1875rem;
+  font-weight: 400;
+  color: #252B2D;
+}
 
 
+h6 {
+  font-size: 1.1875rem;
+  font-weight: 500;
+  letter-spacing: 0.15px;
+  color: #252B2D;
+}
+
+/* Heading General Pallets Style */
+
+
+/* Paragraph Span And Other General Pallets Style */
+.sub-title-regular {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.15px;
+  color: #868888;
+}
+
+.sub-title-medium {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  color: #868888;
+}
+
+.body-regular {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+}
+
+.body-medium {
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.25px;
+}
+
+.body-regular {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 1.05px;
+}
+
+.button-medium {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 1.05px;
+}
+
+.button-large {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.caption {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+}
+
+.overline {
+  font-size: 0.625rem;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+}
+
+.linkButton-without-line {
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+}
+
+.linkButton-with-line {
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  text-decoration: underline;
+}
+
+.capatilized {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.25px;
+}
+
+/* Paragraph Span And Other General Pallets Style */
+
+
+/* Primary Colors Pallets */
+.primary-color-1 {
+  color: #000000;
+}
+
+.primary-bgcolor-1 {
+  background-color: #000000;
+}
+
+.primary-color-2 {
+  color: #252B2D;
+}
+
+.primary-bgcolor-2 {
+  background-color: #252B2D;
+}
+
+.primary-color-3 {
+  color: #243B43;
+}
+
+.primary-bgcolor-3 {
+  background-color: #243B43;
+}
+
+.primary-color-4 {
+  color: #868888;
+}
+
+.primary-bgcolor-4 {
+  background-color: #868888;
+}
+
+.primary-color-5 {
+  color: #D8D8D8;
+}
+
+.primary-bgcolor-5 {
+  background-color: #D8D8D8;
+}
+
+.primary-color-6 {
+  color: #F0F1F1;
+}
+
+.primary-bgcolor-6 {
+  background-color: #F0F1F1;
+}
+
+.primary-color-7 {
+  color: #F4F7F8;
+}
+
+.primary-bgcolor-7 {
+  background-color: #F4F7F8;
+}
+
+/* Primary Colors Pallets */
+
+
+/* Shade of Grey Pallets */
+.shade-color-1 {
+  color: #27343C;
+}
+
+.shade-bgcolor-1 {
+  background-color: #27343C;
+}
+
+
+.shade-color-2 {
+  color: #2E4453;
+}
+
+.shade-bgcolor-2 {
+  background-color: #2E4453;
+}
+
+
+.shade-color-3 {
+  color: #3D596D;
+}
+
+.shade-bgcolor-3 {
+  background-color: #3D596D;
+}
+
+
+.shade-color-4 {
+  color: #4F748E;
+}
+
+.shade-bgcolor-4 {
+  background-color: #4F748E;
+}
+
+
+.shade-color-5 {
+  color: #668EAA;
+}
+
+.shade-bgcolor-5 {
+  background-color: #668EAA;
+}
+
+
+.shade-color-6 {
+  color: #A8BECE;
+}
+
+.shade-bgcolor-6 {
+  background-color: #A8BECE;
+}
+
+
+.shade-color-7 {
+  color: #E5E6E8;
+}
+
+.shade-bgcolor-7 {
+  background-color: #E5E6E8;
+}
+
+
+.shade-color-8 {
+  color: #F7F8FC;
+}
+
+.shade-bgcolor-8 {
+  background-color: #F7F8FC;
+}
+
+/* Shade of Grey Pallets */
+
+
+/* Omnival Logo Colors Pallets */
+.omnival-logo-color-1 {
+  color: #E84DB2;
+}
+
+.omnival-logo-bgcolor-1 {
+  background-color: #E84DB2;
+}
+
+
+.omnival-logo-color-2 {
+  color: #EA4786;
+}
+
+.omnival-logo-bgcolor-2 {
+  background-color: #EA4786;
+}
+
+.omnival-logo-color-3 {
+  color: #983FB3;
+}
+
+.omnival-logo-bgcolor-3 {
+  background-color: #983FB3;
+}
+
+
+.omnival-logo-color-4 {
+  color: #2B95FC;
+}
+
+.omnival-logo-bgcolor-4 {
+  background-color: #2B95FC;
+}
+
+
+.omnival-logo-color-5 {
+  color: #65DAFB;
+}
+
+.omnival-logo-bgcolor-5 {
+  background-color: #65DAFB;
+}
+
+
+.omnival-logo-color-6 {
+  color: #003171;
+}
+
+.omnival-logo-bgcolor-6 {
+  background-color: #003171;
+}
+
+.omnival-logo-color-7 {
+  color: #015EDF;
+}
+
+.omnival-logo-bgcolor-7 {
+  background-color: #015EDF;
+}
+
+/* Omnival Logo Colors Pallets */
+
+
+
+/* Omnival Ascent Colors Pallets */
+.omnival-ascent-color-1 {
+  color: #1CB2B2;
+}
+
+.omnival-ascent-bgcolor-1 {
+  background-color: #1CB2B2;
+}
+
+
+.omnival-ascent-color-2 {
+  color: #ED8E35;
+}
+
+.omnival-ascent-bgcolor-2 {
+  background-color: #ED8E35;
+}
+
+
+.omnival-ascent-color-3 {
+  color: #EC5050;
+}
+
+.omnival-ascent-bgcolor-3 {
+  background-color: #EC5050;
+}
+
+.omnival-ascent-color-4 {
+  color: #06A917;
+}
+
+.omnival-ascent-bgcolor-4 {
+  background-color: #06A917;
+}
+
+
+.omnival-ascent-color-5 {
+  color: #AC930A;
+}
+
+.omnival-ascent-bgcolor-5 {
+  background-color: #AC930A;
+}
+
+
+.omnival-ascent-color-6 {
+  color: #7D7D7D;
+}
+
+.omnival-ascent-bgcolor-6 {
+  background-color: #7D7D7D;
+}
+
+
+.omnival-ascent-color-7 {
+  color: #FFC7C0;
+}
+
+.omnival-ascent-bgcolor-7 {
+  background-color: #FFC7C0;
+}
+
+
+.omnival-ascent-color-8 {
+  color: #73D500;
+}
+
+.omnival-ascent-bgcolor-8 {
+  background-color: #73D500;
+}
+
+
+.omnival-ascent-color-9 {
+  color: #FF9E14;
+}
+
+.omnival-ascent-bgcolor-9 {
+  background-color: #FF9E14;
+}
+
+
+
+.omnival-ascent-color-10 {
+  color: #7C99BE;
+}
+
+.omnival-ascent-bgcolor-10 {
+  background-color: #7C99BE;
+}
+
+
+.omnival-ascent-color-11 {
+  color: #03C4C6;
+}
+
+.omnival-ascent-bgcolor-11 {
+  background-color: #03C4C6;
+}
+
+.omnival-ascent-color-12 {
+  color: #778BEB;
+}
+
+.omnival-ascent-bgcolor-12 {
+  background-color: #778BEB;
+}
+
+
+.omnival-ascent-color-13 {
+  color: #EB8686;
+}
+
+.omnival-ascent-bgcolor-13 {
+  background-color: #EB8686;
+}
+
+
+.omnival-ascent-color-14 {
+  color: #F7D794;
+}
+
+.omnival-ascent-bgcolor-14 {
+  background-color: #F7D794;
+}
+
+
+.omnival-ascent-color-15 {
+  color: #F3A683;
+}
+
+.omnival-ascent-bgcolor-15 {
+  background-color: #F3A683;
+}
+
+
+.omnival-ascent-color-16 {
+  color: #786FA6;
+}
+
+.omnival-ascent-bgcolor-16 {
+  background-color: #786FA6;
+}
+
+
+.omnival-ascent-color-17 {
+  color: #FF4A56;
+}
+
+.omnival-ascent-bgcolor-17 {
+  background-color: #FF4A56;
+}
+
+
+.omnival-ascent-color-18 {
+  color: #FFDD00;
+}
+
+.omnival-ascent-bgcolor-18 {
+  background-color: #FFDD00;
+}
+
+
+.omnival-ascent-color-19 {
+  color: #C27AEB;
+}
+
+.omnival-ascent-bgcolor-19 {
+  background-color: #C27AEB;
+}
+
+
+.omnival-ascent-color-20 {
+  color: #DB72BE;
+}
+
+.omnival-ascent-bgcolor-20 {
+  background-color: #DB72BE;
+}
+
+/* Omnival Ascent Colors Pallets */
+
+
+/* Buttons Hover Style */
+button:focus {
+  outline: none;
+}
+
+.c-btn:active {
+  outline: none;
+  background-color: #19262b;
+  color: white;
+}
+
+.c-btn-bg:active {
+  outline: none;
+  background-color: #19262b;
+  color: white;
+}
+
+.c-btn-border:active {
+
+  outline: none;
+  background-color: #f7f7f7;
+  color: #243B43;
+
+}
+
+/* Buttons Hover Style */
+
+/* Omnival Button Pallets */
+.c-btn {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 16.94px;
+  /* color: #243B43; */
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.c-btn-border {
+  border: 1px solid #243B43;
+  background-color: transparent;
+}
+
+.c-btn-bg {
+  background-color: #243B43;
+  color: white;
+}
+
+.c-btn-small {
+  height: 30px;
+  border-radius: 4px;
+  padding: 0 12px;
+}
+
+.c-btn-medium {
+  height: 36px;
+  min-width: 96px;
+  border-radius: 4px;
+  padding: 0 12px;
+}
+
+.c-btn-large {
+  height: 46px;
+  min-width: 96px;
+  border-radius: 4px;
+  padding: 0 12px;
+}
+
+/* .c-btn.disabled,
+.c-btn:disabled {
+  opacity: .65;
+  pointer-events: none;
+  background-color: #86888869;
+} */
+
+.c-btn-border.disabled,
+.c-btn-border:disabled{
+  opacity: .65;
+  pointer-events: none;
+  border: 1px solid #86888869;
+  background-color: transparent;
+}
+
+.c-btn-bg.disabled,
+.c-btn-bg:disabled{
+  opacity: .65;
+  pointer-events: none;
+  background-color: #86888869;
+}
+
+
+/* Omnival Button Pallets */
+
+/* Mat Input Css */
+.mat-form-field {
+  font-family: 'Inter', sans-serif;
+}
+
+.mat-select {
+  font-family: 'Inter', sans-serif;
+}
+
+.mat-option-text {
+  font-family: 'Inter', sans-serif;
+}
+
+.mat-form-field-label {
+  /* color: #f44336; */
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+}
+
+.mat-form-field-label-wrapper {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: #D8D8D8;
+}
+
+
+
+
+.mat-form-field-disabled {}
+
+.mat-form-field.mat-form-field-disabled .mat-form-field-label {
+  color: #86888861 !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: #323A3D;
+  font-weight: 400;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: #000000;
+}
+
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: transparent;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-prefix,
+.mat-form-field-appearance-legacy .mat-form-field-suffix .mat-icon {
+  width: 2rem !important;
+}
+
+.input-icon {
+  color: #868888;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  line-height: 16px;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-subscript-wrapper {
+  margin-top: 0.5416666667em;
+  top: calc(100% - 1.5em);
+  margin-left: 31px;
+}
+
+.img-error-img {
+  top: -1px;
+  position: relative;
+}
+
+.verify-field-icon {
+  position: absolute;
+  right: 0;
+}
+
+/* Mat Input Css */
+
+
+/* Buttons Loader Css */
+.spinner-custom-style {
+  width: 20px;
+  height: 20px;
+  border-width: 3px;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+/* Buttons Loader Css */
+
+/* Radio Button Css */
+.mat-radio-button.mat-primary .mat-radio-inner-circle,
+.mat-radio-button.mat-primary .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-primary.mat-radio-checked .mat-radio-persistent-ripple,
+.mat-radio-button.mat-primary:active .mat-radio-persistent-ripple {
+  background-color: #243B43;
+}
+
+.mat-radio-button.mat-primary.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #243B43;
+}
+
+.mat-radio-label-content {
+  font-family: 'Inter', sans-serif;
+}
+.mat-radio-checked .mat-radio-label .mat-radio-label-content{
+  color: #252B2D !important;
+}
+
+
+/* Radio Button Css */
+
+
+/* CheckBox Button Css */
+.mat-checkbox-checked label.mat-checkbox-layout span.mat-checkbox-label{
+  color: #252B2D !important;
+}
+
+.mat-checkbox-indeterminate.mat-primary .mat-checkbox-background,
+.mat-checkbox-checked.mat-primary .mat-checkbox-background {
+  background-color: #243B43;
+}
+
+/* CheckBox Button Css */
+
+
+/* Chips Css */
+.mat-chip.mat-standard-chip {
+  background-color: #F0F1F1;
+  color: #243B43;
+  border-radius: 4px;
+}
+
+.mat-chip.mat-standard-chip .mat-chip-remove {
+  color: #868888;
+  opacity: 1;
+}
+
+.chips {
+  background-color: #243B43 !important;
+  color: #F0F1F1 !important;
+}
+
+.chip-dark-icon-style {
+  color: #F7F8FC !important;
+}
+
+.chip-light-icon-style {
+  color: #243B43 !important;
+}
+
+.chips-border {
+  /* border: 1px solid #243B43 !important; */
+  border: 1px solid #D8D8D8 !important;
+  background-color: transparent !important;
+}
+.chips-border:hover{
+  border: 1px solid #243B43 !important;
+  background-color: transparent !important;
+}
+
+.simple-chip:hover{
+  background-color: #243B43 !important;
+    color: #F0F1F1 !important;
+}
+
+.simple-chip:hover .dark-state{
+  color: white;
+}
+
+.light-chip:hover{
+  background-color: transparent !important;
+}
+
+.light-chip:hover .chip-dark{
+  color: #243B43;
+}
+.mat-chip-disabled.chips-border:hover {
+  border: 1px solid #D8D8D8 !important;
+}
+
+.mat-chip-disabled .light-chip:hover .chip-dark{
+  color: #868888;
+}
+
+/* Chips Css */
+
+/* Slide Toggle Css */
+.mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-thumb {
+  background-color: white;
+}
+
+.mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-bar {
+  background-color: #243B43;
+}
+
+.mat-slide-toggle-bar {
+  width: 36px !important;
+  height: 18px !important;
+}
+
+.mat-slide-toggle-thumb {
+  height: 16px !important;
+  width: 16px !important;
+}
+
+.mat-slide-toggle-thumb-container {
+  width: 16px !important;
+  height: 16px !important;
+  top: 1px !important;
+  left: 3px !important;
+}
+
+/* Slide Toggle Css */
+
+
+/* Slide Toggle Css */
+.whiteColor {
+  color: white;
+}
+
+/* Slide Toggle Css */
+
+
+/* Alert Boxes Css */
+.alert i {
+  margin-right: 3px;
+}
+.alert img{
+  float: right!important;
+  position: relative;
+  top: 6px;
+}
+
+.shadow-green-bg {
+  background: rgba(6, 169, 23, 0.12);
+}
+
+.shadow-blue-bg {
+  background: rgba(43, 149, 252, 0.12);
+}
+
+.shadow-red-bg {
+  background: rgba(236, 80, 80, 0.12);
+}
+
+.shadow-grey-bg {
+  background: rgba(125, 125, 125, 0.12);
+}
+
+/* Alert Boxes Css */
+
+
+/* Tab Css */
+.tab-container{}
+.tab-container ul{
+  border-bottom: 1px solid #D8D8D8;
+  margin-bottom: 10px;
+}
+.tab-container ul li{}
+.tab-container ul li a {
+  border: 0 !important;
+  padding: 8px 22px;
+}
+.tab-container ul li a.nav-link.active{
+  border-bottom: 2px solid #243B43 !important;
+}
+.tab-container ul li a.nav-link.active span{
+  color: #243B43;
+}
+
+.tab-container ul li.disabled a span{
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.25px;
+  color: #D8D8D8 !important;
+}
+/* Tab Css */
+
+
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}

@@ -4,18 +4,19 @@
       <div class="col-3 col-xl-3 pl-0 pr-0">
         <div class="bgLeftSide">
           <div class="logoImgBox">
-            <img src="../../../../../assets/images/logo1dummy.png" class="img-fluid" alt="">
+            <img src="../../../../../assets/images/logoSvg.svg" class="img-fluid" alt="">
           </div>
 
-          
-          <div class="midContentDiv">
-            <h2>What is Omnival</h2>
 
-            <p>
-              OmniVal is a one stop platform where the clients would be able to meet their desired vendors for all Real Estate related evaluations in suitable time and prices.
+          <div class="midContentDiv">
+            <h4>What is Omnival</h4>
+
+            <p class="sub-title-regular">
+              OmniVal is a one stop platform where the clients would be able to meet their desired vendors for all Real
+              Estate related evaluations in suitable time and prices.
             </p>
 
-            <button class="btn btn-default">Let's Get Started</button>
+            <button class="c-btn c-btn-border c-btn-large">Get Started!</button>
           </div>
 
           <div class="bottomContentDiv">
@@ -35,13 +36,17 @@
       <div class="col-9 col-xl-9 pl-0 pr-0">
         <div class="rightLoginDev">
 
+          <p class="mb-0 sub-title-regular primary-color-4">Don’t have an account? <a href=""
+              class="primary-color-2 sub-title-medium">Sign Up</a></p>
+
           <div class="loginFormDiv">
 
 
 
 
-            <span>CLIENT</span>
-            <h3>Sign in to Omnival</h3>
+            <span class="caption mb-3 d-inline-block">Client</span>
+            <h4 class="primary-color-1 mb-2">Sign in to Omnival</h4>
+            <h6 class="primary-color-4 mb-4">Enter your details below</h6>
 
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
               <div class="form-row">
@@ -49,37 +54,54 @@
 
                 <div class="col-md-12 mb-3 noPadding">
 
-                  <mat-form-field class="d-block">
-                    <mat-icon matPrefix><i class="fa fa-user iconBg" aria-hidden="true"></i></mat-icon>
+                  <mat-form-field class="d-block position-relative">
+                    <mat-icon matPrefix><img src="../../../../../assets/images/mat-icons/user-icon.svg" alt="">
+                    </mat-icon>
                     <mat-label>Username</mat-label>
                     <input matInput formControlName="username" required />
                     <mat-error *ngIf="!loginForm.controls['username'].valid">
-                      Username is required
+                      <img src="../../../../../assets/images/mat-icons/exclamation-circle.svg" class="img-error-img"
+                        alt=""> Username is required
                     </mat-error>
+                    <img src="../../../../../assets/images/mat-icons/icon-action-check.svg" class="verify-field-icon"
+                      *ngIf="loginForm.controls['username'].valid" alt="">
                   </mat-form-field>
                 </div>
 
-                <div class="col-md-12 mb-3 noPadding">
-
-                  <mat-form-field class="d-block">
-                    <mat-icon matPrefix><i class="fa fa-lock iconBg" aria-hidden="true"></i></mat-icon>
+                <div class="col-md-12 noPadding">
+                  <mat-form-field class="d-block position-relative">
+                    <mat-icon matPrefix><img src="../../../../../assets/images/mat-icons/icon-indicator.svg" alt="">
+                    </mat-icon>
                     <mat-label>Password</mat-label>
                     <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
-                    <mat-error *ngIf="!loginForm.controls['password'].valid">Password is required
+                    <mat-error *ngIf="!loginForm.controls['password'].valid"><img
+                        src="../../../../../assets/images/mat-icons/exclamation-circle.svg" class="img-error-img"
+                        alt=""> Password is required
                     </mat-error>
-                    <button class="btn btn-default" type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                    <button class="c-btn" type="button" mat-icon-button matSuffix (click)="hide = !hide"
                       [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      <i class="fa fa-eye input-icon" *ngIf="!hide" aria-hidden="true"></i>
+
+                      <i class="fa fa-eye-slash input-icon" *ngIf="hide" aria-hidden="true"></i>
+
                     </button>
                   </mat-form-field>
                 </div>
 
+                <div class="col-md-12 mb-4">
+                  <a href="" class="linkButton-without-line">Forgot your password?</a>
+                </div>
+
               </div>
 
+
               <div class="leftSubmitButon mt-4">
-                <button class="btn btn-primary btnBg borderRadius6 mb-4" type="submit" [disabled]="loginForm.invalid">SIGN IN
-                  <span class="spinner-border spinner-border-own float-right" *ngIf="loading" role="status"
-                    aria-hidden="true"></span>
+                <button class="c-btn c-btn-bg c-btn-large" type="submit" [disabled]="this.loginForm.invalid || showLoader">
+                  <div class="spinner-border spinner-custom-style" *ngIf="showLoader" role="status">
+                  </div>
+                  Sign In
+                
+
                 </button>
               </div>
               <div *ngIf="errorMessage" class="alert alertboxCss alert-danger">{{errorMessage}}</div>

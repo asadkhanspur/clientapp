@@ -1,4 +1,9 @@
 
+
+.AppMainSection{
+  background-color: #e9eef4;
+}
+
 .AppMainSection .ApprouteDiv {
     /* background-color: #e9eef4; */
     /* height: calc(100vh - 70px); */
@@ -10,6 +15,7 @@
     /* max-width: 314px; */
     transition: 0.50s;
     background-color: #003171;
+    height: 100vh;
   }
   
   #sidebar.active {

@@ -1,0 +1,479 @@
+<div class="emailList">
+  <div class="generalFeeTabDiv" id="style-2">
+
+
+
+    <div class="tableGrids">
+      <h2 class="clearfix"> <button class="btn btn-primary" (click)="openAddSlider(0)"
+          *ngIf="userRoleId == '1'">Create New Role</button></h2>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" width="35%" (click)="sort('roleName',roleList)"><i class="fa fa-sort" aria-hidden="true"></i>
+              Role</th>
+            <th scope="col" width="60%" (click)="sort('description',roleList)"><i class="fa fa-sort" aria-hidden="true"></i>
+              Description</th>
+            <th scope="col" width="5%" *ngIf="userRoleId == '1'"> Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let data of roleList">
+
+            <td>
+              <h3 class="tdVHeading" (click)="openViewSlider(data)">{{data.roleName}}</h3>
+            </td>
+
+            <td>
+              {{data.description}}
+            </td>
+
+            <td *ngIf="userRoleId == '1'">
+              <div class="editButtonDrop" *ngIf="data.roleId !== 1">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right">
+                    <button class="dropdown-item" type="button"
+                      (click)="openEditSlider(data.clientRoleId)">Edit</button>
+                    <button class="dropdown-item" type="button"
+                      (click)="openModalWithClass(clientRolePermissionTemplate)" *ngIf="data.roleId !== null">Reset</button>
+                    <button class="dropdown-item" type="button" *ngIf="data.roleId==null || data.roleId==undefined"
+                      (click)="openModalWithClass(template)">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <!-- Delete Popup Html -->
+            <ng-template #template>
+              <div class="modal-header">
+                <h4 class="modal-title pull-left">Confirmation</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="deleteModal">
+                  <p><i class="fa fa-info-circle" aria-hidden="true"></i> Are you sure you want to delete this
+                    role?</p>
+
+                  <div class="bothButons">
+                    <ul>
+                      <li>
+                        <button class="btn btn-default" (click)="modalRef.hide()">No</button>
+                      </li>
+                      <li>
+                        <button class="btn btn-primary" (click)="deleteRole(data.clientRoleId)"
+                          [disabled]="loadingforgot">Yes <span class="spinner-border spinner-border-own float-right"
+                            *ngIf="loadingforgot" role="status" aria-hidden="true"></span></button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+            <!-- Delete Popup Html -->
+
+            <!-- Reset ClientRolePermission Popup Html -->
+            <ng-template #clientRolePermissionTemplate>
+              <div class="modal-header">
+                <h4 class="modal-title pull-left">Confirmation</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="deleteModal">
+                  <p><i class="fa fa-info-circle" aria-hidden="true"></i> Are you sure you want to reset permissions
+                    for this role?
+                    <br>
+                    The users with custom permissions in this role that might be effected as well if you select
+                    “Reset For All” option.
+                  </p>
+
+                  <div class="bothButons">
+                    <ul>
+                      <li>
+                        <button class="btn btn-primary" (click)="resetClientRolePermission(data.clientRoleId, true)"
+                          [disabled]="loadingforgot">Reset For All <span
+                            class="spinner-border spinner-border-own float-right" *ngIf="loadingforgot"
+                            role="status" aria-hidden="true"></span></button>
+                      </li>
+                      <li>
+                        <button class="btn btn-default"
+                          (click)="resetClientRolePermission(data.clientRoleId, false)">Reset For This Role
+                          Only</button>
+                      </li>
+                      <li>
+                        <button class="btn btn-default" (click)="modalRef.hide()">Cancel</button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+            <!-- Reset ClientRolePermission Popup Html -->
+
+          </tr>
+
+        </tbody>
+      </table>
+
+      <div class="gifLoaderDiv" *ngIf="gifLoader">
+        <img src="../../assets/images/gif-loader.gif" alt="">
+      </div>
+
+      <div class="noRecordDiv" *ngIf="roleList.length == 0 && gifLoader == false">
+        <img src="../../assets/images/noRecordImg.png" alt="">
+        <h1>No Record Found</h1>
+      </div>
+
+
+
+
+
+
+    </div>
+
+
+
+  </div>
+</div>
+
+<div class="tabsDivFee">
+  <!-- For Edit Check List Slider -->
+  <div class="LowVisibilityDiv addCheck">
+    <div class="FormDivPopup" id="edit-sec-scroll">
+      <h4 class="textCenter fz-18 ebold">Create Role</h4>
+      <div class="formInerDiv">
+        <form [formGroup]="roleForm" (ngSubmit)="onSave(roleForm.value)">
+          <div class="formsRoleField">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="FieldBox">
+                  <mat-form-field class="d-block">
+                    <mat-icon matSuffix></mat-icon>
+                    <mat-label>Role Name</mat-label>
+                    <input matInput formControlName="roleName" required>
+                    <mat-error *ngIf="validateForm(roleForm,'roleName', 'required')">Role name is required
+                    </mat-error>
+                    <mat-error *ngIf="validateForm(roleForm,'roleName', 'maxlength')">Role name should be less
+                      than 100</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="FieldBox">
+                  <mat-form-field class="d-block">
+                    <mat-label>Role Description</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+                    <mat-error *ngIf="validateForm(roleForm,'description', 'maxlength')">Description
+                      should be less than 1000</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <h4 class="textCenter fz-18 ebold">User Role</h4> -->
+
+          <div class="roleBox" *ngFor="let module of modal.modules">
+            <h3>{{module.moduleName}}</h3>
+
+            <div class="roleTableBox">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col" width="30%"></th>
+                    <th scope="col" width="10%">Full Access</th>
+                    <th scope="col" width="10%">View</th>
+                    <th scope="col" width="10%">Create</th>
+                    <th scope="col" width="10%">Edit</th>
+                    <th scope="col" width="10%">Delete</th>
+                    <th scope="col" width="20%"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let permission of module.permissions">
+                    <td>{{permission.permissionName}}</td>
+                    <td>
+                      <mat-checkbox color="primary"
+                        [checked]="(permission.isView || !permission.isViewShow) && (permission.isCreate || !permission.isCreateShow) && (permission.isUpdate || !permission.isUpdateShow) && (permission.isDelete  || !permission.isDeleteShow)"
+                        (change)="fullAccessNew($event,permission)"></mat-checkbox>
+                    </td>
+                    <td>
+                      <mat-checkbox color="primary" *ngIf="permission.isViewShow" [checked]="permission.isView"
+                        (change)="changeAccessNew($event,permission,'view')"></mat-checkbox>
+                    </td>
+                    <td>
+                      <mat-checkbox color="primary" *ngIf="permission.isCreateShow" [disabled]="!permission.isView"
+                        [checked]="permission.isCreate" (change)="changeAccessNew($event,permission,'create')">
+                      </mat-checkbox>
+                    </td>
+                    <td>
+                      <mat-checkbox color="primary" *ngIf="permission.isUpdateShow" [disabled]="!permission.isView"
+                        [checked]="permission.isUpdate" (change)="changeAccessNew($event,permission,'update')">
+                      </mat-checkbox>
+                    </td>
+                    <td>
+                      <mat-checkbox color="primary" *ngIf="permission.isDeleteShow" [disabled]="!permission.isView"
+                        [checked]="permission.isDelete" (change)="changeAccessNew($event,permission,'delete')">
+                      </mat-checkbox>
+                    </td>
+                    <td>
+                      <!-- <span class="permisionsStyleCustom" *ngIf="permission.permissions.length > 0">More Permissions</span> -->
+                      <!-- <span *ngFor="let subPermission of permission.permissions">{{subPermission.permissionName}}</span> -->
+
+                      <div class="btn-group" [insideClick]="true" dropdown *ngIf="permission.permissions.length > 0">
+                        <button dropdownToggle type="button" class="btn btn-default dropdown-toggle"
+                          aria-controls="dropdown-basic">
+                          More Permissions <span class="caret"></span>
+                        </button>
+                        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu inerMenue" role="menu"
+                          aria-labelledby="button-basic">
+                          <li role="menuitem" *ngFor="let subPermission of permission.permissions">
+                            <mat-checkbox color="primary" [checked]="subPermission.isView"></mat-checkbox>
+                            {{subPermission.permissionName}}
+                          </li>
+                        </ul>
+                      </div>
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="pointsDiv">
+              <p *ngFor="let permission of module.standalonePermissions">
+                <mat-checkbox color="primary" [checked]="permission.isView"></mat-checkbox> Allow users to handle the
+                data and transaction for {{permission.permissionName}}
+              </p>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="requestBtn">
+
+                <button class="btn btn-default" type="button" (click)="closeAddSlider()">
+                  Canel</button>
+
+                <button class="btn btn-primary" [disabled]="loadingforgot" type="submit">
+                  <span class="spinner-border spinner-border-own float-right" *ngIf="loadingforgot"
+                    aria-hidden="true"></span>
+                  Save</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <button class="btn btn-default btn-close" (click)="closeAddSlider()"><i class="fa fa-times"
+          aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <!-- For Edit Check List Slider -->
+
+  <!-- For Edit Check List Slider -->
+  <div class="LowVisibilityDiv editCheck">
+    <div class="FormDivPopup" id="edit-sec-scroll">
+      <h4 class="textCenter fz-18 ebold" *ngIf="isView == false">Edit Role</h4>
+      <h4 class="textCenter fz-18 ebold" *ngIf="isView == true">Role</h4>
+      <div class="formInerDiv" [hidden]="gifLoaderForm">
+        <form [formGroup]="roleForm">
+          <div class="formsRoleField">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="FieldBox">
+                  <mat-form-field class="d-block">
+                    <mat-icon matSuffix></mat-icon>
+                    <mat-label>Role Name</mat-label>
+                    <input matInput formControlName="roleName" required (change)="updateName(roleForm.value)"
+                      [readOnly]="isView">
+                    <mat-error *ngIf="validateForm(roleForm,'roleName', 'required')">Template name is required
+                    </mat-error>
+                    <mat-error *ngIf="validateForm(roleForm,'roleName', 'maxlength')">Template name should be less
+                      than 100</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="FieldBox">
+                  <mat-form-field class="d-block">
+                    <mat-label>Role Description</mat-label>
+                    <textarea matInput formControlName="description" (change)="updateName(roleForm.value)"
+                      [readOnly]="isView"></textarea>
+                    <mat-error *ngIf="validateForm(roleForm,'description', 'maxlength')">Description
+                      should be less than 1000</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <h4 class="textCenter fz-18 ebold">User Role</h4> -->
+
+          <div class="roleBox" *ngFor="let module of modal.modules">
+            <h3>{{module.moduleName}}</h3>
+
+            <div class="roleTableBox">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col" width="30%"></th>
+                    <th scope="col" width="10%">Full Access</th>
+                    <th scope="col" width="10%">View</th>
+                    <th scope="col" width="10%">Create</th>
+                    <th scope="col" width="10%">Edit</th>
+                    <th scope="col" width="10%">Delete</th>
+                    <th scope="col" width="20%"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let permission of module.permissions">
+                    <td>{{permission.permissionName}}</td>
+                    <td>
+                      <mat-checkbox color="primary"
+                        [checked]="(permission.isView || !permission.isViewShow) && (permission.isCreate || !permission.isCreateShow) && (permission.isUpdate || !permission.isUpdateShow) && (permission.isDelete  || !permission.isDeleteShow)"
+                        (change)="openPermissionModalWithClass(permissionCheck, $event, permission, 'fullAccess', modal.clientRoleId)"
+                        [disabled]="isView"></mat-checkbox>
+
+                      <!-- (change)="fullAccess($event,permission)" -->
+                    </td>
+                    <td>
+                      <mat-checkbox color="primary" *ngIf="permission.isViewShow" [checked]="permission.isView"
+                        (change)="openPermissionModalWithClass(permissionCheck, $event, permission, 'view', modal.clientRoleId)"
+                        [disabled]="isView"></mat-checkbox>
+                      <!-- (change)="changeAccess($event,permission,'view')" -->
+                    </td>
+                    <td>
+                      <mat-checkbox color="primary" *ngIf="permission.isCreateShow" [disabled]="!permission.isView"
+                        [checked]="permission.isCreate"
+                        (change)="openPermissionModalWithClass(permissionCheck,$event,  permission, 'create', modal.clientRoleId)"
+                        [disabled]="isView"></mat-checkbox>
+
+                      <!-- (change)="changeAccess($event,permission,'create')" -->
+                    </td>
+                    <td>
+                      <mat-checkbox color="primary" *ngIf="permission.isUpdateShow" [disabled]="!permission.isView"
+                        [checked]="permission.isUpdate"
+                        (change)="openPermissionModalWithClass( permissionCheck, $event, permission, 'update', modal.clientRoleId)"
+                        [disabled]="isView"></mat-checkbox>
+
+                      <!-- (change)="changeAccess($event,permission,'update')" -->
+                    </td>
+                    <td>
+                      <mat-checkbox color="primary" *ngIf="permission.isDeleteShow" [disabled]="!permission.isView"
+                        [checked]="permission.isDelete"
+                        (change)="openPermissionModalWithClass( permissionCheck, $event, permission, 'delete', modal.clientRoleId)"
+                        [disabled]="isView"></mat-checkbox>
+
+                      <!-- (change)="changeAccess($event,permission,'delete')" -->
+                    </td>
+                    <td>
+                      <!-- <span class="permisionsStyleCustom" *ngIf="permission.permissions.length > 0">More Permissions</span>
+                      <span *ngFor="let subPermission of permission.permissions">{{subPermission.permissionName}}</span> -->
+
+                      <div class="btn-group" [insideClick]="true" dropdown *ngIf="permission.permissions.length > 0">
+                        <button dropdownToggle type="button" class="btn btn-default dropdown-toggle"
+                          aria-controls="dropdown-basic">
+                          More Permissions <span class="caret"></span>
+                        </button>
+                        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu inerMenue" role="menu"
+                          aria-labelledby="button-basic">
+                          <li role="menuitem" *ngFor="let subPermission of permission.permissions">
+                            <mat-checkbox color="primary" [checked]="subPermission.isView"
+                              (change)="openPermissionModalWithClass( permissionCheck, $event, subPermission, 'delete', modal.clientRoleId)"
+                              [disabled]="isView"></mat-checkbox>
+
+                            <!-- (change)="changeAccess($event,subPermission,'view')" -->
+                            {{subPermission.permissionName}}
+                          </li>
+                        </ul>
+                      </div>
+
+                    </td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="pointsDiv">
+              <p *ngFor="let permission of module.standalonePermissions">
+                <mat-checkbox color="primary"
+                  (change)="openPermissionModalWithClass(permissionCheck, $event, permission, 'view', modal.clientRoleId)"
+                  [checked]="permission.isView" [disabled]="isView"></mat-checkbox>
+                <!-- (change)="changeAccess($event,permission,'view')" -->
+                <!-- (click)="openPermissionModalWithClass(permissionCheck, $event, permission, 'view')" -->
+                Allow users to
+                handle the data and transaction for {{permission.permissionName}}
+              </p>
+            </div>
+
+
+
+          </div>
+
+        </form>
+      </div>
+      <div class="gifLoaderDiv" [hidden]="!gifLoaderForm">
+        <img src="../../assets/images/gif-loader.gif" alt="">
+      </div>
+      <button class="btn btn-default btn-close" (click)="closeEditSlider()"><i class="fa fa-times"
+          aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <!-- For Edit Check List Slider -->
+
+</div>
+
+
+
+<!-- Permission Check Popup Html -->
+<ng-template #permissionCheck>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Confirmation</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closePermissionCheck()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="deleteModal">
+      <p *ngIf="permissionEventCheck == true"><i class="fa fa-info-circle" aria-hidden="true"></i> Do you also want to
+        add this permission for the following user(s) having custom permissions?
+        <br>
+        <b>
+          {{ clientUserNames }} </b>
+      </p>
+
+      <p *ngIf="permissionEventCheck == false"><i class="fa fa-info-circle" aria-hidden="true"></i> Do you also want to
+        remove this permission for the following user(s) having custom permissions?
+        <br>
+        <b>
+          {{ clientUserNames }} </b>
+      </p>
+
+
+
+      <div class="bothButons">
+        <ul>
+          <li>
+            <button class="btn btn-default" (click)="assignCustomPermission(false)">No</button>
+          </li>
+          <li>
+            <button class="btn btn-primary" (click)="assignCustomPermission(true)" [disabled]="loadingforgot">Yes <span
+                class="spinner-border spinner-border-own float-right" *ngIf="loadingforgot" role="status"
+                aria-hidden="true"></span></button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<!-- Permission Check Popup Html -->

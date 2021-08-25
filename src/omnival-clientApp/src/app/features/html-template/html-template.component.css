@@ -1,0 +1,11 @@
+.color-row i{
+    height: 16px;
+    width: 80px;
+}
+
+.example-full-width{width: 100%;}
+
+section.html-template-section {
+    background-color: white;
+    padding: 20px;
+}

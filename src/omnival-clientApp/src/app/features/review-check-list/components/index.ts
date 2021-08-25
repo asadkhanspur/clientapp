@@ -1,0 +1,1 @@
+export *from './review-list/review-list.component'
