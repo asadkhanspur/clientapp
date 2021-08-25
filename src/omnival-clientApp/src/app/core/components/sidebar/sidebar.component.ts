@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BsDropdownConfig } from "ngx-bootstrap/dropdown";
-import { finalize, tap } from 'rxjs/operators';
 
 // ********* Services Import ********* //
-import { AuthenticationService } from "../../../core/services"
+import { BaseComponent } from '../base/base.component';
 // ********* Services Import ********* //
 
 @Component({
@@ -11,7 +9,7 @@ import { AuthenticationService } from "../../../core/services"
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent extends BaseComponent implements OnInit {
 
   orderCollapsed = true;
   reportingCollapsed = true;
@@ -20,15 +18,13 @@ export class SidebarComponent implements OnInit {
   reportCollapsed = true;
   accountCollapsed = true;
   panelCollapsed = true;
-  setting: any;
-  permissions: any;
 
-  constructor(
-    private AuthenticationService: AuthenticationService,
-  ) { }
+  constructor( ) 
+  {
+    super();
+  }
 
   ngOnInit() {
-    this.permissions = this.AuthenticationService.permissionFunction();
   }
 
 }

@@ -1,14 +1,10 @@
 import { BaseComponent } from '../../../../core/components';
-import { RefreshData } from '../../../../core/modals';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import * as $ from 'jquery';
-import { AuthenticationService, SignalRService} from "../../../../core/services";
-import { ClientContactTypeService, ClientBranchService, ClientUserService, ClientService} from "../../../../shared/services"
+import { SignalRService} from "../../../../core/services";
 import { RoleService} from "../../services"
-import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl, ValidatorFn, FormGroupDirective } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { finalize, tap } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { accessType } from '../../../../core/enum';
@@ -17,6 +13,7 @@ import { accessType } from '../../../../core/enum';
 // ********* Helper Import ********* //
 import { HelperMethods } from '../../../../core/utils';
 import { Subscription } from 'rxjs';
+import { ErrorMessage,SuccessMessage } from '../../../../core/enum';
 // ********* Helper Import ********* //
 
 @Component({
@@ -48,12 +45,9 @@ export class RoleManagementComponent extends BaseComponent  implements OnInit {
   @ViewChild(FormGroupDirective) userFormDirective;
 
   constructor(
-    private fb: FormBuilder,
     private RoleService: RoleService,
-    private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
     private modalService: BsModalService,
-    private router: Router,
     private signalrService: SignalRService
   ) {
     super();
@@ -97,9 +91,7 @@ export class RoleManagementComponent extends BaseComponent  implements OnInit {
         (error: any) => {
           this.gifLoader = false
           this.errorMessage = error.error.message;
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 2000,
-          });
+          this.Error(ErrorMessage.fromServer,this.errorMessage);
           console.log(`error on retriving roles : ${error}`);
         }
       ),
@@ -140,16 +132,14 @@ export class RoleManagementComponent extends BaseComponent  implements OnInit {
           // this.getClientRoleList();
           // this.modalRef.hide();
           // this.gifLoaderForm = false;
-          this.snackBar.open('Changes Has Been Saved Successfully', '', {
-            duration: 4000,
-          });
+          // this.snackBar.open('Changes Has Been Saved Successfully', '', {
+          //   duration: 4000,
+          // });
         },
           error => {
             this.loadingforgot = false
             this.errorMessage = error.error.message;
-            this.snackBar.open(this.errorMessage, '', {
-              duration: 4000,
-            });
+            this.Error(ErrorMessage.fromServer,this.errorMessage);
             permission.isView = !event.checked;
             permission.isCreate = !event.checked;
             permission.isUpdate = !event.checked;
@@ -241,16 +231,14 @@ export class RoleManagementComponent extends BaseComponent  implements OnInit {
           // this.getClientRoleList();
           // this.modalRef.hide();
           // this.gifLoaderForm = false;
-          this.snackBar.open('Changes Has Been Saved Successfully', '', {
-            duration: 4000,
-          });
+          this.Success(SuccessMessage.fromServer,'Changes Has Been Saved Successfully');
+
         },
           error => {
             this.gifLoaderForm = false;
             this.errorMessage = error.error.message;
-            this.snackBar.open(this.errorMessage, '', {
-              duration: 4000,
-            });
+            this.Error(ErrorMessage.fromServer,this.errorMessage);
+
             switch (accessFor) {
               case 'view':
                 permission.isView = !event.checked;
@@ -288,18 +276,14 @@ export class RoleManagementComponent extends BaseComponent  implements OnInit {
         ;
         this.loadingforgot = false
         this.successMessage = result
-        this.snackBar.open(this.successMessage.message, '', {
-          duration: 8000,
-        });
+        this.Success(SuccessMessage.fromServer,this.successMessage);
         this.getClientRoleList();
         this.modalRef.hide();
       },
         (error: any) => {
           ;
           this.errorMessage = error.error.message;
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 2000,
-          });
+          this.Error(ErrorMessage.fromServer,this.errorMessage);
           console.log(`error on retrieving role data : ${error}`);
         }),
       finalize(() => {
@@ -318,18 +302,15 @@ export class RoleManagementComponent extends BaseComponent  implements OnInit {
 
           this.loadingforgot = false
           this.successMessage = result
-          this.snackBar.open(this.successMessage.message, '', {
-            duration: 8000,
-          });
+          this.Success(SuccessMessage.fromServer,this.successMessage);
           this.getClientRoleList();
           this.modalRef.hide();
         },
           error => {
             this.loadingforgot = false
             this.errorMessage = error.error.message;
-            this.snackBar.open(this.errorMessage, '', {
-              duration: 8000,
-            });
+            this.Error(ErrorMessage.fromServer,this.errorMessage);
+
           }),
         finalize(() => {
         })
@@ -375,9 +356,7 @@ export class RoleManagementComponent extends BaseComponent  implements OnInit {
         (error: any) => {
           ;
           this.errorMessage = error.error.message;
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 2000,
-          });
+          this.Error(ErrorMessage.fromServer,this.errorMessage);
           console.log(`error on retrieving role data : ${error}`);
         }),
       finalize(() => {
@@ -449,9 +428,8 @@ export class RoleManagementComponent extends BaseComponent  implements OnInit {
       },
         (error: any) => {
           this.errorMessage = error.error.message;
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 2000,
-          });
+          this.Error(ErrorMessage.fromServer,this.errorMessage);
+
           console.log(`error on retrieving role data : ${error}`);
         }),
       finalize(() => {
@@ -476,9 +454,8 @@ export class RoleManagementComponent extends BaseComponent  implements OnInit {
         (error: any) => {
           this.loadingforgot = false
           this.errorMessage = error.error.message;
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 2000,
-          });
+          this.Error(ErrorMessage.fromServer,this.errorMessage);
+
           console.log(`error on retrieving role data : ${error}`);
         }),
       finalize(() => {
@@ -498,9 +475,8 @@ export class RoleManagementComponent extends BaseComponent  implements OnInit {
         (error: any) => {
           this.loadingforgot = false
           this.errorMessage = error.error.message;
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 2000,
-          });
+          this.Error(ErrorMessage.fromServer,this.errorMessage);
+
           console.log(`error on retrieving role data : ${error}`);
         }),
       finalize(() => {
@@ -531,9 +507,7 @@ export class RoleManagementComponent extends BaseComponent  implements OnInit {
       tap(result => {
         this.loadingforgot = false
         this.successMessage = result.message;
-        this.snackBar.open(this.successMessage, '', {
-          duration: 4000,
-        })
+        this.Success(SuccessMessage.fromServer,this.successMessage);
         this.roleForm.markAsPristine();
         this.getClientRoleList();
         $(".addCheck").removeClass("openedpopeup");
@@ -541,9 +515,8 @@ export class RoleManagementComponent extends BaseComponent  implements OnInit {
         (error: any) => {
           this.loadingforgot = false
           this.errorMessage = error.error.message;
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 2000,
-          });
+          this.Error(ErrorMessage.fromServer,this.errorMessage);
+
           console.log(`error on create role data : ${error}`);
         }),
       finalize(() => {
@@ -567,17 +540,14 @@ export class RoleManagementComponent extends BaseComponent  implements OnInit {
       tap(result => {
         this.gifLoaderForm = false
         this.successMessage = result.message;
-        this.snackBar.open(this.successMessage, '', {
-          duration: 4000,
-        })
+        this.Success(SuccessMessage.fromServer,this.successMessage);
         this.roleForm.markAsPristine();
       },
         (error: any) => {
           this.gifLoaderForm = false
           this.errorMessage = error.error.message;
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 2000,
-          });
+          this.Error(ErrorMessage.fromServer,this.errorMessage);
+
           console.log(`error on update role data : ${error}`);
         }),
       finalize(() => {
@@ -603,9 +573,7 @@ export class RoleManagementComponent extends BaseComponent  implements OnInit {
       tap(result => {
         this.loadingforgot = false
         this.successMessage = result.message;
-        this.snackBar.open(this.successMessage, '', {
-          duration: 4000,
-        })
+        this.Success(SuccessMessage.fromServer,this.successMessage);
         this.roleForm.markAsPristine();
         this.getClientRoleList();
         $(".addCheck").removeClass("openedpopeup");
@@ -613,9 +581,8 @@ export class RoleManagementComponent extends BaseComponent  implements OnInit {
         (error: any) => {
           this.loadingforgot = false
           this.errorMessage = error.error.message;
-          this.snackBar.open(this.errorMessage, '', {
-            duration: 2000,
-          });
+          this.Error(ErrorMessage.fromServer,this.errorMessage);
+
           console.log(`error on update role data : ${error}`);
         }),
       finalize(() => {
